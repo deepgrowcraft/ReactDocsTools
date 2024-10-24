@@ -16,7 +16,9 @@ const Header = () => {
       <div className="container mx-auto flex justify-between items-center py-4 px-4 md:px-0">
         {/* Logo */}
         <Link to="/" className="text-2xl font-bold text-blue-600">
-          Online File <span className="text-purple-500">Converter</span>
+          {/* Online File <span className="text-purple-500">Converter</span> */}
+
+          <img src="/logo.svg" alt="Logo" className="w-18 h-10 mb-1" />
         </Link>
 
         {/* Desktop Navigation */}

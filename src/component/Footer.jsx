@@ -12,14 +12,14 @@ const Footer = () => {
         <div className="flex justify-center space-x-4">
           <a href="#" className="inline-block">
             <img
-              src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
+              src="./playstore.svg"
               alt="Google Play"
               className="h-10 transition-transform transform hover:scale-105"
             />
           </a>
           <a href="#" className="inline-block">
             <img
-              src="https://developer.apple.com/app-store/marketing/guidelines/images/badge-example-preferred_2x.png"
+              src="./appstore.svg"
               alt="App Store"
               className="h-10 transition-transform transform hover:scale-105"
             />

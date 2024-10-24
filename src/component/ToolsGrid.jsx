@@ -158,62 +158,6 @@ const tools = [
     icon: <img src="../home/eSignPdf.svg" alt="pdfToTxt" className="h-15" />,
   },
 ];
-// const strokeColors = ["#FF0000", "#00FF00", "#0000FF", "#FF00FF"];
-
-// const ToolsGrid = () => {
-//   return (
-//     <section className="py-16 bg-gray-100">
-//       {/* Header Section */}
-//       <div className="container mx-auto text-center mb-12">
-//         <h2 className="text-4xl font-bold mb-4 text-gray-800">
-//           Free Online Document Conversion Made Easy
-//         </h2>
-//         <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-//           Effortlessly convert your documents with our free online tools.
-//           Whether you need to change formats or compress files, our service
-//           makes it quick and easy—all without any cost.
-//         </p>
-//       </div>
-
-//       {/* Tools Grid */}
-//       <div className="container mx-auto px-4">
-//         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-//           {tools.map((tool, index) => (
-//             <div
-//               key={index}
-//               className="relative bg-white rounded-xl shadow-lg p-6 text-center transition-all duration-300 transform hover:scale-105 hover:shadow-2xl group hover:-translate-y-2 hover:rotate-1"
-//               style={{ perspective: "1000px" }} // Adds a 3D perspective for tilt effect
-//             >
-//               {/* Background Overlay for Hover Effect */}
-//               <div className="absolute inset-0 bg-gradient-to-tr from-blue-400 to-blue-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-0 rounded-xl"></div>
-
-//               {/* Icon and Content */}
-//               <div className="relative z-10">
-//                 <div className="w-16 h-16 mx-auto mb-4 p-2 bg-blue-100 rounded-full flex items-center justify-center group-hover:bg-blue-500 transition-all duration-300 group-hover:shadow-lg group-hover:scale-110 group-hover:translate-y-1">
-//                   {tool.icon}
-//                 </div>
-
-//                 {/* Tool Name */}
-//                 <h3 className="text-xl font-semibold mb-2 text-gray-800 group-hover:text-white transition-colors duration-300">
-//                   {tool.name}
-//                 </h3>
-
-//                 {/* Tool Description */}
-//                 <p className="text-gray-600 group-hover:text-gray-200 transition-colors duration-300">
-//                   {tool.description}
-//                 </p>
-//               </div>
-
-//               {/* Border Transition */}
-//               <div className="absolute inset-0 border-2 border-transparent rounded-xl group-hover:border-blue-500 transition-all duration-300"></div>
-//             </div>
-//           ))}
-//         </div>
-//       </div>
-//     </section>
-//   );
-// };
-
 const strokeColors = ["#FFB3B3", "#B3FFCC", "#B3D9FF", "#FFCCF2"];
 
 const ToolsGrid = () => {
