@@ -1,99 +1,4 @@
-// import React from "react";
-
-// const tools = [
-//   {
-//     name: "Word to PDF",
-//     description: "Transform DOC and DOCX files into PDFs.",
-//   },
-//   { name: "Excel to PDF", description: "Convert Excel files into PDF format." },
-//   { name: "PPT to PDF", description: "Convert PowerPoint files into PDF." },
-//   { name: "IMAGE to PDF", description: "Convert images into PDF format." },
-//   { name: "HTML to PDF", description: "Convert HTML files into PDFs." },
-//   { name: "PDF OCR", description: "Convert scanned PDFs to editable text." },
-//   { name: "PDF to Word", description: "Convert PDF files into DOC or DOCX." },
-//   { name: "PDF to Excel", description: "Convert PDF files into Excel sheets." },
-//   {
-//     name: "PDF to PPT",
-//     description: "Convert PDF files into PowerPoint slides.",
-//   },
-//   { name: "PDF to TEXT", description: "Extract text from PDF files." },
-//   { name: "PDF to IMAGE", description: "Convert PDF pages into image files." },
-//   { name: "Merge PDF", description: "Merge multiple PDFs into one file." },
-//   { name: "Split PDF", description: "Split a PDF into multiple parts." },
-//   { name: "Compress PDF", description: "Compress the size of your PDFs." },
-//   {
-//     name: "Flip PDF Pages",
-//     description: "Flip through PDF pages interactively.",
-//   },
-//   {
-//     name: "Remove PDF Pages",
-//     description: "Delete specific pages from a PDF.",
-//   },
-//   { name: "PDF Scanner", description: "Scan documents and save them as PDFs." },
-//   {
-//     name: "Extract PDF Content",
-//     description: "Extract text and images from PDFs.",
-//   },
-//   { name: "Rotate PDF", description: "Rotate PDF pages." },
-//   { name: "Crop PDF", description: "Crop the margins of PDF files." },
-//   { name: "Edit PDF", description: "Edit text and images in PDFs." },
-//   { name: "Rearrange PDF", description: "Reorder the pages in a PDF file." },
-//   { name: "PDF Creator", description: "Create a new PDF from scratch." },
-//   { name: "Add Page Number", description: "Add page numbers to a PDF." },
-//   { name: "Add Watermark", description: "Add a watermark to your PDF." },
-//   { name: "Unlock PDF", description: "Unlock password-protected PDFs." },
-//   { name: "Protect PDF", description: "Encrypt your PDF files." },
-//   { name: "eSign PDF", description: "Electronically sign PDF documents." },
-// ];
-
-// const ToolsGrid = () => {
-//   return (
-//     <section className="py-16 bg-gray-50">
-//       <div className="container mx-auto text-center mb-12">
-//         <h2 className="text-4xl font-bold mb-4">
-//           Free Online Document Conversion Made Easy
-//         </h2>
-//         <p className="text-lg text-gray-600">
-//           Effortlessly convert your documents with our free online tools.
-//           Whether you need to change formats or compress files, our service
-//           makes it quick and easy—all without any cost.
-//         </p>
-//       </div>
-
-//       <div className="container mx-auto px-4">
-//         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-//           {tools.map((tool, index) => (
-//             <div
-//               key={index}
-//               className="bg-white rounded-xl shadow-md p-6 text-center hover:shadow-lg transition-shadow duration-300"
-//             >
-//               <h3 className="text-xl font-semibold mb-2 text-blue-600">
-//                 {tool.name}
-//               </h3>
-//               <p className="text-gray-500">{tool.description}</p>
-//             </div>
-//           ))}
-//         </div>
-//       </div>
-//     </section>
-//   );
-// };
-
-// export default ToolsGrid;
-
 import React from "react";
-// Import custom icons from React Icons or use custom SVG icons
-import {
-  FaFilePdf,
-  FaFileWord,
-  FaFileExcel,
-  FaFilePowerpoint,
-  FaImage,
-  FaLock,
-  FaUnlock,
-  FaSignature,
-  FaCompressAlt,
-} from "react-icons/fa";
 
 const tools = [
   {
@@ -256,33 +161,50 @@ const tools = [
 
 const ToolsGrid = () => {
   return (
-    <section className="py-16 bg-gray-50">
+    <section className="py-16 bg-gray-100">
+      {/* Header Section */}
       <div className="container mx-auto text-center mb-12">
-        <h2 className="text-4xl font-bold mb-4">
+        <h2 className="text-4xl font-bold mb-4 text-gray-800">
           Free Online Document Conversion Made Easy
         </h2>
-        <p className="text-lg text-gray-600">
+        <p className="text-lg text-gray-600 max-w-2xl mx-auto">
           Effortlessly convert your documents with our free online tools.
           Whether you need to change formats or compress files, our service
           makes it quick and easy—all without any cost.
         </p>
       </div>
 
+      {/* Tools Grid */}
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
           {tools.map((tool, index) => (
             <div
               key={index}
-              className="bg-white rounded-xl shadow-md p-6 text-center hover:shadow-2xl hover:scale-105 transition transform duration-300 ease-in-out group"
+              className="relative bg-white rounded-xl shadow-lg p-6 text-center transition-all duration-300 transform hover:scale-105 hover:shadow-2xl group hover:-translate-y-2 hover:rotate-1"
+              style={{ perspective: "1000px" }} // Adds a 3D perspective for tilt effect
             >
-              {/* Custom Icon */}
-              <div className="text-5xl text-blue-600 mb-4 group-hover:text-blue-700 transition duration-300">
-                {tool.icon}
+              {/* Background Overlay for Hover Effect */}
+              <div className="absolute inset-0 bg-gradient-to-tr from-blue-400 to-blue-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-0 rounded-xl"></div>
+
+              {/* Icon and Content */}
+              <div className="relative z-10">
+                <div className="w-16 h-16 mx-auto mb-4 p-2 bg-blue-100 rounded-full flex items-center justify-center group-hover:bg-blue-500 transition-all duration-300 group-hover:shadow-lg group-hover:scale-110 group-hover:translate-y-1">
+                  {tool.icon}
+                </div>
+
+                {/* Tool Name */}
+                <h3 className="text-xl font-semibold mb-2 text-gray-800 group-hover:text-white transition-colors duration-300">
+                  {tool.name}
+                </h3>
+
+                {/* Tool Description */}
+                <p className="text-gray-600 group-hover:text-gray-200 transition-colors duration-300">
+                  {tool.description}
+                </p>
               </div>
-              <h3 className="text-xl font-semibold mb-2 text-blue-600 group-hover:text-blue-700 transition duration-300">
-                {tool.name}
-              </h3>
-              <p className="text-gray-500">{tool.description}</p>
+
+              {/* Border Transition */}
+              <div className="absolute inset-0 border-2 border-transparent rounded-xl group-hover:border-blue-500 transition-all duration-300"></div>
             </div>
           ))}
         </div>
