@@ -5,6 +5,7 @@ import Home from "./screen/Home";
 import About from "./screen/Aboutus";
 import Contact from "./screen/Contactus";
 import Footer from "./component/Footer";
+import DocToPdfScreen from "./screen/DocToPdfScreen";
 
 function App() {
   return (
@@ -14,7 +15,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
+          <Route path="/contact" element={<DocToPdfScreen />} />
+          <Route path="/docToPdf" element={<DocToPdfScreen />} />
         </Routes>
         <Footer />
       </div>

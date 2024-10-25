@@ -5,7 +5,7 @@ const Hero = () => {
     <section
       className="bg-gradient-to-b from-blue-50 via-blue-100 to-blue-200 py-16 mt-5 bg-cover bg-center bg-no-repeat h-screen"
       style={{
-        backgroundImage: "url('/public/home/HeroBg.svg')", // Update the path if needed
+        backgroundImage: "url('/home/HeroBg.svg')", // Update the path if needed
       }}
     >
       <div className="container mx-auto text-center px-4 md:px-0">
