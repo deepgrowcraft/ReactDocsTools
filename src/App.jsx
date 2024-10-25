@@ -8,6 +8,7 @@ import Footer from "./component/Footer";
 import DocToPdfScreen from "./screen/DocToPdfScreen";
 import ExelToPdfScreen from "./screen/ExelToPdf";
 import PptToPdfScreen from "./screen/PptToPdfScreen";
+import ImageToPdfScreen from "./screen/ImageToPdfScreen";
 
 function App() {
   return (
@@ -15,12 +16,13 @@ function App() {
       <div className="App">
         <Header />
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<ImageToPdfScreen />} />
           <Route path="/about" element={<PptToPdfScreen />} />
           <Route path="/contact" element={<DocToPdfScreen />} />
           <Route path="/docToPdf" element={<DocToPdfScreen />} />
           <Route path="/ExelToPdfScreen" element={<ExelToPdfScreen />} />
           <Route path="/PptToPdfScreen" element={<PptToPdfScreen />} />
+          <Route path="/ImageToPdfScreen" element={<ImageToPdfScreen />} />
         </Routes>
         <Footer />
       </div>
