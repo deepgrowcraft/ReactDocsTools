@@ -1,23 +1,49 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
 
   // Toggle the mobile menu
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
 
+  // Handle scrolling to hide/show header
+  const handleScroll = () => {
+    const currentScrollY = window.scrollY;
+
+    // Hide header on scroll down, show on scroll up
+    if (currentScrollY > lastScrollY) {
+      setIsVisible(false);
+    } else {
+      setIsVisible(true);
+    }
+
+    setLastScrollY(currentScrollY);
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [lastScrollY]);
+
   return (
-    <header className="w-full bg-white shadow-md fixed top-0 left-0 z-50">
+    <header
+      className={`w-full bg-white shadow-md fixed top-0 left-0 z-50 transition-transform duration-300 ${
+        isVisible ? "translate-y-0" : "-translate-y-full"
+      }`}
+    >
       <div className="container mx-auto flex justify-between items-center py-4 px-4 md:px-0">
         {/* Logo */}
         <Link to="/" className="text-2xl font-bold text-blue-600">
-          {/* Online File <span className="text-purple-500">Converter</span> */}
-
           <img src="/logo.svg" alt="Logo" className="w-18 h-10 mb-1" />
         </Link>
 

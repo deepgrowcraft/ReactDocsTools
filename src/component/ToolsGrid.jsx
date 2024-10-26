@@ -1,20 +1,24 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const tools = [
   {
     name: "Word to PDF",
     description: "Transform DOC and DOCX files into PDFs.",
     icon: <img src="../home/wordTopdf.svg" alt="wordTopdf" className="h-15" />,
+    path: "/docToPdf",
   },
   {
     name: "Excel to PDF",
     description: "Convert Excel files into PDF format.",
     icon: <img src="../home/exelToPdf.svg" alt="exelToPdf" className="h-15" />,
+    path: "/ExelToPdfScreen",
   },
   {
     name: "PPT to PDF",
     description: "Convert PowerPoint files into PDF.",
     icon: <img src="../home/pptToPdf.svg" alt="pptToPdf" className="h-15" />,
+    path: "/PptToPdfScreen",
   },
   {
     name: "IMAGE to PDF",
@@ -22,6 +26,7 @@ const tools = [
     icon: (
       <img src="../home/imageToPdf.svg" alt="imageToPdf" className="h-15" />
     ),
+    path: "/ImageToPdfScreen",
   },
   {
     name: "HTML to PDF",
@@ -161,6 +166,8 @@ const tools = [
 const strokeColors = ["#FFB3B3", "#B3FFCC", "#B3D9FF", "#FFCCF2"];
 
 const ToolsGrid = () => {
+  const navigate = useNavigate(); // Use the navigate hook
+
   return (
     <section className="py-16 bg-gray-100">
       {/* Header Section */}
@@ -181,7 +188,8 @@ const ToolsGrid = () => {
           {tools.map((tool, index) => (
             <div
               key={index}
-              className="relative bg-white rounded-xl shadow-lg p-6 text-center transition-all duration-300 transform hover:scale-105 hover:shadow-2xl group hover:-translate-y-2 hover:rotate-1"
+              onClick={() => navigate(tool.path)} // Add onClick to navigate to the tool's path
+              className="relative bg-white rounded-xl shadow-lg p-6 text-center transition-all duration-300 transform hover:scale-105 hover:shadow-2xl group hover:-translate-y-2 hover:rotate-1 cursor-pointer" // Add cursor-pointer for indication
               style={{
                 perspective: "1000px", // Adds a 3D perspective for tilt effect
               }}

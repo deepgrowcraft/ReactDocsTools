@@ -3,7 +3,7 @@ import React from "react";
 const Hero = () => {
   return (
     <section
-      className="bg-gradient-to-b from-blue-50 via-blue-100 to-blue-200 py-16 mt-5 bg-cover bg-center bg-no-repeat h-screen"
+      className="bg-gradient-to-b from-blue-50 via-blue-100 to-blue-200 py-16 mt-10 bg-cover bg-center bg-no-repeat h-screen"
       style={{
         backgroundImage: "url('/home/HeroBg.svg')", // Update the path if needed
       }}

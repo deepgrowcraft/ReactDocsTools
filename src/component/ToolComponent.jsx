@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const tools = [
   {
@@ -6,18 +7,21 @@ const tools = [
     icon: (
       <img src="../home/wordTopdf.svg" alt="wordTopdf" className="h-10 w-10" />
     ),
+    path: "/docToPdf",
   },
   {
     name: "Excel to PDF",
     icon: (
       <img src="../home/exelToPdf.svg" alt="exelToPdf" className="h-10 w-10" />
     ),
+    path: "/ExelToPdfScreen",
   },
   {
     name: "PPT to PDF",
     icon: (
       <img src="../home/pptToPdf.svg" alt="pptToPdf" className="h-10 w-10" />
     ),
+    path: "/PptToPdfScreen",
   },
   {
     name: "IMAGE to PDF",
@@ -28,6 +32,7 @@ const tools = [
         className="h-10 w-10"
       />
     ),
+    path: "/ImageToPdfScreen",
   },
   {
     name: "HTML to PDF",
@@ -198,6 +203,7 @@ const tools = [
 ];
 
 const ToolsScreen = () => {
+  const navigate = useNavigate();
   return (
     <section className="bg-gray-50 py-12 px-6">
       <div className="container mx-auto">
@@ -210,6 +216,7 @@ const ToolsScreen = () => {
           {tools.map((tool, index) => (
             <div
               key={index}
+              onClick={() => navigate(tool.path)}
               className="flex items-center p-2 sm:p-3 bg-white border border-gray-200 rounded-2xl shadow-md hover:border-blue-400 hover:shadow-lg transition-all transform hover:scale-110"
             >
               <div className="flex-shrink-0">{tool.icon}</div>

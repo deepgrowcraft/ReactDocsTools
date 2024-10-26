@@ -40,7 +40,7 @@ const ImageToPdf = () => {
       console.log("Starting conversion...");
 
       const response = await axios.post(
-        "http://192.168.1.32:8001/convert/images-to-pdf/", // Update endpoint for images
+        "http://192.168.1.28:8001/convert/images-to-pdf/", // Update endpoint for images
         formData,
         {
           headers: {
@@ -69,7 +69,7 @@ const ImageToPdf = () => {
   };
 
   return (
-    <section className="bg-gradient-to-b from-blue-50 via-blue-100 to-blue-200 py-16 px-4 mt-5">
+    <section className="bg-gradient-to-b from-blue-50 via-blue-100 to-blue-200 py-16 px-4 mt-10">
       <div className="container mx-auto text-center">
         <h1 className="text-4xl md:text-5xl font-extrabold mb-6 text-gray-900">
           Convert Images to PDF
