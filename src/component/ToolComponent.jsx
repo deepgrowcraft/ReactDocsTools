@@ -39,10 +39,12 @@ const tools = [
     icon: (
       <img src="../home/htmlToPdf.svg" alt="htmlToPdf" className="h-10 w-10" />
     ),
+    path: "/HtmlToPdfScreen",
   },
   {
     name: "PDF OCR",
     icon: <img src="../home/pdfOCR.svg" alt="pdfOCR" className="h-10 w-10" />,
+    path: "/PdfOCRScreen",
   },
   {
     name: "PDF to Word",

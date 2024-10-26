@@ -1,52 +1,43 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 
-const ImageToPdf = () => {
-  const [selectedFiles, setSelectedFiles] = useState([]);
-  const [isConverting, setIsConverting] = useState(false);
+const PdfOcr = () => {
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [isProcessing, setIsProcessing] = useState(false);
   const [progress, setProgress] = useState(0);
-  const [pdfUrl, setPdfUrl] = useState(null);
-
-  useEffect(() => {
-    console.log("Current pdfUrl:", pdfUrl);
-    return () => {
-      if (pdfUrl) {
-        URL.revokeObjectURL(pdfUrl);
-      }
-    };
-  }, [pdfUrl]);
+  const [ocrText, setOcrText] = useState(null);
+  const [showFullText, setShowFullText] = useState(false); // State for "Read More"
 
   const handleFileUpload = (event) => {
-    const files = Array.from(event.target.files);
-    setSelectedFiles(files);
-    setPdfUrl(null);
-    console.log("Files selected:", files);
+    const file = event.target.files[0];
+    setSelectedFile(file);
+    setOcrText(null);
+    setProgress(0);
+    setShowFullText(false); // Reset the "Read More" state
+    console.log("File selected:", file);
   };
 
-  const convertImagesToPdf = async () => {
-    if (selectedFiles.length === 0) return;
+  const performOcr = async () => {
+    if (!selectedFile) return;
 
-    setIsConverting(true);
+    setIsProcessing(true);
     setProgress(0);
 
     const formData = new FormData();
-    selectedFiles.forEach((file) => {
-      formData.append("images", file); // Append each image file
-    });
+    formData.append("file", selectedFile);
 
     try {
-      console.log("Starting conversion...");
+      console.log("Starting OCR...");
 
       const response = await axios.post(
-        "http://192.168.1.28:8000/convert/images-to-pdf/", // Update endpoint for images
+        "http://192.168.1.28:8000/convert/pdf-oc/", // Update endpoint for OCR
         formData,
         {
           headers: {
             "Content-Type": "multipart/form-data",
           },
-          responseType: "blob", // Handle binary data
           onUploadProgress: (progressEvent) => {
             const percentCompleted = Math.round(
               (progressEvent.loaded * 100) / progressEvent.total
@@ -56,27 +47,37 @@ const ImageToPdf = () => {
         }
       );
 
-      const blob = new Blob([response.data], { type: "application/pdf" });
-      const pdfUrl = URL.createObjectURL(blob);
-      setPdfUrl(pdfUrl);
-
-      console.log("PDF ready for download:", pdfUrl);
+      setOcrText(response.data.ocr_text);
+      console.log("OCR text:", response.data.ocr_text);
     } catch (error) {
-      console.error("File conversion failed:", error);
+      console.error("OCR failed:", error);
     } finally {
-      setIsConverting(false);
+      setIsProcessing(false);
     }
   };
 
+  const handleCopy = () => {
+    if (ocrText) {
+      navigator.clipboard.writeText(ocrText);
+      alert("Text copied to clipboard!");
+    }
+  };
+
+  const toggleShowFullText = () => {
+    setShowFullText(!showFullText);
+  };
+
+  const MAX_LENGTH = 500; // Set the length for "Read More" limit
+
   return (
-    <section className="bg-gradient-to-b from-blue-50 via-blue-100 to-blue-200 py-16 px-4 mt-10">
+    <section className="bg-gradient-to-b from-gray-50 via-gray-100 to-gray-200 py-16 px-4 mt-10">
       <div className="container mx-auto text-center">
         <h1 className="text-4xl md:text-5xl font-extrabold mb-6 text-gray-900">
-          Convert Images to PDF
+          PDF OCR Tool
         </h1>
         <p className="text-lg md:text-xl mb-10 text-gray-700 max-w-3xl mx-auto">
-          This tool allows you to combine one or multiple images into a PDF
-          file. Supports JPEG, PNG, and other common image formats.
+          Upload a scanned PDF file and extract text using Optical Character
+          Recognition (OCR).
         </p>
 
         <div className="bg-white shadow-xl rounded-3xl p-8 max-w-xl mx-auto transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-2xl">
@@ -92,7 +93,7 @@ const ImageToPdf = () => {
           >
             <div className="flex justify-center items-center h-full">
               <img
-                src="/pdfIcon/imageToPdfIcon.svg"
+                src="/pdfIcon/pdfOCR.svg"
                 alt="Upload Icon"
                 className="h-20 w-22"
               />
@@ -102,8 +103,7 @@ const ImageToPdf = () => {
           <div className="relative group">
             <input
               type="file"
-              accept="image/*"
-              multiple
+              accept="application/pdf"
               className="absolute inset-0 opacity-0 w-full h-full cursor-pointer"
               onChange={handleFileUpload}
               aria-label="File Upload"
@@ -115,25 +115,25 @@ const ImageToPdf = () => {
                 className="h-5 w-5"
               />
               <span>
-                {selectedFiles.length > 0
-                  ? `${selectedFiles.length} file(s) selected`
-                  : "Choose Image Files"}
+                {selectedFile
+                  ? `File selected: ${selectedFile.name}`
+                  : "Choose PDF File"}
               </span>
             </button>
           </div>
         </div>
 
-        {selectedFiles.length > 0 && !pdfUrl && (
+        {selectedFile && !ocrText && (
           <button
-            onClick={convertImagesToPdf}
-            disabled={isConverting}
+            onClick={performOcr}
+            disabled={isProcessing}
             className="mt-6 bg-blue-600 text-white font-semibold py-3 px-8 rounded-lg hover:bg-blue-700 transition-all duration-300 transform hover:scale-105 shadow-lg"
           >
-            {isConverting ? "Converting..." : "Convert to PDF"}
+            {isProcessing ? "Processing..." : "Extract Text"}
           </button>
         )}
 
-        {isConverting && (
+        {isProcessing && (
           <div className="my-8 w-20 mx-auto">
             <CircularProgressbar
               value={progress}
@@ -148,20 +148,30 @@ const ImageToPdf = () => {
           </div>
         )}
 
-        {pdfUrl && (
-          <div className="mt-12">
-            <a
-              href={pdfUrl}
-              download="converted.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block bg-green-500 text-white font-bold px-10 py-4 rounded-full hover:bg-green-600 transition-all duration-300 transform hover:scale-105 shadow-xl"
-            >
-              Download PDF
-            </a>
-            <p className="mt-4 text-sm text-gray-600">
-              Your PDF is ready for download!
-            </p>
+        {ocrText && (
+          <div className="mt-12 bg-gray-100 p-6 rounded-lg shadow-inner">
+            <div className="flex justify-between items-center mb-4">
+              <h2 className="text-xl font-bold">Extracted Text:</h2>
+              <button
+                onClick={handleCopy}
+                className="bg-blue-500 text-white px-3 py-1 rounded-lg hover:bg-blue-600"
+              >
+                Copy Text
+              </button>
+            </div>
+            <pre className="text-left text-gray-800 whitespace-pre-wrap overflow-auto max-h-96">
+              {ocrText.length > MAX_LENGTH && !showFullText
+                ? `${ocrText.slice(0, MAX_LENGTH)}...`
+                : ocrText}
+            </pre>
+            {ocrText.length > MAX_LENGTH && (
+              <button
+                onClick={toggleShowFullText}
+                className="mt-4 text-blue-500 hover:text-blue-600"
+              >
+                {showFullText ? "Read Less" : "Read More"}
+              </button>
+            )}
           </div>
         )}
       </div>
@@ -169,4 +179,4 @@ const ImageToPdf = () => {
   );
 };
 
-export default ImageToPdf;
+export default PdfOcr;

@@ -3,14 +3,13 @@ import axios from "axios";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 
-const PptToPdf = () => {
-  const [selectedFile, setSelectedFile] = useState(null);
+const HtmlToPdf = () => {
+  const [htmlContent, setHtmlContent] = useState("");
   const [isConverting, setIsConverting] = useState(false);
   const [progress, setProgress] = useState(0);
   const [pdfUrl, setPdfUrl] = useState(null);
 
   useEffect(() => {
-    console.log("Current pdfUrl:", pdfUrl);
     return () => {
       if (pdfUrl) {
         URL.revokeObjectURL(pdfUrl);
@@ -18,33 +17,29 @@ const PptToPdf = () => {
     };
   }, [pdfUrl]);
 
-  const handleFileUpload = (event) => {
-    const file = event.target.files[0];
-    setSelectedFile(file);
+  const handleInputChange = (event) => {
+    setHtmlContent(event.target.value);
     setPdfUrl(null);
-    console.log("File selected:", file);
   };
 
-  const convertPptToPdf = async () => {
-    if (!selectedFile) return;
+  const convertHtmlToPdf = async () => {
+    if (!htmlContent) return;
 
     setIsConverting(true);
     setProgress(0);
 
     const formData = new FormData();
-    formData.append("file", selectedFile);
+    formData.append("html_content", htmlContent);
 
     try {
-      console.log("Starting conversion...");
-
       const response = await axios.post(
-        "http://192.168.1.28:8000/convert/ppt-to-pdf/", // Update endpoint for PowerPoint files
+        "http://192.168.1.28:8000/convert/html-to-pdf/",
         formData,
         {
           headers: {
             "Content-Type": "multipart/form-data",
           },
-          responseType: "blob", // Handle binary data
+          responseType: "blob",
           onUploadProgress: (progressEvent) => {
             const percentCompleted = Math.round(
               (progressEvent.loaded * 100) / progressEvent.total
@@ -57,8 +52,6 @@ const PptToPdf = () => {
       const blob = new Blob([response.data], { type: "application/pdf" });
       const pdfUrl = URL.createObjectURL(blob);
       setPdfUrl(pdfUrl);
-
-      console.log("PDF ready for download:", pdfUrl);
     } catch (error) {
       console.error("File conversion failed:", error);
     } finally {
@@ -70,66 +63,39 @@ const PptToPdf = () => {
     <section className="bg-gradient-to-b from-blue-50 via-blue-100 to-blue-200 py-16 px-4 mt-10">
       <div className="container mx-auto text-center">
         <h1 className="text-4xl md:text-5xl font-extrabold mb-6 text-gray-900">
-          Convert PowerPoint to PDF
+          Convert HTML to PDF
         </h1>
         <p className="text-lg md:text-xl mb-10 text-gray-700 max-w-3xl mx-auto">
-          This tool makes converting PowerPoint to PDF easy. Transform your PPT
-          or PPTX files into the widely-used PDF format online.
+          Enter HTML content to convert it into a PDF file.
         </p>
 
-        <div className="bg-white shadow-xl rounded-3xl p-8 max-w-xl mx-auto transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-2xl">
-          <div
-            className="relative bg-cover bg-center mb-6 rounded-xl overflow-hidden"
-            style={{
-              backgroundImage: "url('/home/doctoPdfBg.svg')",
-              backgroundSize: "contain",
-              backgroundRepeat: "no-repeat",
-              backgroundPosition: "center",
-              height: "200px",
-            }}
-          >
-            <div className="flex justify-center items-center h-full">
-              <img
-                src="/pdfIcon/pptToPdfIcon.svg"
-                alt="Upload Icon"
-                className="h-20 w-22"
-              />
-            </div>
-          </div>
-
-          <div className="relative group">
-            <input
-              type="file"
-              accept=".ppt,.pptx"
-              className="absolute inset-0 opacity-0 w-full h-full cursor-pointer"
-              onChange={handleFileUpload}
-              aria-label="File Upload"
-            />
-            <button className="w-full bg-red-500 text-white font-semibold py-3 px-6 rounded-lg transition duration-300 ease-in-out shadow-lg flex items-center justify-center space-x-2 hover:bg-red-600 hover:scale-105">
-              <img
-                src="/home/addFile.svg"
-                alt="addFile Icon"
-                className="h-5 w-5"
-              />
-              <span>
-                {selectedFile ? selectedFile.name : "Choose a PowerPoint File"}
-              </span>
-            </button>
-          </div>
+        {/* HTML Content Input */}
+        <div className="w-full max-w-xl mx-auto bg-white shadow-lg rounded-3xl p-8 transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-2xl mb-6">
+          <textarea
+            placeholder="Enter HTML content here..."
+            value={htmlContent}
+            onChange={handleInputChange}
+            rows="8"
+            className="w-full bg-blue-50 p-4 rounded-md border-2 border-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-600 mb-4"
+          ></textarea>
         </div>
 
-        {selectedFile && !pdfUrl && (
+        {/* Convert Button */}
+        {htmlContent && !pdfUrl && (
           <button
-            onClick={convertPptToPdf}
+            onClick={convertHtmlToPdf}
             disabled={isConverting}
-            className="mt-6 bg-blue-600 text-white font-semibold py-3 px-8 rounded-lg hover:bg-blue-700 transition-all duration-300 transform hover:scale-105 shadow-lg"
+            className={`mt-6 bg-blue-600 text-white font-semibold py-3 px-8 rounded-full hover:bg-blue-700 transition-all duration-300 transform hover:scale-105 shadow-lg ${
+              isConverting ? "opacity-50 cursor-not-allowed" : ""
+            }`}
           >
             {isConverting ? "Converting..." : "Convert to PDF"}
           </button>
         )}
 
+        {/* Progress Bar */}
         {isConverting && (
-          <div className="my-8 w-20 mx-auto">
+          <div className="my-8 w-32 mx-auto">
             <CircularProgressbar
               value={progress}
               text={`${progress}%`}
@@ -143,6 +109,7 @@ const PptToPdf = () => {
           </div>
         )}
 
+        {/* Download Button */}
         {pdfUrl && (
           <div className="mt-12">
             <a
@@ -164,4 +131,4 @@ const PptToPdf = () => {
   );
 };
 
-export default PptToPdf;
+export default HtmlToPdf;

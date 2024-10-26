@@ -31,12 +31,14 @@ const tools = [
   {
     name: "HTML to PDF",
     description: "Convert HTML files into PDFs.",
+    path: "/HtmlToPdfScreen",
     icon: <img src="../home/htmlToPdf.svg" alt="htmlToPdf" className="h-15" />,
   },
   {
     name: "PDF OCR",
     description: "Convert scanned PDFs to editable text.",
     icon: <img src="../home/pdfOCR.svg" alt="pdfOCR" className="h-15" />,
+    path: "/PdfOCRScreen",
   },
   {
     name: "PDF to Word",
