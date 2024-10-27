@@ -44,16 +44,19 @@ const tools = [
     name: "PDF to Word",
     description: "Convert PDF files into DOC or DOCX.",
     icon: <img src="../home/pdfToWord.svg" alt="pdfToWord" className="h-15" />,
+    path: "/PdfToWordScreen",
   },
   {
     name: "PDF to Excel",
     description: "Convert PDF files into Excel sheets.",
     icon: <img src="../home/pdfToExel.svg" alt="pdfToExel" className="h-15" />,
+    path: "/PdfToExelScreen",
   },
   {
     name: "PDF to PPT",
     description: "Convert PDF files into PowerPoint slides.",
     icon: <img src="../home/pdfToppt.svg" alt="pdfToppt" className="h-15" />,
+    path: "/PdfToPPTScreen",
   },
   {
     name: "PDF to TEXT",

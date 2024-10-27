@@ -3,48 +3,42 @@ import axios from "axios";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 
-const PptToPdf = () => {
-  const [selectedFile, setSelectedFile] = useState(null);
+const PdfToWordConverter = () => {
+  const [selectedPdf, setSelectedPdf] = useState(null); // For PDF-to-Word
   const [isConverting, setIsConverting] = useState(false);
   const [progress, setProgress] = useState(0);
-  const [pdfUrl, setPdfUrl] = useState(null);
+  const [wordUrl, setWordUrl] = useState(null); // For PDF-to-Word
 
   useEffect(() => {
-    console.log("Current pdfUrl:", pdfUrl);
     return () => {
-      if (pdfUrl) {
-        URL.revokeObjectURL(pdfUrl);
-      }
+      if (wordUrl) URL.revokeObjectURL(wordUrl);
     };
-  }, [pdfUrl]);
+  }, [wordUrl]);
 
-  const handleFileUpload = (event) => {
+  const handlePdfUpload = (event) => {
     const file = event.target.files[0];
-    setSelectedFile(file);
-    setPdfUrl(null);
-    console.log("File selected:", file);
+    setSelectedPdf(file);
+    setWordUrl(null);
+    setProgress(0);
+    console.log("PDF selected:", file);
   };
 
-  const convertPptToPdf = async () => {
-    if (!selectedFile) return;
+  const convertPdfToWord = async () => {
+    if (!selectedPdf) return;
 
     setIsConverting(true);
     setProgress(0);
 
     const formData = new FormData();
-    formData.append("file", selectedFile);
+    formData.append("pdf", selectedPdf);
 
     try {
-      console.log("Starting conversion...");
-
       const response = await axios.post(
-        "http://192.168.1.12:8000/convert/ppt-to-pdf/", // Update endpoint for PowerPoint files
+        "http://192.168.1.12:8000/convert/pdf-to-word/", // Endpoint for PDF-to-Word
         formData,
         {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-          responseType: "blob", // Handle binary data
+          headers: { "Content-Type": "multipart/form-data" },
+          responseType: "blob",
           onUploadProgress: (progressEvent) => {
             const percentCompleted = Math.round(
               (progressEvent.loaded * 100) / progressEvent.total
@@ -54,34 +48,34 @@ const PptToPdf = () => {
         }
       );
 
-      const blob = new Blob([response.data], { type: "application/pdf" });
-      const pdfUrl = URL.createObjectURL(blob);
-      setPdfUrl(pdfUrl);
-
-      console.log("PDF ready for download:", pdfUrl);
+      const blob = new Blob([response.data], {
+        type: "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      });
+      const url = URL.createObjectURL(blob);
+      setWordUrl(url);
     } catch (error) {
-      console.error("File conversion failed:", error);
+      console.error("PDF-to-Word conversion failed:", error);
     } finally {
       setIsConverting(false);
     }
   };
 
   return (
-    <section className="bg-gradient-to-b from-blue-50 via-blue-100 to-blue-200 py-16 px-4 mt-10">
+    <section className="bg-gradient-to-b from-gray-50 via-gray-100 to-gray-200 py-16 px-4 mt-10">
       <div className="container mx-auto text-center">
         <h1 className="text-4xl md:text-5xl font-extrabold mb-6 text-gray-900">
-          Convert PowerPoint to PDF
+          PDF to Word Converter
         </h1>
         <p className="text-lg md:text-xl mb-10 text-gray-700 max-w-3xl mx-auto">
-          This tool makes converting PowerPoint to PDF easy. Transform your PPT
-          or PPTX files into the widely-used PDF format online.
+          Quickly convert your PDF files to editable Word documents in a single
+          click.
         </p>
 
         <div className="bg-white shadow-xl rounded-3xl p-8 max-w-xl mx-auto transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-2xl">
           <div
             className="relative bg-cover bg-center mb-6 rounded-xl overflow-hidden"
             style={{
-              backgroundImage: "url('/home/doctoPdfBg.svg')",
+              backgroundImage: "url('/pdfIcon/PdfBg.svg')", // Background image for visual effect
               backgroundSize: "contain",
               backgroundRepeat: "no-repeat",
               backgroundPosition: "center",
@@ -90,7 +84,7 @@ const PptToPdf = () => {
           >
             <div className="flex justify-center items-center h-full">
               <img
-                src="/pdfIcon/pptToPdfIcon.svg"
+                src="/pdfIcon/PdfToWord.svg" // Icon for PDF to Word
                 alt="Upload Icon"
                 className="h-20 w-22"
               />
@@ -100,31 +94,33 @@ const PptToPdf = () => {
           <div className="relative group">
             <input
               type="file"
-              accept=".ppt,.pptx"
+              accept="application/pdf"
               className="absolute inset-0 opacity-0 w-full h-full cursor-pointer"
-              onChange={handleFileUpload}
+              onChange={handlePdfUpload}
               aria-label="File Upload"
             />
-            <button className="w-full bg-red-500 text-white font-semibold py-3 px-6 rounded-lg transition duration-300 ease-in-out shadow-lg flex items-center justify-center space-x-2 hover:bg-red-600 hover:scale-105">
+            <button className="w-full bg-blue-500 text-white font-semibold py-3 px-6 rounded-lg transition duration-300 ease-in-out shadow-lg flex items-center justify-center space-x-2 hover:bg-red-600 hover:scale-105">
               <img
-                src="/home/addFile.svg"
-                alt="addFile Icon"
+                src="/home/addFile.svg" // Icon for add file button
+                alt="Add File Icon"
                 className="h-5 w-5"
               />
               <span>
-                {selectedFile ? selectedFile.name : "Choose a PowerPoint File"}
+                {selectedPdf
+                  ? `File selected: ${selectedPdf.name}`
+                  : "Choose PDF File"}
               </span>
             </button>
           </div>
         </div>
 
-        {selectedFile && !pdfUrl && (
+        {selectedPdf && !wordUrl && (
           <button
-            onClick={convertPptToPdf}
+            onClick={convertPdfToWord}
             disabled={isConverting}
             className="mt-6 bg-blue-600 text-white font-semibold py-3 px-8 rounded-lg hover:bg-blue-700 transition-all duration-300 transform hover:scale-105 shadow-lg"
           >
-            {isConverting ? "Converting..." : "Convert to PDF"}
+            {isConverting ? "Converting..." : "Convert to Word"}
           </button>
         )}
 
@@ -143,19 +139,19 @@ const PptToPdf = () => {
           </div>
         )}
 
-        {pdfUrl && (
+        {wordUrl && (
           <div className="mt-12">
             <a
-              href={pdfUrl}
-              download="converted.pdf"
+              href={wordUrl}
+              download="converted.docx"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block bg-green-500 text-white font-bold px-10 py-4 rounded-full hover:bg-green-600 transition-all duration-300 transform hover:scale-105 shadow-xl"
             >
-              Download PDF
+              Download Word Document
             </a>
             <p className="mt-4 text-sm text-gray-600">
-              Your PDF is ready for download!
+              Your Word document is ready for download!
             </p>
           </div>
         )}
@@ -164,4 +160,4 @@ const PptToPdf = () => {
   );
 };
 
-export default PptToPdf;
+export default PdfToWordConverter;

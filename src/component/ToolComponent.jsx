@@ -51,18 +51,21 @@ const tools = [
     icon: (
       <img src="../home/pdfToWord.svg" alt="pdfToWord" className="h-10 w-10" />
     ),
+    path: "/PdfToWordScreen",
   },
   {
     name: "PDF to Excel",
     icon: (
       <img src="../home/pdfToExel.svg" alt="pdfToExel" className="h-10 w-10" />
     ),
+    path: "/PdfToExelScreen",
   },
   {
     name: "PDF to PPT",
     icon: (
       <img src="../home/pdfToppt.svg" alt="pdfToppt" className="h-10 w-10" />
     ),
+    path: "/PdfToPPTScreen",
   },
   {
     name: "PDF to TEXT",
