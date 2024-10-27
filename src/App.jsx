@@ -15,6 +15,8 @@ import PdfOCRScreen from "./screen/PdfOCRScreen";
 import PdfToWordScreen from "./screen/PdfToWord";
 import PdfToExelScreen from "./screen/PdfToExel";
 import PdfToPPTScreen from "./screen/PdfToPpt";
+import PdfToTxtScreen from "./screen/PdfToTxt";
+import PdfToImageScreen from "./screen/PdfToImage";
 
 function App() {
   return (
@@ -35,6 +37,8 @@ function App() {
           <Route path="/PdfToWordScreen" element={<PdfToWordScreen />} />
           <Route path="/PdfToExelScreen" element={<PdfToExelScreen />} />
           <Route path="/PdfToPPTScreen" element={<PdfToPPTScreen />} />
+          <Route path="/PdfToTxtScreen" element={<PdfToTxtScreen />} />
+          <Route path="/PdfToImageScreen" element={<PdfToImageScreen />} />
         </Routes>
         <Footer />
       </div>

@@ -62,6 +62,7 @@ const tools = [
     name: "PDF to TEXT",
     description: "Extract text from PDF files.",
     icon: <img src="../home/PdfToTxt.svg" alt="pdfToTxt" className="h-15" />,
+    path: "/PdfToTxtScreen",
   },
   {
     name: "PDF to IMAGE",
@@ -69,6 +70,7 @@ const tools = [
     icon: (
       <img src="../home/pdfToImage.svg" alt="pdfToImage" className="h-15" />
     ),
+    path: "/PdfToImageScreen",
   },
   {
     name: "Merge PDF",

@@ -72,6 +72,7 @@ const tools = [
     icon: (
       <img src="../home/PdfToTxt.svg" alt="pdfToTxt" className="h-10 w-10" />
     ),
+    path: "/PdfToTxtScreen",
   },
   {
     name: "PDF to IMAGE",
@@ -82,6 +83,7 @@ const tools = [
         className="h-10 w-10"
       />
     ),
+    path: "/PdfToImageScreen",
   },
   {
     name: "Merge PDF",
