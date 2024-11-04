@@ -35,7 +35,7 @@ const PdfToImageConverter = () => {
     formData.append("pdf", selectedPdf);
 
     try {
-      const endpoint = "http://192.168.1.17:8000/convert/pdf-to-images/";
+      const endpoint = "http://192.168.1.6:8000/convert/pdf-to-images/";
 
       const response = await axios.post(endpoint, formData, {
         headers: { "Content-Type": "multipart/form-data" },

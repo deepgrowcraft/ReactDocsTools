@@ -27,11 +27,11 @@ const CompressPdf = () => {
     setProgress(0);
 
     const formData = new FormData();
-    formData.append("pdf", selectedPdf);
+    formData.append("file", selectedPdf);
     formData.append("compression_level", compressionLevel); // Add compression level to form data
 
     try {
-      const endpoint = "http://192.168.1.17:8000/convert/compress-pdf/";
+      const endpoint = "http://192.168.1.6:8000/compress-pdf/";
 
       const response = await axios.post(endpoint, formData, {
         headers: { "Content-Type": "multipart/form-data" },
@@ -56,18 +56,18 @@ const CompressPdf = () => {
   };
 
   return (
-    <section className="bg-gradient-to-b from-gray-50 via-gray-100 to-gray-200 py-16 px-4 mt-10">
+    <section className="px-4 py-16 mt-10 bg-gradient-to-b from-gray-50 via-gray-100 to-gray-200">
       <div className="container mx-auto text-center">
-        <h1 className="text-4xl md:text-5xl font-extrabold mb-6 text-gray-900">
+        <h1 className="mb-6 text-4xl font-extrabold text-gray-900 md:text-5xl">
           PDF Compressor
         </h1>
-        <p className="text-lg md:text-xl mb-10 text-gray-700 max-w-3xl mx-auto">
+        <p className="max-w-3xl mx-auto mb-10 text-lg text-gray-700 md:text-xl">
           Compress your PDF files for easier sharing and storage.
         </p>
 
-        <div className="bg-white shadow-xl rounded-3xl p-8 max-w-xl mx-auto transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-2xl">
+        <div className="max-w-xl p-8 mx-auto transition-all duration-300 ease-in-out transform bg-white shadow-xl rounded-3xl hover:scale-105 hover:shadow-2xl">
           <div
-            className="relative bg-cover bg-center mb-6 rounded-xl overflow-hidden"
+            className="relative mb-6 overflow-hidden bg-center bg-cover rounded-xl"
             style={{
               backgroundImage: "url('/pdfIcon/PdfBg.svg')",
               backgroundSize: "contain",
@@ -76,7 +76,7 @@ const CompressPdf = () => {
               height: "200px",
             }}
           >
-            <div className="flex justify-center items-center h-full">
+            <div className="flex items-center justify-center h-full">
               <img
                 src="/pdfIcon/PdfCompressIcon.svg"
                 alt="Upload Icon"
@@ -85,19 +85,19 @@ const CompressPdf = () => {
             </div>
           </div>
 
-          <div className="relative group mb-4">
+          <div className="relative mb-4 group">
             <input
               type="file"
               accept="application/pdf"
-              className="absolute inset-0 opacity-0 w-full h-full cursor-pointer"
+              className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
               onChange={handlePdfUpload}
               aria-label="File Upload"
             />
-            <button className="w-full bg-red-500 text-white font-semibold py-3 px-6 rounded-lg transition duration-300 ease-in-out shadow-lg flex items-center justify-center space-x-2 hover:bg-red-600 hover:scale-105">
+            <button className="flex items-center justify-center w-full px-6 py-3 space-x-2 font-semibold text-white transition duration-300 ease-in-out bg-red-500 rounded-lg shadow-lg hover:bg-red-600 hover:scale-105">
               <img
                 src="/home/addFile.svg"
                 alt="Add File Icon"
-                className="h-5 w-5"
+                className="w-5 h-5"
               />
               <span>
                 {selectedPdf
@@ -155,7 +155,7 @@ const CompressPdf = () => {
         </div>
 
         {isCompressing && (
-          <div className="my-8 w-20 mx-auto">
+          <div className="w-20 mx-auto my-8">
             <CircularProgressbar
               value={progress}
               text={`${progress}%`}
@@ -170,7 +170,7 @@ const CompressPdf = () => {
         )}
 
         {successMessage && (
-          <p className="mt-6 text-green-600 text-xl font-bold animate-bounce">
+          <p className="mt-6 text-xl font-bold text-green-600 animate-bounce">
             {successMessage}
           </p>
         )}
@@ -180,7 +180,7 @@ const CompressPdf = () => {
             <a
               href={compressedPdfUrl}
               download="compressed_document.pdf"
-              className="inline-block bg-blue-500 text-white font-bold px-10 py-4 rounded-full hover:bg-blue-600 transition-all duration-300 transform hover:scale-105 shadow-xl"
+              className="inline-block px-10 py-4 font-bold text-white transition-all duration-300 transform bg-blue-500 rounded-full shadow-xl hover:bg-blue-600 hover:scale-105"
             >
               Download Compressed PDF
             </a>

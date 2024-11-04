@@ -33,7 +33,7 @@ const MergePdf = () => {
     });
 
     try {
-      const endpoint = "http://192.168.1.17:8000/convert/merge-pdf/";
+      const endpoint = "http://192.168.1.6:8000/convert/merge-pdf/";
 
       const response = await axios.post(endpoint, formData, {
         headers: { "Content-Type": "multipart/form-data" },
