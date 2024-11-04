@@ -7,19 +7,19 @@ const PdfToImageConverter = () => {
   const [selectedPdf, setSelectedPdf] = useState(null);
   const [isConverting, setIsConverting] = useState(false);
   const [progress, setProgress] = useState(0);
-  const [imageUrls, setImageUrls] = useState([]);
+  const [zipUrl, setZipUrl] = useState(null);
   const [successMessage, setSuccessMessage] = useState("");
 
   useEffect(() => {
     return () => {
-      imageUrls.forEach((url) => URL.revokeObjectURL(url));
+      if (zipUrl) URL.revokeObjectURL(zipUrl);
     };
-  }, [imageUrls]);
+  }, [zipUrl]);
 
   const handlePdfUpload = (event) => {
     const file = event.target.files[0];
     setSelectedPdf(file);
-    setImageUrls([]);
+    setZipUrl(null);
     setSuccessMessage("");
     setProgress(0);
     console.log("PDF selected:", file);
@@ -35,10 +35,11 @@ const PdfToImageConverter = () => {
     formData.append("pdf", selectedPdf);
 
     try {
-      const endpoint = "http://192.168.1.12:8000/convert/pdf-to-images/";
+      const endpoint = "http://192.168.1.17:8000/convert/pdf-to-images/";
 
       const response = await axios.post(endpoint, formData, {
         headers: { "Content-Type": "multipart/form-data" },
+        responseType: "blob",
         onUploadProgress: (progressEvent) => {
           const percentCompleted = Math.round(
             (progressEvent.loaded * 100) / progressEvent.total
@@ -47,11 +48,10 @@ const PdfToImageConverter = () => {
         },
       });
 
-      const base64ImageUrls = response.data.images.map(
-        (imgBase64) => `data:image/png;base64,${imgBase64}`
-      );
-      setImageUrls(base64ImageUrls);
-      setSuccessMessage("Conversion Complete! Your images are ready.");
+      const zipBlob = new Blob([response.data], { type: "application/zip" });
+      const zipUrl = URL.createObjectURL(zipBlob);
+      setZipUrl(zipUrl);
+      setSuccessMessage("Conversion Complete! Your ZIP file is ready.");
     } catch (error) {
       console.error("PDF-to-Image conversion failed:", error);
     } finally {
@@ -66,7 +66,8 @@ const PdfToImageConverter = () => {
           PDF to Image Converter
         </h1>
         <p className="text-lg md:text-xl mb-10 text-gray-700 max-w-3xl mx-auto">
-          Convert each page of your PDF files into individual images.
+          Convert each page of your PDF files into individual images and
+          download them as a ZIP file.
         </p>
 
         <div className="bg-white shadow-xl rounded-3xl p-8 max-w-xl mx-auto transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-2xl">
@@ -82,7 +83,7 @@ const PdfToImageConverter = () => {
           >
             <div className="flex justify-center items-center h-full">
               <img
-                src="/pdfIcon/pdfToImage.svg" // Icon for PDF to Image
+                src="/pdfIcon/pdfToImage.svg"
                 alt="Upload Icon"
                 className="h-20 w-22"
               />
@@ -119,7 +120,7 @@ const PdfToImageConverter = () => {
                 isConverting ? "opacity-50 cursor-not-allowed" : ""
               }`}
             >
-              {isConverting ? "Converting..." : "Convert to Images"}
+              {isConverting ? "Converting..." : "Convert to Images (ZIP)"}
             </button>
           )}
         </div>
@@ -145,30 +146,18 @@ const PdfToImageConverter = () => {
           </p>
         )}
 
-        {imageUrls.length > 0 && (
-          <div className="mt-8 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-            {imageUrls.map((url, index) => (
-              <div
-                key={index}
-                className="bg-white shadow-lg rounded-lg overflow-hidden transition-transform transform hover:scale-105"
-              >
-                <img
-                  src={url}
-                  alt={`Page ${index + 1}`}
-                  className="w-full h-32 object-cover"
-                />
-                <p className="text-center text-sm text-gray-600 p-2">
-                  Page {index + 1}
-                </p>
-                <a
-                  href={url}
-                  download={`page-${index + 1}.png`}
-                  className="block text-center bg-blue-500 text-white font-bold px-4 py-2 rounded-b-lg hover:bg-blue-600 transition-all duration-300"
-                >
-                  Download Page {index + 1}
-                </a>
-              </div>
-            ))}
+        {zipUrl && (
+          <div className="mt-12">
+            <a
+              href={zipUrl}
+              download="converted_images.zip"
+              className="inline-block bg-blue-500 text-white font-bold px-10 py-4 rounded-full hover:bg-blue-600 transition-all duration-300 transform hover:scale-105 shadow-xl"
+            >
+              Download ZIP File
+            </a>
+            <p className="mt-4 text-sm text-gray-600">
+              Your ZIP file containing all images is ready for download!
+            </p>
           </div>
         )}
       </div>

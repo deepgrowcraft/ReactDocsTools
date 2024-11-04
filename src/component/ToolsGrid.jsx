@@ -76,16 +76,19 @@ const tools = [
     name: "Merge PDF",
     description: "Merge multiple PDFs into one file.",
     icon: <img src="../home/mergePdf.svg" alt="pdfToTxt" className="h-15" />,
+    path: "/MergePdfScreen",
   },
   {
     name: "Split PDF",
     description: "Split a PDF into multiple parts.",
     icon: <img src="../home/splitPdf.svg" alt="pdfToTxt" className="h-15" />,
+    path: "/SplitPdfScreen",
   },
   {
     name: "Compress PDF",
     description: "Compress the size of your PDFs.",
     icon: <img src="../home/compressPdf.svg" alt="pdfToTxt" className="h-15" />,
+    path: "/CompressPdfScreen",
   },
   {
     name: "Flip PDF Pages",

@@ -90,12 +90,14 @@ const tools = [
     icon: (
       <img src="../home/mergePdf.svg" alt="mergePdf" className="h-10 w-10" />
     ),
+    path: "/MergePdfScreen",
   },
   {
     name: "Split PDF",
     icon: (
       <img src="../home/splitPdf.svg" alt="splitPdf" className="h-10 w-10" />
     ),
+    path: "/SplitPdfScreen",
   },
   {
     name: "Compress PDF",
@@ -106,6 +108,7 @@ const tools = [
         className="h-10 w-10"
       />
     ),
+    path: "/CompressPdfScreen",
   },
   {
     name: "Flip PDF Pages",

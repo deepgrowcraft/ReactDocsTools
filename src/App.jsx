@@ -17,6 +17,9 @@ import PdfToExelScreen from "./screen/PdfToExel";
 import PdfToPPTScreen from "./screen/PdfToPpt";
 import PdfToTxtScreen from "./screen/PdfToTxt";
 import PdfToImageScreen from "./screen/PdfToImage";
+import MergePdfScreen from "./screen/MergePdfScreen";
+import SplitPdfScreen from "./screen/SplitPdfScreen";
+import CompressPdfScreen from "./screen/CompressPdfScreen";
 
 function App() {
   return (
@@ -39,6 +42,9 @@ function App() {
           <Route path="/PdfToPPTScreen" element={<PdfToPPTScreen />} />
           <Route path="/PdfToTxtScreen" element={<PdfToTxtScreen />} />
           <Route path="/PdfToImageScreen" element={<PdfToImageScreen />} />
+          <Route path="/MergePdfScreen" element={<MergePdfScreen />} />
+          <Route path="/SplitPdfScreen" element={<SplitPdfScreen />} />
+          <Route path="/CompressPdfScreen" element={<CompressPdfScreen />} />
         </Routes>
         <Footer />
       </div>
