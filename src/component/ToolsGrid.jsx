@@ -94,6 +94,7 @@ const tools = [
     name: "Flip PDF Pages",
     description: "Flip through PDF pages interactively.",
     icon: <img src="../home/flipPdf.svg" alt="pdfToTxt" className="h-15" />,
+    path: "/FlipPdfScreen",
   },
   {
     name: "Remove PDF Pages",
@@ -181,11 +182,11 @@ const ToolsGrid = () => {
   return (
     <section className="py-16 bg-gray-100">
       {/* Header Section */}
-      <div className="container mx-auto text-center mb-12">
-        <h2 className="text-4xl font-bold mb-4 text-gray-800">
+      <div className="container mx-auto mb-12 text-center">
+        <h2 className="mb-4 text-4xl font-bold text-gray-800">
           Free Online Document Conversion Made Easy
         </h2>
-        <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+        <p className="max-w-2xl mx-auto text-lg text-gray-600">
           Effortlessly convert your documents with our free online tools.
           Whether you need to change formats or compress files, our service
           makes it quick and easy—all without any cost.
@@ -193,13 +194,13 @@ const ToolsGrid = () => {
       </div>
 
       {/* Tools Grid */}
-      <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+      <div className="container px-4 mx-auto">
+        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {tools.map((tool, index) => (
             <div
               key={index}
               onClick={() => navigate(tool.path)} // Add onClick to navigate to the tool's path
-              className="relative bg-white rounded-xl shadow-lg p-6 text-center transition-all duration-300 transform hover:scale-105 hover:shadow-2xl group hover:-translate-y-2 hover:rotate-1 cursor-pointer" // Add cursor-pointer for indication
+              className="relative p-6 text-center transition-all duration-300 transform bg-white shadow-lg cursor-pointer rounded-xl hover:scale-105 hover:shadow-2xl group hover:-translate-y-2 hover:rotate-1" // Add cursor-pointer for indication
               style={{
                 perspective: "1000px", // Adds a 3D perspective for tilt effect
               }}
@@ -234,26 +235,26 @@ const ToolsGrid = () => {
 
               {/* Icon and Content */}
               <div className="relative z-10">
-                <div className="w-16 h-16 mx-auto mb-4 p-2 bg-blue-100 rounded-full flex items-center justify-center group-hover:bg-blue-500 transition-all duration-300 group-hover:shadow-lg group-hover:scale-110 group-hover:translate-y-1">
+                <div className="flex items-center justify-center w-16 h-16 p-2 mx-auto mb-4 transition-all duration-300 bg-blue-100 rounded-full group-hover:bg-blue-500 group-hover:shadow-lg group-hover:scale-110 group-hover:translate-y-1">
                   {tool.icon}
                 </div>
 
                 {/* Tool Name */}
-                <h3 className="text-xl font-semibold mb-2 text-gray-800 group-hover:text-white transition-colors duration-300">
+                <h3 className="mb-2 text-xl font-semibold text-gray-800 transition-colors duration-300 group-hover:text-white">
                   {tool.name}
                 </h3>
 
                 {/* Tool Description */}
-                <p className="text-gray-600 group-hover:text-gray-200 transition-colors duration-300">
+                <p className="text-gray-600 transition-colors duration-300 group-hover:text-gray-200">
                   {tool.description}
                 </p>
               </div>
 
               {/* Hover Background Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-tr from-blue-400 to-blue-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-0 rounded-xl"></div>
+              <div className="absolute inset-0 z-0 transition-opacity duration-300 opacity-0 pointer-events-none bg-gradient-to-tr from-blue-400 to-blue-700 group-hover:opacity-100 rounded-xl"></div>
 
               {/* Border Transition */}
-              <div className="absolute inset-0 border-2 border-transparent rounded-xl group-hover:border-blue-500 transition-all duration-300"></div>
+              <div className="absolute inset-0 transition-all duration-300 border-2 border-transparent rounded-xl group-hover:border-blue-500"></div>
             </div>
           ))}
         </div>

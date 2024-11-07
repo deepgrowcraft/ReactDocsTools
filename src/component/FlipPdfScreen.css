@@ -1,0 +1,7 @@
+.page-container {
+  cursor: pointer;
+  transition: border 0.3s;
+}
+.page-container:hover {
+  border-color: #007bff;
+}
