@@ -22,7 +22,7 @@
 
 //     try {
 //       const response = await axios.post(
-//         "http://192.168.1.13:8000/upload-pdf/",
+//         "http://192.168.1.8:8000/upload-pdf/",
 //         formData,
 //         {
 //           headers: {
@@ -131,7 +131,7 @@
 
 //     try {
 //       const response = await axios.post(
-//         "http://192.168.1.13:8000/upload-pdf/",
+//         "http://192.168.1.8:8000/upload-pdf/",
 //         formData,
 //         {
 //           headers: {
@@ -165,7 +165,7 @@
 
 //     try {
 //       const response = await axios.post(
-//         "http://192.168.1.13:8000/flip-pages/",
+//         "http://192.168.1.8:8000/flip-pages/",
 //         {
 //           pages: selectedPages,
 //           action: direction,
@@ -809,7 +809,7 @@ const FlipPdfScreen = () => {
     formData.append("flipVertical", flipVertical.toString());
     formData.append("flipHorizontal", flipHorizontal.toString());
 
-    fetch("http://192.168.1.13:8000/upload-flipped-pdf/", {
+    fetch("http://192.168.1.8:8000/upload-flipped-pdf/", {
       method: "POST",
       body: formData,
     })

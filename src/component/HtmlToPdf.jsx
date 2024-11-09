@@ -33,7 +33,7 @@ const HtmlToPdf = () => {
 
     try {
       const response = await axios.post(
-        "http://192.168.1.13:8000/convert/html-to-pdf/",
+        "http://192.168.1.8:8000/convert/html-to-pdf/",
         formData,
         {
           headers: {

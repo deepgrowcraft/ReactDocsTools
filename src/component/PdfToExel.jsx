@@ -35,7 +35,7 @@ const PdfToExcelConverter = () => {
     formData.append("pdf", selectedPdf);
 
     try {
-      const endpoint = "http://192.168.1.13:8000/convert/pdf-to-exel/"; // Update to your actual endpoint for PDF-to-Excel conversion
+      const endpoint = "http://192.168.1.8:8000/convert/pdf-to-exel/"; // Update to your actual endpoint for PDF-to-Excel conversion
 
       const response = await axios.post(endpoint, formData, {
         headers: { "Content-Type": "multipart/form-data" },

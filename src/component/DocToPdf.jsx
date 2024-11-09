@@ -43,7 +43,7 @@ const DocToPdf = () => {
 
       // Configure request to get a binary file as a blob
       const response = await axios.post(
-        "http://192.168.1.13:8000/convert/docx-to-pdf/",
+        "http://192.168.1.8:8000/convert/docx-to-pdf/",
         formData,
         {
           headers: {
