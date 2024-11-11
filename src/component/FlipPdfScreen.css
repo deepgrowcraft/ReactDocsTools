@@ -5,3 +5,10 @@
 .page-container:hover {
   border-color: #007bff;
 }
+.pdf-page {
+  transition: transform 0.2s;
+}
+
+.pdf-page:hover {
+  transform: scale(1.05);
+}
