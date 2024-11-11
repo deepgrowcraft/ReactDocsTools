@@ -120,6 +120,7 @@ const tools = [
     icon: (
       <img src="../home/removePdf.svg" alt="removePdf" className="w-10 h-10" />
     ),
+    path: "/RemovePdfPagesScreen",
   },
   {
     name: "PDF Scanner",
@@ -146,6 +147,7 @@ const tools = [
     icon: (
       <img src="../home/rotatePdf.svg" alt="rotatePdf" className="w-10 h-10" />
     ),
+    path: "/RotatePdfPagesScreen",
   },
   {
     name: "Crop PDF",

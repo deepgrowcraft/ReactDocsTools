@@ -99,6 +99,7 @@ const tools = [
   {
     name: "Remove PDF Pages",
     description: "Delete specific pages from a PDF.",
+    path: "/RemovePdfPagesScreen",
     icon: <img src="../home/removePdf.svg" alt="pdfToTxt" className="h-15" />,
   },
   {
@@ -121,6 +122,7 @@ const tools = [
     name: "Rotate PDF",
     description: "Rotate PDF pages.",
     icon: <img src="../home/rotatePdf.svg" alt="pdfToTxt" className="h-15" />,
+    path: "/RotatePdfPagesScreen",
   },
   {
     name: "Crop PDF",

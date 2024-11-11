@@ -21,6 +21,8 @@ import MergePdfScreen from "./screen/MergePdfScreen";
 import SplitPdfScreen from "./screen/SplitPdfScreen";
 import CompressPdfScreen from "./screen/CompressPdfScreen";
 import FlipPdfScreen from "./screen/FlipPdfScreen";
+import RemovePdfPagesScreen from "./screen/RemovePdfPagesScreen";
+import RotatePdfPagesScreen from "./screen/RotatePdfPageScreen";
 
 function App() {
   return (
@@ -47,6 +49,14 @@ function App() {
           <Route path="/SplitPdfScreen" element={<SplitPdfScreen />} />
           <Route path="/CompressPdfScreen" element={<CompressPdfScreen />} />
           <Route path="/FlipPdfScreen" element={<FlipPdfScreen />} />
+          <Route
+            path="/RemovePdfPagesScreen"
+            element={<RemovePdfPagesScreen />}
+          />
+          <Route
+            path="/RotatePdfPagesScreen"
+            element={<RotatePdfPagesScreen />}
+          />
         </Routes>
         <Footer />
       </div>
