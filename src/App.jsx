@@ -23,6 +23,7 @@ import CompressPdfScreen from "./screen/CompressPdfScreen";
 import FlipPdfScreen from "./screen/FlipPdfScreen";
 import RemovePdfPagesScreen from "./screen/RemovePdfPagesScreen";
 import RotatePdfPagesScreen from "./screen/RotatePdfPageScreen";
+import CropPdfScreen from "./screen/CropPdfPagesScreen";
 
 function App() {
   return (
@@ -57,7 +58,9 @@ function App() {
             path="/RotatePdfPagesScreen"
             element={<RotatePdfPagesScreen />}
           />
+          <Route path="/CropPdfScreen" element={<CropPdfScreen />} />
         </Routes>
+
         <Footer />
       </div>
     </Router>

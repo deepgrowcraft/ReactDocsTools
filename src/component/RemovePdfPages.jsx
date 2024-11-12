@@ -23,7 +23,7 @@ const RemovePdfPages = () => {
 
     try {
       const response = await axios.post(
-        "http://192.168.1.9:8000/upload-pdf/",
+        "http://192.168.1.22:8000/upload-pdf/",
         formData,
         {
           headers: {
@@ -65,7 +65,7 @@ const RemovePdfPages = () => {
 
     try {
       const response = await axios.post(
-        "http://192.168.1.9:8000/remove-pages/",
+        "http://192.168.1.22:8000/remove-pages/",
         {
           file_path: filePath,
           pages: selectedPages,

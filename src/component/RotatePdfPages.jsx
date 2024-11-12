@@ -25,7 +25,7 @@ const RotatePdfPages = () => {
 
     try {
       const response = await axios.post(
-        "http://192.168.1.9:8000/upload-pdf/",
+        "http://192.168.1.22:8000/upload-pdf/",
         formData,
         {
           headers: {
@@ -80,7 +80,7 @@ const RotatePdfPages = () => {
 
     try {
       const response = await axios.post(
-        "http://192.168.1.9:8000/rotate-pages/",
+        "http://192.168.1.22:8000/rotate-pages/",
         requestPayload,
         {
           headers: {

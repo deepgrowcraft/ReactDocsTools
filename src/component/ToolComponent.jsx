@@ -152,6 +152,7 @@ const tools = [
   {
     name: "Crop PDF",
     icon: <img src="../home/cropPdf.svg" alt="cropPdf" className="w-10 h-10" />,
+    path: "/CropPdfScreen",
   },
   {
     name: "Edit PDF",

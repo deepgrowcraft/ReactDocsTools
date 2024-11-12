@@ -12,3 +12,12 @@
 .pdf-page:hover {
   transform: scale(1.05);
 }
+
+/* .pdf-page {
+  position: relative;
+}
+.resizable-box {
+  position: absolute;
+  top: 0;
+  left: 0;
+} */

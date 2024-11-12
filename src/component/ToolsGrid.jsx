@@ -128,6 +128,7 @@ const tools = [
     name: "Crop PDF",
     description: "Crop the margins of PDF files.",
     icon: <img src="../home/cropPdf.svg" alt="pdfToTxt" className="h-15" />,
+    path: "/CropPdfScreen",
   },
   {
     name: "Edit PDF",

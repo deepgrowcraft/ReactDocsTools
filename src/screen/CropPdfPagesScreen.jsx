@@ -1,17 +1,16 @@
 import React from "react";
-import DocToPdf from "../component/DocToPdf";
 import DocToPdfGuide from "../component/DocToPdfGuide";
 import ToolsScreen from "../component/ToolComponent";
-import PdfToWordConverter from "../component/PdfToWord";
+import CropPdfPages from "../component/CropPdfPages";
 
-function PdfToWordScreen() {
+function CropPdfScreen() {
   return (
     <div>
-      <PdfToWordConverter />
+      <CropPdfPages />
       <DocToPdfGuide />
       <ToolsScreen />
     </div>
   );
 }
 
-export default PdfToWordScreen;
+export default CropPdfScreen;
