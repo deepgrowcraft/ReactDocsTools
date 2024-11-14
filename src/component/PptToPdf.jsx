@@ -38,7 +38,7 @@ const PptToPdf = () => {
       console.log("Starting conversion...");
 
       const response = await axios.post(
-        "http://192.168.1.22:8000/convert/ppt-to-pdf/", // Update endpoint for PowerPoint files
+        "https://uins2zge62.execute-api.ap-south-1.amazonaws.com/dev/convert/ppt-to-pdf/", // Update endpoint for PowerPoint files
         formData,
         {
           headers: {

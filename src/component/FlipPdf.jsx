@@ -23,7 +23,7 @@ const FlipPdfScreen = () => {
 
     try {
       const response = await axios.post(
-        "http://192.168.1.22:8000/upload-pdf/",
+        "https://uins2zge62.execute-api.ap-south-1.amazonaws.com/dev/upload-pdf/",
         formData,
         {
           headers: {
@@ -65,7 +65,7 @@ const FlipPdfScreen = () => {
 
     try {
       const response = await axios.post(
-        "http://192.168.1.22:8000/upload-flipped-pdf/",
+        "https://uins2zge62.execute-api.ap-south-1.amazonaws.com/dev/upload-flipped-pdf/",
         {
           file_path: filePath,
           pages: selectedPages,

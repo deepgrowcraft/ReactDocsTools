@@ -25,7 +25,7 @@ const CropPdfPages = () => {
 
     try {
       const response = await axios.post(
-        "http://192.168.1.22:8000/upload-pdf/",
+        "https://uins2zge62.execute-api.ap-south-1.amazonaws.com/dev/upload-pdf/",
         formData,
         {
           headers: {
@@ -80,7 +80,7 @@ const CropPdfPages = () => {
 
     try {
       const response = await axios.post(
-        "http://192.168.1.22:8000/crop-pages/",
+        "https://uins2zge62.execute-api.ap-south-1.amazonaws.com/dev/crop-pages/",
         cropPayload,
         {
           headers: {
@@ -263,7 +263,7 @@ export default CropPdfPages;
 
 //     try {
 //       const response = await axios.post(
-//         "http://192.168.1.22:8000/upload-pdf/",
+//         "https://uins2zge62.execute-api.ap-south-1.amazonaws.com/dev/upload-pdf/",
 //         formData,
 //         {
 //           headers: {
@@ -305,7 +305,7 @@ export default CropPdfPages;
 
 //     try {
 //       const response = await axios.post(
-//         "http://192.168.1.22:8000/crop-pages/",
+//         "https://uins2zge62.execute-api.ap-south-1.amazonaws.com/dev/crop-pages/",
 //         cropPayload,
 //         {
 //           headers: {

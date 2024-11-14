@@ -33,7 +33,8 @@ const SplitPdf = () => {
     formData.append("end_page", endPage);
 
     try {
-      const endpoint = "http://192.168.1.22:8000/convert/split-pdf/";
+      const endpoint =
+        "https://uins2zge62.execute-api.ap-south-1.amazonaws.com/dev/convert/split-pdf/";
 
       const response = await axios.post(endpoint, formData, {
         headers: { "Content-Type": "multipart/form-data" },

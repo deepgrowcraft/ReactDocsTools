@@ -25,7 +25,7 @@ const RotatePdfPages = () => {
 
     try {
       const response = await axios.post(
-        "http://192.168.1.22:8000/upload-pdf/",
+        "https://uins2zge62.execute-api.ap-south-1.amazonaws.com/dev/upload-pdf/",
         formData,
         {
           headers: {
@@ -80,7 +80,7 @@ const RotatePdfPages = () => {
 
     try {
       const response = await axios.post(
-        "http://192.168.1.22:8000/rotate-pages/",
+        "https://uins2zge62.execute-api.ap-south-1.amazonaws.com/dev/rotate-pages/",
         requestPayload,
         {
           headers: {

@@ -35,7 +35,8 @@ const PdfToTxtConverter = () => {
     formData.append("pdf", selectedPdf);
 
     try {
-      const endpoint = "http://192.168.1.22:8000/convert/pdf-to-txt/"; // Update to your actual endpoint for PDF-to-TXT conversion
+      const endpoint =
+        "https://uins2zge62.execute-api.ap-south-1.amazonaws.com/dev/convert/pdf-to-txt/"; // Update to your actual endpoint for PDF-to-TXT conversion
 
       const response = await axios.post(endpoint, formData, {
         headers: { "Content-Type": "multipart/form-data" },

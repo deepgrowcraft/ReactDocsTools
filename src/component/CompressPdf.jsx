@@ -31,7 +31,8 @@ const CompressPdf = () => {
     formData.append("compression_level", compressionLevel); // Add compression level to form data
 
     try {
-      const endpoint = "http://192.168.1.22:8000/compress-pdf/";
+      const endpoint =
+        "https://uins2zge62.execute-api.ap-south-1.amazonaws.com/dev/compress-pdf/";
 
       const response = await axios.post(endpoint, formData, {
         headers: { "Content-Type": "multipart/form-data" },

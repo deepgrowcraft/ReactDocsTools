@@ -40,7 +40,7 @@ const ImageToPdf = () => {
       console.log("Starting conversion...");
 
       const response = await axios.post(
-        "http://192.168.1.22:8000/convert/images-to-pdf/", // Update endpoint for images
+        "https://uins2zge62.execute-api.ap-south-1.amazonaws.com/dev/convert/images-to-pdf/", // Update endpoint for images
         formData,
         {
           headers: {

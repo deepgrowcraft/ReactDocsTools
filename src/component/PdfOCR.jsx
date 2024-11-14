@@ -32,7 +32,7 @@ const PdfOcr = () => {
       console.log("Starting OCR...");
 
       const response = await axios.post(
-        "http://192.168.1.22:8000/convert/pdf-ocr/", // Update endpoint for OCR
+        "https://uins2zge62.execute-api.ap-south-1.amazonaws.com/dev/convert/pdf-ocr/", // Update endpoint for OCR
         formData,
         {
           headers: {

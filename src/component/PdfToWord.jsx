@@ -34,7 +34,7 @@ const PdfToWordConverter = () => {
 
     try {
       const response = await axios.post(
-        "http://192.168.1.22:8000/convert/pdf-to-word/", // Endpoint for PDF-to-Word
+        "https://uins2zge62.execute-api.ap-south-1.amazonaws.com/dev/convert/pdf-to-word/", // Endpoint for PDF-to-Word
         formData,
         {
           headers: { "Content-Type": "multipart/form-data" },
