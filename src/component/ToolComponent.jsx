@@ -141,6 +141,7 @@ const tools = [
         className="w-10 h-10"
       />
     ),
+    path: "/ExtractPdfContent",
   },
   {
     name: "Rotate PDF",

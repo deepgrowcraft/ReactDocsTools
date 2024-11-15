@@ -24,6 +24,7 @@ import FlipPdfScreen from "./screen/FlipPdfScreen";
 import RemovePdfPagesScreen from "./screen/RemovePdfPagesScreen";
 import RotatePdfPagesScreen from "./screen/RotatePdfPageScreen";
 import CropPdfScreen from "./screen/CropPdfPagesScreen";
+import ExtractPdfContentScreen from "./screen/ExtractPdfContentScreen";
 
 function App() {
   return (
@@ -59,6 +60,10 @@ function App() {
             element={<RotatePdfPagesScreen />}
           />
           <Route path="/CropPdfScreen" element={<CropPdfScreen />} />
+          <Route
+            path="/ExtractPdfContent"
+            element={<ExtractPdfContentScreen />}
+          />
         </Routes>
 
         <Footer />
