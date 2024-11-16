@@ -102,11 +102,11 @@ const tools = [
     path: "/RemovePdfPagesScreen",
     icon: <img src="../home/removePdf.svg" alt="pdfToTxt" className="h-15" />,
   },
-  {
-    name: "PDF Scanner",
-    description: "Scan documents and save them as PDFs.",
-    icon: <img src="../home/pdfScanner.svg" alt="pdfToTxt" className="h-15" />,
-  },
+  // {
+  //   name: "PDF Scanner",
+  //   description: "Scan documents and save them as PDFs.",
+  //   icon: <img src="../home/pdfScanner.svg" alt="pdfToTxt" className="h-15" />,
+  // },
   {
     name: "Extract PDF Content",
     description: "Extract text and images from PDFs.",
@@ -135,6 +135,7 @@ const tools = [
     name: "Edit PDF",
     description: "Edit text and images in PDFs.",
     icon: <img src="../home/editPdf.svg" alt="pdfToTxt" className="h-15" />,
+    path: "/PdfEditor",
   },
   {
     name: "Rearrange PDF",

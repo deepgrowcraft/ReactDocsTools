@@ -122,16 +122,16 @@ const tools = [
     ),
     path: "/RemovePdfPagesScreen",
   },
-  {
-    name: "PDF Scanner",
-    icon: (
-      <img
-        src="../home/pdfScanner.svg"
-        alt="pdfScanner"
-        className="w-10 h-10"
-      />
-    ),
-  },
+  // {
+  //   name: "PDF Scanner",
+  //   icon: (
+  //     <img
+  //       src="../home/pdfScanner.svg"
+  //       alt="pdfScanner"
+  //       className="w-10 h-10"
+  //     />
+  //   ),
+  // },
   {
     name: "Extract PDF Content",
     icon: (
@@ -158,6 +158,7 @@ const tools = [
   {
     name: "Edit PDF",
     icon: <img src="../home/editPdf.svg" alt="editPdf" className="w-10 h-10" />,
+    path: "/PdfEditor",
   },
   {
     name: "Rearrange PDF",
