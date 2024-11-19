@@ -25,7 +25,9 @@ import RemovePdfPagesScreen from "./screen/RemovePdfPagesScreen";
 import RotatePdfPagesScreen from "./screen/RotatePdfPageScreen";
 import CropPdfScreen from "./screen/CropPdfPagesScreen";
 import ExtractPdfContentScreen from "./screen/ExtractPdfContentScreen";
-import PdfEditorScreen from "./screen/PdfEditorScreen";
+import PdfEditor from "./component/PdfEditor/PdfEditor";
+// import PdfEditorScreen from "./screen/PdfEditorScreen";
+// import PdfEditor from "./component/PdfEditor";
 
 function App() {
   return (
@@ -65,7 +67,7 @@ function App() {
             path="/ExtractPdfContent"
             element={<ExtractPdfContentScreen />}
           />
-          <Route path="/PdfEditor" element={<PdfEditorScreen />} />
+          <Route path="/PdfEditor" element={<PdfEditor />} />
         </Routes>
 
         <Footer />
