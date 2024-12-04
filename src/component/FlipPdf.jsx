@@ -6,6 +6,7 @@ import "react-pdf/dist/esm/Page/TextLayer.css";
 import "./FlipPdfScreen.css";
 
 pdfjs.GlobalWorkerOptions.workerSrc = "/pdf.worker.min.mjs";
+const API_URL = import.meta.env.VITE_API_URL;
 
 const FlipPdfScreen = () => {
   const [selectedPdf, setSelectedPdf] = useState(null);
@@ -22,15 +23,11 @@ const FlipPdfScreen = () => {
     formData.append("file", file);
 
     try {
-      const response = await axios.post(
-        "https://uins2zge62.execute-api.ap-south-1.amazonaws.com/dev/upload-pdf/",
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
+      const response = await axios.post(`${API_URL}/upload-pdf/`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
 
       const { file_path } = response.data;
       setFilePath(file_path);
@@ -65,7 +62,7 @@ const FlipPdfScreen = () => {
 
     try {
       const response = await axios.post(
-        "https://uins2zge62.execute-api.ap-south-1.amazonaws.com/dev/upload-flipped-pdf/",
+        `${API_URL}/upload-flipped-pdf/`,
         {
           file_path: filePath,
           pages: selectedPages,

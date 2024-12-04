@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
+const API_URL = import.meta.env.VITE_API_URL;
 
 const PdfOcr = () => {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -32,7 +33,7 @@ const PdfOcr = () => {
       console.log("Starting OCR...");
 
       const response = await axios.post(
-        "https://uins2zge62.execute-api.ap-south-1.amazonaws.com/dev/convert/pdf-ocr/", // Update endpoint for OCR
+        `${API_URL}/convert/pdf-ocr/`, // Update endpoint for OCR
         formData,
         {
           headers: {
@@ -70,19 +71,19 @@ const PdfOcr = () => {
   const MAX_LENGTH = 500; // Set the length for "Read More" limit
 
   return (
-    <section className="bg-gradient-to-b from-gray-50 via-gray-100 to-gray-200 py-16 px-4 mt-10">
+    <section className="px-4 py-16 mt-10 bg-gradient-to-b from-gray-50 via-gray-100 to-gray-200">
       <div className="container mx-auto text-center">
-        <h1 className="text-4xl md:text-5xl font-extrabold mb-6 text-gray-900">
+        <h1 className="mb-6 text-4xl font-extrabold text-gray-900 md:text-5xl">
           PDF OCR Tool
         </h1>
-        <p className="text-lg md:text-xl mb-10 text-gray-700 max-w-3xl mx-auto">
+        <p className="max-w-3xl mx-auto mb-10 text-lg text-gray-700 md:text-xl">
           Upload a scanned PDF file and extract text using Optical Character
           Recognition (OCR).
         </p>
 
-        <div className="bg-white shadow-xl rounded-3xl p-8 max-w-xl mx-auto transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-2xl">
+        <div className="max-w-xl p-8 mx-auto transition-all duration-300 ease-in-out transform bg-white shadow-xl rounded-3xl hover:scale-105 hover:shadow-2xl">
           <div
-            className="relative bg-cover bg-center mb-6 rounded-xl overflow-hidden"
+            className="relative mb-6 overflow-hidden bg-center bg-cover rounded-xl"
             style={{
               backgroundImage: "url('/home/doctoPdfBg.svg')",
               backgroundSize: "contain",
@@ -91,7 +92,7 @@ const PdfOcr = () => {
               height: "200px",
             }}
           >
-            <div className="flex justify-center items-center h-full">
+            <div className="flex items-center justify-center h-full">
               <img
                 src="/pdfIcon/pdfOCR.svg"
                 alt="Upload Icon"
@@ -104,15 +105,15 @@ const PdfOcr = () => {
             <input
               type="file"
               accept="application/pdf"
-              className="absolute inset-0 opacity-0 w-full h-full cursor-pointer"
+              className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
               onChange={handleFileUpload}
               aria-label="File Upload"
             />
-            <button className="w-full bg-red-500 text-white font-semibold py-3 px-6 rounded-lg transition duration-300 ease-in-out shadow-lg flex items-center justify-center space-x-2 hover:bg-red-600 hover:scale-105">
+            <button className="flex items-center justify-center w-full px-6 py-3 space-x-2 font-semibold text-white transition duration-300 ease-in-out bg-red-500 rounded-lg shadow-lg hover:bg-red-600 hover:scale-105">
               <img
                 src="/home/addFile.svg"
                 alt="addFile Icon"
-                className="h-5 w-5"
+                className="w-5 h-5"
               />
               <span>
                 {selectedFile
@@ -127,14 +128,14 @@ const PdfOcr = () => {
           <button
             onClick={performOcr}
             disabled={isProcessing}
-            className="mt-6 bg-blue-600 text-white font-semibold py-3 px-8 rounded-lg hover:bg-blue-700 transition-all duration-300 transform hover:scale-105 shadow-lg"
+            className="px-8 py-3 mt-6 font-semibold text-white transition-all duration-300 transform bg-blue-600 rounded-lg shadow-lg hover:bg-blue-700 hover:scale-105"
           >
             {isProcessing ? "Processing..." : "Extract Text"}
           </button>
         )}
 
         {isProcessing && (
-          <div className="my-8 w-20 mx-auto">
+          <div className="w-20 mx-auto my-8">
             <CircularProgressbar
               value={progress}
               text={`${progress}%`}
@@ -149,17 +150,17 @@ const PdfOcr = () => {
         )}
 
         {ocrText && (
-          <div className="mt-12 bg-gray-100 p-6 rounded-lg shadow-inner">
-            <div className="flex justify-between items-center mb-4">
+          <div className="p-6 mt-12 bg-gray-100 rounded-lg shadow-inner">
+            <div className="flex items-center justify-between mb-4">
               <h2 className="text-xl font-bold">Extracted Text:</h2>
               <button
                 onClick={handleCopy}
-                className="bg-blue-500 text-white px-3 py-1 rounded-lg hover:bg-blue-600"
+                className="px-3 py-1 text-white bg-blue-500 rounded-lg hover:bg-blue-600"
               >
                 Copy Text
               </button>
             </div>
-            <pre className="text-left text-gray-800 whitespace-pre-wrap overflow-auto max-h-96">
+            <pre className="overflow-auto text-left text-gray-800 whitespace-pre-wrap max-h-96">
               {ocrText.length > MAX_LENGTH && !showFullText
                 ? `${ocrText.slice(0, MAX_LENGTH)}...`
                 : ocrText}

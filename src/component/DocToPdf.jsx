@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
+const API_URL = import.meta.env.VITE_API_URL;
 
 const DocToPdf = () => {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -43,8 +44,7 @@ const DocToPdf = () => {
 
       // Configure request to get a binary file as a blob
       const response = await axios.post(
-        // "https://uins2zge62.execute-api.ap-south-1.amazonaws.com/dev/convert/docx-to-pdf/",
-        "http://192.168.1.11:8000/convert/docx-to-pdf/",
+        `${API_URL}/convert/docx-to-pdf/`,
         formData,
         {
           headers: {

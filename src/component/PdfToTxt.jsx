@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
+const API_URL = import.meta.env.VITE_API_URL;
 
 const PdfToTxtConverter = () => {
   const [selectedPdf, setSelectedPdf] = useState(null);
@@ -35,8 +36,7 @@ const PdfToTxtConverter = () => {
     formData.append("pdf", selectedPdf);
 
     try {
-      const endpoint =
-        "https://uins2zge62.execute-api.ap-south-1.amazonaws.com/dev/convert/pdf-to-txt/"; // Update to your actual endpoint for PDF-to-TXT conversion
+      const endpoint = `${API_URL}/convert/pdf-to-txt/`; // Update to your actual endpoint for PDF-to-TXT conversion
 
       const response = await axios.post(endpoint, formData, {
         headers: { "Content-Type": "multipart/form-data" },

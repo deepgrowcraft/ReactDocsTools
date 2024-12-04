@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
+const API_URL = import.meta.env.VITE_API_URL;
 
 const CompressPdf = () => {
   const [selectedPdf, setSelectedPdf] = useState(null);
@@ -31,8 +32,7 @@ const CompressPdf = () => {
     formData.append("compression_level", compressionLevel); // Add compression level to form data
 
     try {
-      const endpoint =
-        "https://uins2zge62.execute-api.ap-south-1.amazonaws.com/dev/compress-pdf/";
+      const endpoint = `${API_URL}/compress-pdf/`;
 
       const response = await axios.post(endpoint, formData, {
         headers: { "Content-Type": "multipart/form-data" },

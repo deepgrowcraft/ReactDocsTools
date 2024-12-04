@@ -26,7 +26,7 @@ const ExtractPdfContent = () => {
     try {
       setIsLoading(true); // Show loader
       const response = await axios.post(
-        "http://192.168.1.11:8000/upload-pdf/",
+        "http://192.168.1.33:8000/upload-pdf/",
         formData,
         {
           headers: {
@@ -72,7 +72,7 @@ const ExtractPdfContent = () => {
     try {
       setIsLoading(true); // Show loader
       const response = await axios.post(
-        "http://192.168.1.11:8000/extract-content/",
+        "http://192.168.1.33:8000/extract-content/",
         formData,
         {
           headers: {
