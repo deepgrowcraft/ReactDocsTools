@@ -23,13 +23,17 @@ const PdfEditor = () => {
   const [fontSize, setFontSize] = useState(16);
   const [isBold, setIsBold] = useState(false);
   const [pdfInstance, setPdfInstance] = useState(null);
+  const [isPdfUploaded, setIsPdfUploaded] = useState(false); // New state to track PDF upload
   const containerRef = useRef(null);
+  const [selectedPdf, setSelectedPdf] = useState(null);
 
   const handlePdfUpload = async (e) => {
     const file = e.target.files[0];
+    setSelectedPdf(file);
     if (file && file.type === "application/pdf") {
       const fileUrl = URL.createObjectURL(file);
       setPdfFile(fileUrl);
+      setIsPdfUploaded(true); // Set to true once the PDF is uploaded
 
       const arrayBuffer = await file.arrayBuffer();
       const pdfDoc = await PDFDocument.load(arrayBuffer);
@@ -107,31 +111,107 @@ const PdfEditor = () => {
 
   return (
     <div className="flex flex-col h-screen mt-20 bg-gray-100">
-      <Toolbar
-        zoom={zoom}
-        setZoom={setZoom}
-        setIsTextModalOpen={setIsTextModalOpen}
-        setIsImageModalOpen={setIsImageModalOpen}
-        onSave={savePdf}
-        onUpload={handlePdfUpload}
-        onAddPage={addPage}
-        onRemovePage={removePage}
-      />
-      <div className="flex flex-grow overflow-hidden">
-        <Sidebar
-          pdfFile={pdfFile}
-          setNumPages={setNumPages}
-          setCurrentPage={setCurrentPage}
-          currentPage={currentPage}
-          numPages={numPages}
-        />
-        <PdfViewer
-          pdfFile={pdfFile}
-          zoom={zoom}
-          currentPage={currentPage}
-          containerRef={containerRef}
-        />
-      </div>
+      {/* Conditional Rendering: Show upload button if no PDF is uploaded */}
+      {!isPdfUploaded ? (
+        // <div className="flex flex-col items-center justify-center h-full space-y-4">
+        //   <label className="px-6 py-3 text-lg text-white transition duration-200 bg-blue-600 rounded-lg cursor-pointer hover:bg-blue-700">
+        //     Upload PDF
+        //     <input
+        //       type="file"
+        //       accept="application/pdf"
+        //       onChange={handlePdfUpload}
+        //       className="hidden"
+        //     />
+        //   </label>
+        // </div>
+
+        <>
+          <div className="container mx-auto text-center mt-28">
+            <h1 className="mb-6 text-4xl font-extrabold text-gray-900 md:text-5xl ">
+              Edit PDF
+            </h1>
+            <p className="max-w-3xl mx-auto mb-10 text-lg text-gray-700 md:text-xl">
+              This online PDF editor lets you make changes directly to your PDF
+              document. You can insert text, images, and draw shapes such as
+              boxes, circles, and arrows. Additionally, you have the option to
+              highlight text or apply a watermark to your PDF.
+            </p>
+
+            <div className="max-w-xl p-8 mx-auto transition-all duration-300 ease-in-out transform bg-white shadow-xl rounded-3xl hover:scale-105 hover:shadow-2xl">
+              <div
+                className="relative mb-6 overflow-hidden bg-center bg-cover rounded-xl"
+                style={{
+                  backgroundImage: "url('/pdfIcon/PdfBg.svg')", // Background image for visual effect
+                  backgroundSize: "contain",
+                  backgroundRepeat: "no-repeat",
+                  backgroundPosition: "center",
+                  height: "200px",
+                }}
+              >
+                <div className="flex items-center justify-center h-full">
+                  <img
+                    src="/pdfIcon/editPdfs.svg" // Icon for PDF to PPT
+                    alt="Upload Icon"
+                    className="h-20 w-22"
+                  />
+                </div>
+              </div>
+
+              <div className="relative mb-4 group">
+                <input
+                  type="file"
+                  accept="application/pdf"
+                  className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                  onChange={handlePdfUpload}
+                  aria-label="File Upload"
+                />
+                <button className="flex items-center justify-center w-full px-6 py-3 space-x-2 font-semibold text-white transition duration-300 ease-in-out bg-blue-500 rounded-lg shadow-lg hover:bg-red-600 hover:scale-105">
+                  <img
+                    src="/home/addFile.svg"
+                    alt="Add File Icon"
+                    className="w-5 h-5"
+                  />
+                  <span>
+                    {selectedPdf
+                      ? `File selected: ${selectedPdf.name}`
+                      : "Choose PDF File"}
+                  </span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </>
+      ) : (
+        <>
+          <Toolbar
+            zoom={zoom}
+            setZoom={setZoom}
+            setIsTextModalOpen={setIsTextModalOpen}
+            setIsImageModalOpen={setIsImageModalOpen}
+            onSave={savePdf}
+            onUpload={handlePdfUpload}
+            onAddPage={addPage}
+            onRemovePage={removePage}
+          />
+          <div className="flex flex-grow overflow-hidden">
+            <Sidebar
+              pdfFile={pdfFile}
+              setNumPages={setNumPages}
+              setCurrentPage={setCurrentPage}
+              currentPage={currentPage}
+              numPages={numPages}
+            />
+            <PdfViewer
+              pdfFile={pdfFile}
+              zoom={zoom}
+              currentPage={currentPage}
+              containerRef={containerRef}
+            />
+          </div>
+        </>
+      )}
+
+      {/* Modal for adding text or image */}
       {isTextModalOpen && (
         <AddTextModal
           setIsTextModalOpen={setIsTextModalOpen}
