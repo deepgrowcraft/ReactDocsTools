@@ -20,6 +20,8 @@ const Toolbar = ({
   onUpload,
   onAddPage,
   onRemovePage,
+  onAddText, // Handler for adding text
+  onAddImage, // Handler for adding image
 }) => (
   <div className="flex items-center justify-between px-4 py-2 bg-white shadow-md">
     <div className="flex space-x-2">
@@ -37,13 +39,13 @@ const Toolbar = ({
       </button>
       <button
         className="px-3 py-2 text-sm text-white bg-purple-500 rounded"
-        onClick={() => setIsTextModalOpen(true)}
+        onClick={onAddText}
       >
         <FontAwesomeIcon icon={faFont} /> Add Text
       </button>
       <button
         className="px-3 py-2 text-sm text-white bg-green-500 rounded"
-        onClick={() => setIsImageModalOpen(true)}
+        onClick={onAddImage}
       >
         <FontAwesomeIcon icon={faImage} /> Add Image
       </button>
