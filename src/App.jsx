@@ -25,7 +25,9 @@ import RemovePdfPagesScreen from "./screen/RemovePdfPagesScreen";
 import RotatePdfPagesScreen from "./screen/RotatePdfPageScreen";
 import CropPdfScreen from "./screen/CropPdfPagesScreen";
 import ExtractPdfContentScreen from "./screen/ExtractPdfContentScreen";
-import PdfEditor from "./component/PdfEditor/PdfEditor";
+import PdfEditScreen from "./screen/PdfEditScreen";
+import ReArrengeScreen from "./screen/ReArrengePdfScreen";
+// import PdfEditor from "./component/PdfEditor/PdfEditor";
 // import PdfEditorScreen from "./screen/PdfEditorScreen";
 // import PdfEditor from "./component/PdfEditor";
 
@@ -67,7 +69,8 @@ function App() {
             path="/ExtractPdfContent"
             element={<ExtractPdfContentScreen />}
           />
-          <Route path="/PdfEditor" element={<PdfEditor />} />
+          <Route path="/PdfReArrenge" element={<ReArrengeScreen />} />
+          <Route path="/PdfEditor" element={<PdfEditScreen />} />
         </Routes>
 
         <Footer />

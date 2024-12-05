@@ -143,6 +143,7 @@ const tools = [
     icon: (
       <img src="../home/rearrangePdf.svg" alt="pdfToTxt" className="h-15" />
     ),
+    path: "/PdfReArrenge",
   },
   {
     name: "PDF Creator",
