@@ -27,6 +27,7 @@ import CropPdfScreen from "./screen/CropPdfPagesScreen";
 import ExtractPdfContentScreen from "./screen/ExtractPdfContentScreen";
 import PdfEditScreen from "./screen/PdfEditScreen";
 import ReArrengeScreen from "./screen/ReArrengePdfScreen";
+import PdfCreatorScreen from "./screen/PdfCreatorScreen";
 // import PdfEditor from "./component/PdfEditor/PdfEditor";
 // import PdfEditorScreen from "./screen/PdfEditorScreen";
 // import PdfEditor from "./component/PdfEditor";
@@ -71,6 +72,7 @@ function App() {
           />
           <Route path="/PdfReArrenge" element={<ReArrengeScreen />} />
           <Route path="/PdfEditor" element={<PdfEditScreen />} />
+          <Route path="/PdfCreator" element={<PdfCreatorScreen />} />
         </Routes>
 
         <Footer />

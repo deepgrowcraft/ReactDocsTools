@@ -180,6 +180,7 @@ const tools = [
         className="w-10 h-10"
       />
     ),
+    path: "/PdfCreator",
   },
   {
     name: "Add Page Number",

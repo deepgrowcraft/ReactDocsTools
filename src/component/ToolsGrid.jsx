@@ -149,6 +149,7 @@ const tools = [
     name: "PDF Creator",
     description: "Create a new PDF from scratch.",
     icon: <img src="../home/pdfCreation.svg" alt="pdfToTxt" className="h-15" />,
+    path: "/PdfCreator",
   },
   {
     name: "Add Page Number",
