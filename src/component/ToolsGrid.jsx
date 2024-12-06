@@ -157,6 +157,7 @@ const tools = [
     icon: (
       <img src="../home/AddPageNumber.svg" alt="pdfToTxt" className="h-15" />
     ),
+    path: "/PdfWithPageNumber",
   },
   {
     name: "Add Watermark",
