@@ -4,6 +4,7 @@ import axios from "axios";
 const ProtectPdfScreen = () => {
   const [pdfFile, setPdfFile] = useState(null);
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [downloadLink, setDownloadLink] = useState(null);
@@ -16,9 +17,20 @@ const ProtectPdfScreen = () => {
     setPassword(e.target.value);
   };
 
+  const handleConfirmPasswordChange = (e) => {
+    setConfirmPassword(e.target.value);
+  };
+
   const handleProtectPdf = async () => {
-    if (!pdfFile || !password) {
-      setError("Both PDF file and password are required.");
+    // Validation: Check if PDF file, password, and confirm password are provided
+    if (!pdfFile || !password || !confirmPassword) {
+      setError("All fields are required.");
+      return;
+    }
+
+    // Check if the passwords match
+    if (password !== confirmPassword) {
+      setError("Passwords do not match.");
       return;
     }
 
@@ -86,6 +98,22 @@ const ProtectPdfScreen = () => {
           id="password"
           value={password}
           onChange={handlePasswordChange}
+          className="w-full p-2 text-gray-700 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+        />
+      </div>
+
+      <div className="mb-6">
+        <label
+          htmlFor="confirmPassword"
+          className="block mb-2 text-sm font-medium text-gray-700"
+        >
+          Confirm Password
+        </label>
+        <input
+          type="password"
+          id="confirmPassword"
+          value={confirmPassword}
+          onChange={handleConfirmPasswordChange}
           className="w-full p-2 text-gray-700 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
         />
       </div>
