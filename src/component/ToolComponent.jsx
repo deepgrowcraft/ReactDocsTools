@@ -209,10 +209,12 @@ const tools = [
     icon: (
       <img src="../home/pdfUnlock.svg" alt="pdfUnlock" className="w-10 h-10" />
     ),
+    path: "/UnlockPdf",
   },
   {
     name: "Protect PDF",
     icon: <img src="../home/lockPdf.svg" alt="lockPdf" className="w-10 h-10" />,
+    path: "/ProtectPdf",
   },
   {
     name: "eSign PDF",

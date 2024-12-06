@@ -171,11 +171,13 @@ const tools = [
     name: "Unlock PDF",
     description: "Unlock password-protected PDFs.",
     icon: <img src="../home/pdfUnlock.svg" alt="pdfToTxt" className="h-15" />,
+    path: "/UnlockPdf",
   },
   {
     name: "Protect PDF",
     description: "Encrypt your PDF files.",
     icon: <img src="../home/lockPdf.svg" alt="pdfToTxt" className="h-15" />,
+    path: "/ProtectPdf",
   },
   {
     name: "eSign PDF",
