@@ -29,6 +29,7 @@ import PdfEditScreen from "./screen/PdfEditScreen";
 import ReArrengeScreen from "./screen/ReArrengePdfScreen";
 import PdfCreatorScreen from "./screen/PdfCreatorScreen";
 import PdfWithPageNumberScreen from "./screen/AddPageNumberPdfScreen";
+import AddWaterMarkScreen from "./screen/WatermarkScreen";
 // import PdfEditor from "./component/PdfEditor/PdfEditor";
 // import PdfEditorScreen from "./screen/PdfEditorScreen";
 // import PdfEditor from "./component/PdfEditor";
@@ -78,6 +79,7 @@ function App() {
             path="/PdfWithPageNumber"
             element={<PdfWithPageNumberScreen />}
           />
+          <Route path="/Watermark" element={<AddWaterMarkScreen />} />
         </Routes>
 
         <Footer />

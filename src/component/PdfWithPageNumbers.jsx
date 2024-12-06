@@ -77,7 +77,7 @@ const PdfWithPageNumbers = () => {
       // Apply constraints to ensure text stays within the canvas boundaries
       const canvas = canvasRef.current;
       const canvasRect = canvas.getBoundingClientRect();
-      const maxX = canvasRect.width - 150; // Maximum X position based on text width
+      const maxX = canvasRect.width - 50; // Maximum X position based on text width
       const maxY = canvasRect.height - 50; // Maximum Y position based on text height
 
       setTextPosition({

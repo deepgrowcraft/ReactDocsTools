@@ -165,6 +165,7 @@ const tools = [
     icon: (
       <img src="../home/addWaterMark.svg" alt="pdfToTxt" className="h-15" />
     ),
+    path: "/Watermark",
   },
   {
     name: "Unlock PDF",
