@@ -183,6 +183,7 @@ const tools = [
     name: "eSign PDF",
     description: "Electronically sign PDF documents.",
     icon: <img src="../home/eSignPdf.svg" alt="pdfToTxt" className="h-15" />,
+    path: "/eSignPdf",
   },
 ];
 const strokeColors = ["#FFB3B3", "#B3FFCC", "#B3D9FF", "#FFCCF2"];

@@ -221,6 +221,7 @@ const tools = [
     icon: (
       <img src="../home/eSignPdf.svg" alt="eSignPdf" className="w-10 h-10" />
     ),
+    path: "/eSignPdf",
   },
 ];
 

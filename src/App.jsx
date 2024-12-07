@@ -32,6 +32,7 @@ import PdfWithPageNumberScreen from "./screen/AddPageNumberPdfScreen";
 import AddWaterMarkScreen from "./screen/WatermarkScreen";
 import UnlockPdfScreen from "./screen/UnlockPdfScreen";
 import SecurePdfScreen from "./screen/ProtectPdfScreen";
+import ESignatureScreen from "./screen/ESignPdfScreen";
 // import PdfEditor from "./component/PdfEditor/PdfEditor";
 // import PdfEditorScreen from "./screen/PdfEditorScreen";
 // import PdfEditor from "./component/PdfEditor";
@@ -84,6 +85,7 @@ function App() {
           <Route path="/Watermark" element={<AddWaterMarkScreen />} />
           <Route path="/UnlockPdf" element={<UnlockPdfScreen />} />
           <Route path="/ProtectPdf" element={<SecurePdfScreen />} />
+          <Route path="/eSignPdf" element={<ESignatureScreen />} />
         </Routes>
 
         <Footer />
