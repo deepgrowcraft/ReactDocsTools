@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+const API_URL = import.meta.env.VITE_API_URL;
 
 const ProtectPdfScreen = () => {
   const [pdfFile, setPdfFile] = useState(null);
@@ -43,16 +44,12 @@ const ProtectPdfScreen = () => {
     formData.append("password", password);
 
     try {
-      const response = await axios.post(
-        "http://192.168.1.27:8000/protect-pdf/",
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-          responseType: "blob", // For handling the PDF file response
-        }
-      );
+      const response = await axios.post(`${API_URL}/protect-pdf/`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+        responseType: "blob", // For handling the PDF file response
+      });
 
       // Create a link to download the protected PDF
       const url = window.URL.createObjectURL(new Blob([response.data]));

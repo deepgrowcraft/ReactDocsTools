@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import SignatureCanvas from "react-signature-canvas";
+const API_URL = import.meta.env.VITE_API_URL;
 
 const ESignPdfScreen = () => {
   const [pdfFile, setPdfFile] = useState(null);
@@ -90,16 +91,12 @@ const ESignPdfScreen = () => {
     formData.append("page_number", pageNumber); // Add page number to request
 
     try {
-      const response = await axios.post(
-        "http://192.168.1.27:8000/esign-pdf/",
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-          responseType: "blob",
-        }
-      );
+      const response = await axios.post(`${API_URL}/esign-pdf/`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+        responseType: "blob",
+      });
 
       const url = window.URL.createObjectURL(new Blob([response.data]));
       setDownloadLink(url);
