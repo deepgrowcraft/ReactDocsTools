@@ -5,6 +5,7 @@ import "react-pdf/dist/esm/Page/AnnotationLayer.css";
 import "react-pdf/dist/esm/Page/TextLayer.css";
 
 pdfjs.GlobalWorkerOptions.workerSrc = "/pdf.worker.min.mjs";
+const API_URL = import.meta.env.VITE_API_URL;
 
 const ExtractPdfContent = () => {
   const [selectedPdf, setSelectedPdf] = useState(null);
@@ -26,7 +27,8 @@ const ExtractPdfContent = () => {
     try {
       setIsLoading(true); // Show loader
       const response = await axios.post(
-        "http://192.168.1.11:8000/upload-pdf/",
+        `${API_URL}/upload-pdf/`,
+
         formData,
         {
           headers: {
@@ -72,7 +74,7 @@ const ExtractPdfContent = () => {
     try {
       setIsLoading(true); // Show loader
       const response = await axios.post(
-        "http://192.168.1.11:8000/extract-content/",
+        `${API_URL}/extract-content/`,
         formData,
         {
           headers: {

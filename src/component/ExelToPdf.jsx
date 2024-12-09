@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
+const API_URL = import.meta.env.VITE_API_URL;
 
 const ExcelToPdf = () => {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -38,7 +39,7 @@ const ExcelToPdf = () => {
       console.log("Starting conversion...");
 
       const response = await axios.post(
-        "https://uins2zge62.execute-api.ap-south-1.amazonaws.com/dev/convert/xlsx-to-pdf/", // Update endpoint to handle Excel files
+        `${API_URL}/convert/xlsx-to-pdf/`, // Update endpoint to handle Excel files
         formData,
         {
           headers: {
@@ -67,19 +68,19 @@ const ExcelToPdf = () => {
   };
 
   return (
-    <section className="bg-gradient-to-b from-blue-50 via-blue-100 to-blue-200 py-16 px-4 mt-10">
+    <section className="px-4 py-16 mt-10 bg-gradient-to-b from-blue-50 via-blue-100 to-blue-200">
       <div className="container mx-auto text-center">
-        <h1 className="text-4xl md:text-5xl font-extrabold mb-6 text-gray-900">
+        <h1 className="mb-6 text-4xl font-extrabold text-gray-900 md:text-5xl">
           Convert Excel to PDF
         </h1>
-        <p className="text-lg md:text-xl mb-10 text-gray-700 max-w-3xl mx-auto">
+        <p className="max-w-3xl mx-auto mb-10 text-lg text-gray-700 md:text-xl">
           This tool makes converting Excel to PDF easy. Transform your XLS or
           XLSX files into the widely-used PDF format online.
         </p>
 
-        <div className="bg-white shadow-xl rounded-3xl p-8 max-w-xl mx-auto transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-2xl">
+        <div className="max-w-xl p-8 mx-auto transition-all duration-300 ease-in-out transform bg-white shadow-xl rounded-3xl hover:scale-105 hover:shadow-2xl">
           <div
-            className="relative bg-cover bg-center mb-6 rounded-xl overflow-hidden"
+            className="relative mb-6 overflow-hidden bg-center bg-cover rounded-xl"
             style={{
               backgroundImage: "url('/home/doctoPdfBg.svg')",
               backgroundSize: "contain",
@@ -88,7 +89,7 @@ const ExcelToPdf = () => {
               height: "200px",
             }}
           >
-            <div className="flex justify-center items-center h-full">
+            <div className="flex items-center justify-center h-full">
               <img
                 src="/pdfIcon/excelToPdfIcon.svg"
                 alt="Upload Icon"
@@ -101,15 +102,15 @@ const ExcelToPdf = () => {
             <input
               type="file"
               accept=".xls,.xlsx"
-              className="absolute inset-0 opacity-0 w-full h-full cursor-pointer"
+              className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
               onChange={handleFileUpload}
               aria-label="File Upload"
             />
-            <button className="w-full bg-red-500 text-white font-semibold py-3 px-6 rounded-lg transition duration-300 ease-in-out shadow-lg flex items-center justify-center space-x-2 hover:bg-red-600 hover:scale-105">
+            <button className="flex items-center justify-center w-full px-6 py-3 space-x-2 font-semibold text-white transition duration-300 ease-in-out bg-red-500 rounded-lg shadow-lg hover:bg-red-600 hover:scale-105">
               <img
                 src="/home/addFile.svg"
                 alt="addFile Icon"
-                className="h-5 w-5"
+                className="w-5 h-5"
               />
               <span>
                 {selectedFile ? selectedFile.name : "Choose an Excel File"}
@@ -122,14 +123,14 @@ const ExcelToPdf = () => {
           <button
             onClick={convertExcelToPdf}
             disabled={isConverting}
-            className="mt-6 bg-blue-600 text-white font-semibold py-3 px-8 rounded-lg hover:bg-blue-700 transition-all duration-300 transform hover:scale-105 shadow-lg"
+            className="px-8 py-3 mt-6 font-semibold text-white transition-all duration-300 transform bg-blue-600 rounded-lg shadow-lg hover:bg-blue-700 hover:scale-105"
           >
             {isConverting ? "Converting..." : "Convert to PDF"}
           </button>
         )}
 
         {isConverting && (
-          <div className="my-8 w-20 mx-auto">
+          <div className="w-20 mx-auto my-8">
             <CircularProgressbar
               value={progress}
               text={`${progress}%`}
@@ -150,7 +151,7 @@ const ExcelToPdf = () => {
               download="converted.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block bg-green-500 text-white font-bold px-10 py-4 rounded-full hover:bg-green-600 transition-all duration-300 transform hover:scale-105 shadow-xl"
+              className="inline-block px-10 py-4 font-bold text-white transition-all duration-300 transform bg-green-500 rounded-full shadow-xl hover:bg-green-600 hover:scale-105"
             >
               Download PDF
             </a>

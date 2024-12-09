@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
+const API_URL = import.meta.env.VITE_API_URL;
 
 const HtmlToPdf = () => {
   const [htmlContent, setHtmlContent] = useState("");
@@ -33,7 +34,7 @@ const HtmlToPdf = () => {
 
     try {
       const response = await axios.post(
-        "https://uins2zge62.execute-api.ap-south-1.amazonaws.com/dev/convert/html-to-pdf/",
+        `${API_URL}/convert/html-to-pdf/`,
         formData,
         {
           headers: {
@@ -60,23 +61,23 @@ const HtmlToPdf = () => {
   };
 
   return (
-    <section className="bg-gradient-to-b from-blue-50 via-blue-100 to-blue-200 py-16 px-4 mt-10">
+    <section className="px-4 py-16 mt-10 bg-gradient-to-b from-blue-50 via-blue-100 to-blue-200">
       <div className="container mx-auto text-center">
-        <h1 className="text-4xl md:text-5xl font-extrabold mb-6 text-gray-900">
+        <h1 className="mb-6 text-4xl font-extrabold text-gray-900 md:text-5xl">
           Convert HTML to PDF
         </h1>
-        <p className="text-lg md:text-xl mb-10 text-gray-700 max-w-3xl mx-auto">
+        <p className="max-w-3xl mx-auto mb-10 text-lg text-gray-700 md:text-xl">
           Enter HTML content to convert it into a PDF file.
         </p>
 
         {/* HTML Content Input */}
-        <div className="w-full max-w-xl mx-auto bg-white shadow-lg rounded-3xl p-8 transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-2xl mb-6">
+        <div className="w-full max-w-xl p-8 mx-auto mb-6 transition-all duration-300 ease-in-out transform bg-white shadow-lg rounded-3xl hover:scale-105 hover:shadow-2xl">
           <textarea
             placeholder="Enter HTML content here..."
             value={htmlContent}
             onChange={handleInputChange}
             rows="8"
-            className="w-full bg-blue-50 p-4 rounded-md border-2 border-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-600 mb-4"
+            className="w-full p-4 mb-4 border-2 border-blue-300 rounded-md bg-blue-50 focus:outline-none focus:ring-2 focus:ring-blue-600"
           ></textarea>
         </div>
 
@@ -95,7 +96,7 @@ const HtmlToPdf = () => {
 
         {/* Progress Bar */}
         {isConverting && (
-          <div className="my-8 w-32 mx-auto">
+          <div className="w-32 mx-auto my-8">
             <CircularProgressbar
               value={progress}
               text={`${progress}%`}
@@ -117,7 +118,7 @@ const HtmlToPdf = () => {
               download="converted.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block bg-green-500 text-white font-bold px-10 py-4 rounded-full hover:bg-green-600 transition-all duration-300 transform hover:scale-105 shadow-xl"
+              className="inline-block px-10 py-4 font-bold text-white transition-all duration-300 transform bg-green-500 rounded-full shadow-xl hover:bg-green-600 hover:scale-105"
             >
               Download PDF
             </a>

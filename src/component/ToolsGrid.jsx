@@ -143,11 +143,13 @@ const tools = [
     icon: (
       <img src="../home/rearrangePdf.svg" alt="pdfToTxt" className="h-15" />
     ),
+    path: "/PdfReArrenge",
   },
   {
     name: "PDF Creator",
     description: "Create a new PDF from scratch.",
     icon: <img src="../home/pdfCreation.svg" alt="pdfToTxt" className="h-15" />,
+    path: "/PdfCreator",
   },
   {
     name: "Add Page Number",
@@ -155,6 +157,7 @@ const tools = [
     icon: (
       <img src="../home/AddPageNumber.svg" alt="pdfToTxt" className="h-15" />
     ),
+    path: "/PdfWithPageNumber",
   },
   {
     name: "Add Watermark",
@@ -162,21 +165,25 @@ const tools = [
     icon: (
       <img src="../home/addWaterMark.svg" alt="pdfToTxt" className="h-15" />
     ),
+    path: "/Watermark",
   },
   {
     name: "Unlock PDF",
     description: "Unlock password-protected PDFs.",
     icon: <img src="../home/pdfUnlock.svg" alt="pdfToTxt" className="h-15" />,
+    path: "/UnlockPdf",
   },
   {
     name: "Protect PDF",
     description: "Encrypt your PDF files.",
     icon: <img src="../home/lockPdf.svg" alt="pdfToTxt" className="h-15" />,
+    path: "/ProtectPdf",
   },
   {
     name: "eSign PDF",
     description: "Electronically sign PDF documents.",
     icon: <img src="../home/eSignPdf.svg" alt="pdfToTxt" className="h-15" />,
+    path: "/eSignPdf",
   },
 ];
 const strokeColors = ["#FFB3B3", "#B3FFCC", "#B3D9FF", "#FFCCF2"];

@@ -25,7 +25,15 @@ import RemovePdfPagesScreen from "./screen/RemovePdfPagesScreen";
 import RotatePdfPagesScreen from "./screen/RotatePdfPageScreen";
 import CropPdfScreen from "./screen/CropPdfPagesScreen";
 import ExtractPdfContentScreen from "./screen/ExtractPdfContentScreen";
-import PdfEditor from "./component/PdfEditor/PdfEditor";
+import PdfEditScreen from "./screen/PdfEditScreen";
+import ReArrengeScreen from "./screen/ReArrengePdfScreen";
+import PdfCreatorScreen from "./screen/PdfCreatorScreen";
+import PdfWithPageNumberScreen from "./screen/AddPageNumberPdfScreen";
+import AddWaterMarkScreen from "./screen/WatermarkScreen";
+import UnlockPdfScreen from "./screen/UnlockPdfScreen";
+import SecurePdfScreen from "./screen/ProtectPdfScreen";
+import ESignatureScreen from "./screen/ESignPdfScreen";
+// import PdfEditor from "./component/PdfEditor/PdfEditor";
 // import PdfEditorScreen from "./screen/PdfEditorScreen";
 // import PdfEditor from "./component/PdfEditor";
 
@@ -67,7 +75,17 @@ function App() {
             path="/ExtractPdfContent"
             element={<ExtractPdfContentScreen />}
           />
-          <Route path="/PdfEditor" element={<PdfEditor />} />
+          <Route path="/PdfReArrenge" element={<ReArrengeScreen />} />
+          <Route path="/PdfEditor" element={<PdfEditScreen />} />
+          <Route path="/PdfCreator" element={<PdfCreatorScreen />} />
+          <Route
+            path="/PdfWithPageNumber"
+            element={<PdfWithPageNumberScreen />}
+          />
+          <Route path="/Watermark" element={<AddWaterMarkScreen />} />
+          <Route path="/UnlockPdf" element={<UnlockPdfScreen />} />
+          <Route path="/ProtectPdf" element={<SecurePdfScreen />} />
+          <Route path="/eSignPdf" element={<ESignatureScreen />} />
         </Routes>
 
         <Footer />

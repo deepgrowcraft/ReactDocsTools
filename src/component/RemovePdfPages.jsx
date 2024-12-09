@@ -4,6 +4,7 @@ import axios from "axios";
 import "react-pdf/dist/esm/Page/AnnotationLayer.css";
 import "react-pdf/dist/esm/Page/TextLayer.css";
 import "./FlipPdfScreen.css";
+const API_URL = import.meta.env.VITE_API_URL;
 
 pdfjs.GlobalWorkerOptions.workerSrc = "/pdf.worker.min.mjs";
 
@@ -22,15 +23,11 @@ const RemovePdfPages = () => {
     formData.append("file", file);
 
     try {
-      const response = await axios.post(
-        "https://uins2zge62.execute-api.ap-south-1.amazonaws.com/dev/upload-pdf/",
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
+      const response = await axios.post(`${API_URL}/upload-pdf/`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
 
       const { file_path } = response.data;
       setFilePath(file_path);
@@ -65,7 +62,7 @@ const RemovePdfPages = () => {
 
     try {
       const response = await axios.post(
-        "https://uins2zge62.execute-api.ap-south-1.amazonaws.com/dev/remove-pages/",
+        `${API_URL}/remove-pages/`,
         {
           file_path: filePath,
           pages: selectedPages,

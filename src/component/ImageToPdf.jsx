@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
+const API_URL = import.meta.env.VITE_API_URL;
 
 const ImageToPdf = () => {
   const [selectedFiles, setSelectedFiles] = useState([]);
@@ -40,7 +41,7 @@ const ImageToPdf = () => {
       console.log("Starting conversion...");
 
       const response = await axios.post(
-        "https://uins2zge62.execute-api.ap-south-1.amazonaws.com/dev/convert/images-to-pdf/", // Update endpoint for images
+        `${API_URL}/convert/images-to-pdf/`, // Update endpoint for images
         formData,
         {
           headers: {

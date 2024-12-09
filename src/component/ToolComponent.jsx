@@ -169,6 +169,7 @@ const tools = [
         className="w-10 h-10"
       />
     ),
+    path: "/PdfReArrenge",
   },
   {
     name: "PDF Creator",
@@ -179,6 +180,7 @@ const tools = [
         className="w-10 h-10"
       />
     ),
+    path: "/PdfCreator",
   },
   {
     name: "Add Page Number",
@@ -189,6 +191,7 @@ const tools = [
         className="w-10 h-10"
       />
     ),
+    path: "/PdfWithPageNumber",
   },
   {
     name: "Add Watermark",
@@ -199,22 +202,26 @@ const tools = [
         className="w-10 h-10"
       />
     ),
+    path: "/Watermark",
   },
   {
     name: "Unlock PDF",
     icon: (
       <img src="../home/pdfUnlock.svg" alt="pdfUnlock" className="w-10 h-10" />
     ),
+    path: "/UnlockPdf",
   },
   {
     name: "Protect PDF",
     icon: <img src="../home/lockPdf.svg" alt="lockPdf" className="w-10 h-10" />,
+    path: "/ProtectPdf",
   },
   {
     name: "eSign PDF",
     icon: (
       <img src="../home/eSignPdf.svg" alt="eSignPdf" className="w-10 h-10" />
     ),
+    path: "/eSignPdf",
   },
 ];
 
