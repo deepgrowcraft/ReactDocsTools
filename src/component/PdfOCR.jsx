@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
-const API_URL = import.meta.env.VITE_API_URL;
+const API_URL = import.meta.env.VITE_API_EC2;
 
 const PdfOcr = () => {
   const [selectedFile, setSelectedFile] = useState(null);
