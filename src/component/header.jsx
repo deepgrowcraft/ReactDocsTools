@@ -41,42 +41,42 @@ const Header = () => {
         isVisible ? "translate-y-0" : "-translate-y-full"
       }`}
     >
-      <div className="container mx-auto flex justify-between items-center py-4 px-4 md:px-0">
+      <div className="container flex items-center justify-between px-4 py-4 mx-auto md:px-0">
         {/* Logo */}
         <Link to="/" className="text-2xl font-bold text-blue-600">
-          <img src="/logo.svg" alt="Logo" className="w-18 h-10 mb-1" />
+          <img src="/logo.svg" alt="Logo" className="h-10 mb-1 w-18" />
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex space-x-8 text-lg">
-          <Link to="/" className="hover:text-blue-600 transition duration-300">
+        <nav className="hidden space-x-8 text-lg md:flex">
+          <Link to="/" className="transition duration-300 hover:text-blue-600">
             Home
           </Link>
           <Link
             to="/about"
-            className="hover:text-blue-600 transition duration-300"
+            className="transition duration-300 hover:text-blue-600"
           >
             About
           </Link>
           <Link
             to="/contact"
-            className="hover:text-blue-600 transition duration-300"
+            className="transition duration-300 hover:text-blue-600"
           >
             Contact
           </Link>
         </nav>
 
         {/* Sign Up Button for Desktop */}
-        <div className="hidden md:flex space-x-4">
+        <div className="hidden space-x-4 md:flex">
           <Link
             to="#login"
-            className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-300"
+            className="px-4 py-2 text-white transition duration-300 bg-blue-600 rounded-lg hover:bg-blue-700"
           >
             Log In
           </Link>
           <Link
             to="#signup"
-            className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-300"
+            className="px-4 py-2 text-white transition duration-300 bg-blue-600 rounded-lg hover:bg-blue-700"
           >
             Sign Up
           </Link>
@@ -85,19 +85,18 @@ const Header = () => {
         {/* Hamburger Icon for Mobile Menu */}
         <button
           onClick={toggleMenu}
-          className="md:hidden text-2xl focus:outline-none"
+          className="text-2xl md:hidden focus:outline-none"
         >
           <FontAwesomeIcon icon={isOpen ? faTimes : faBars} />
         </button>
       </div>
 
-      {/* Mobile Menu (Visible only when menu is open) */}
       <div
         className={`${
           isOpen ? "translate-x-0" : "-translate-x-full"
         } md:hidden fixed top-0 left-0 w-3/4 h-full bg-white shadow-md transition-transform duration-300 z-40`}
       >
-        <nav className="flex flex-col items-start space-y-6 p-6 mt-10">
+        <nav className="flex flex-col items-start p-6 mt-10 space-y-6 bg-white">
           <Link to="/" className="hover:text-blue-600" onClick={toggleMenu}>
             Home
           </Link>
@@ -117,14 +116,14 @@ const Header = () => {
           </Link>
           <Link
             to="#login"
-            className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-300 w-full"
+            className="w-full px-4 py-2 text-white transition duration-300 bg-blue-600 rounded-lg hover:bg-blue-700"
             onClick={toggleMenu}
           >
             Log In
           </Link>
           <Link
             to="#signup"
-            className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-300 w-full"
+            className="w-full px-4 py-2 text-white transition duration-300 bg-blue-600 rounded-lg hover:bg-blue-700"
             onClick={toggleMenu}
           >
             Sign Up
@@ -135,7 +134,7 @@ const Header = () => {
       {/* Overlay when mobile menu is open */}
       {isOpen && (
         <div
-          className="fixed inset-0 bg-black bg-opacity-50 z-30"
+          className="fixed inset-0 z-30 bg-black bg-opacity-50"
           onClick={toggleMenu}
         />
       )}

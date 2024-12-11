@@ -72,13 +72,13 @@ const Contact = () => {
         <h2 className="mb-4 text-2xl font-semibold">Other Ways to Reach Us</h2>
         <div className="space-y-2">
           <p>
-            <strong>Email:</strong> contact@example.com
+            <strong>Email:</strong> contact@growcraftsolution.com
           </p>
           <p>
-            <strong>Phone:</strong> +1 (123) 456-7890
+            <strong>Phone:</strong> +91 9131426221
           </p>
           <p>
-            <strong>Address:</strong> 1234 Street Name, City, State, Zip Code
+            <strong>Address:</strong> NRK Biz Park Vijay Nagar Indore MP
           </p>
         </div>
       </div>
