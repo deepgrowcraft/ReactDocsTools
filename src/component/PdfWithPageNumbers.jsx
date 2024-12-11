@@ -65,20 +65,33 @@ const PdfWithPageNumbers = () => {
     setTextColor(e.target.value);
   };
 
-  // Handle dragging the text to position with boundary constraints
+  // Handle the start of the dragging action (mouse or touch)
   const handleDragStart = (e) => {
-    const offsetX = e.clientX - textPosition.x;
-    const offsetY = e.clientY - textPosition.y;
+    // Prevent default behavior for touch events to avoid unwanted page scrolling
+    if (e.type === "touchstart") {
+      e.preventDefault();
+    }
 
+    // Determine the initial mouse/touch position
+    const startX = e.type === "touchstart" ? e.touches[0].clientX : e.clientX;
+    const startY = e.type === "touchstart" ? e.touches[0].clientY : e.clientY;
+
+    const offsetX = startX - textPosition.x;
+    const offsetY = startY - textPosition.y;
+
+    // Handle drag move
     const handleDragMove = (e) => {
-      const newX = e.clientX - offsetX;
-      const newY = e.clientY - offsetY;
+      const moveX = e.type === "touchmove" ? e.touches[0].clientX : e.clientX;
+      const moveY = e.type === "touchmove" ? e.touches[0].clientY : e.clientY;
 
-      // Apply constraints to ensure text stays within the canvas boundaries
+      const newX = moveX - offsetX;
+      const newY = moveY - offsetY;
+
+      // Apply boundary constraints for dragging (so the text stays within the canvas)
       const canvas = canvasRef.current;
       const canvasRect = canvas.getBoundingClientRect();
-      const maxX = canvasRect.width - 50; // Maximum X position based on text width
-      const maxY = canvasRect.height - 50; // Maximum Y position based on text height
+      const maxX = canvasRect.width - 50;
+      const maxY = canvasRect.height - 50;
 
       setTextPosition({
         x: Math.min(Math.max(newX, 0), maxX),
@@ -86,13 +99,19 @@ const PdfWithPageNumbers = () => {
       });
     };
 
+    // Handle the end of the dragging action (mouse or touch)
     const handleDragEnd = () => {
       document.removeEventListener("mousemove", handleDragMove);
       document.removeEventListener("mouseup", handleDragEnd);
+      document.removeEventListener("touchmove", handleDragMove);
+      document.removeEventListener("touchend", handleDragEnd);
     };
 
+    // Add event listeners for dragging move and end for both mouse and touch
     document.addEventListener("mousemove", handleDragMove);
     document.addEventListener("mouseup", handleDragEnd);
+    document.addEventListener("touchmove", handleDragMove);
+    document.addEventListener("touchend", handleDragEnd);
   };
 
   // Render the PDF preview using pdf.js
@@ -102,7 +121,6 @@ const PdfWithPageNumbers = () => {
     setPdfDocument(pdf);
 
     // Set the total page count
-    console.log(pdf.numPages, "qwerwer");
     setPageCount(pdf.numPages);
 
     const page = await pdf.getPage(1); // Render the first page
@@ -217,7 +235,11 @@ const PdfWithPageNumbers = () => {
           {/* PDF Preview */}
           {pdfUrl && (
             <div className="relative mb-4">
-              <canvas ref={canvasRef} className="border-2 border-gray-300" />
+              <canvas
+                ref={canvasRef}
+                className="w-full h-auto border-2 border-gray-300"
+                style={{ maxWidth: "100%", maxHeight: "100%" }}
+              />
               {text && (
                 <div
                   style={{
@@ -229,7 +251,9 @@ const PdfWithPageNumbers = () => {
                     color: textColor,
                     opacity: textOpacity,
                   }}
+                  onTouchStart={handleDragStart}
                   onMouseDown={handleDragStart}
+                  className="text-sm text-center sm:text-left sm:text-lg md:text-xl"
                 >
                   {text}
                 </div>
