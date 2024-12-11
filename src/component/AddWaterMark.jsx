@@ -150,11 +150,11 @@ const WatermarkPdf = () => {
           </div>
 
           {/* PDF Preview */}
-          {pdfUrl && (
+          {/* {pdfUrl && (
             <div className="relative mb-4">
               <canvas ref={canvasRef} className="border-2 border-gray-300" />
             </div>
-          )}
+          )} */}
 
           {/* Watermark page range */}
           <div className="mb-4">
