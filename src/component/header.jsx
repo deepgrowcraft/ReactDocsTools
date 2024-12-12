@@ -125,13 +125,13 @@ const Header = () => {
         } md:hidden fixed top-0 left-0 w-3/4 h-full bg-white shadow-md transition-transform duration-300 z-40`}
       >
         <nav className="flex flex-col items-start p-6 mt-10 space-y-6 bg-white">
-          <Link
+          {/* <Link
             // to="/all-tools"
             className="hover:text-blue-600"
             onClick={toggleMenu}
           >
             All Tools
-          </Link>
+          </Link> */}
           <Link
             to="/merge-pdf"
             className="hover:text-blue-600"
