@@ -2,11 +2,13 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
+import AllTools from "./AllTools"; // Import the AllTools component
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const [showToolsPopup, setShowToolsPopup] = useState(false); // New state to control the popup visibility
 
   // Toggle the mobile menu
   const toggleMenu = () => {
@@ -43,26 +45,52 @@ const Header = () => {
     >
       <div className="container flex items-center justify-between px-4 py-4 mx-auto md:px-0">
         {/* Logo */}
-        <Link to="/" className="text-2xl font-bold text-blue-600">
+        <Link
+          to="/"
+          className="flex items-center text-2xl font-bold text-blue-600"
+        >
           <img src="/logo.svg" alt="Logo" className="h-10 mb-1 w-18" />
         </Link>
 
         {/* Desktop Navigation */}
         <nav className="hidden space-x-8 text-lg md:flex">
-          <Link to="/" className="transition duration-300 hover:text-blue-600">
-            Home
-          </Link>
+          <div
+            className="relative group"
+            onMouseEnter={() => setShowToolsPopup(true)} // Show popup on hover
+            onMouseLeave={() => setShowToolsPopup(false)} // Hide popup when hover out
+          >
+            <Link className="transition duration-300 hover:text-blue-600">
+              All Tools
+            </Link>
+            {showToolsPopup && (
+              <div className="w-screen ">
+                <AllTools />
+              </div>
+            )}
+          </div>
           <Link
-            to="/about"
+            to="/MergePdfScreen"
             className="transition duration-300 hover:text-blue-600"
           >
-            About
+            Merge PDF
           </Link>
           <Link
-            to="/contact"
+            to="/SplitPdfScreen"
             className="transition duration-300 hover:text-blue-600"
           >
-            Contact
+            Split PDF
+          </Link>
+          <Link
+            to="/CompressPdfScreen"
+            className="transition duration-300 hover:text-blue-600"
+          >
+            Compress PDF
+          </Link>
+          <Link
+            to="/PdfToWordScreen"
+            className="transition duration-300 hover:text-blue-600"
+          >
+            Convert PDF
           </Link>
         </nav>
 
@@ -97,23 +125,42 @@ const Header = () => {
         } md:hidden fixed top-0 left-0 w-3/4 h-full bg-white shadow-md transition-transform duration-300 z-40`}
       >
         <nav className="flex flex-col items-start p-6 mt-10 space-y-6 bg-white">
-          <Link to="/" className="hover:text-blue-600" onClick={toggleMenu}>
-            Home
-          </Link>
           <Link
-            to="/about"
+            // to="/all-tools"
             className="hover:text-blue-600"
             onClick={toggleMenu}
           >
-            About
+            All Tools
           </Link>
           <Link
-            to="/contact"
+            to="/merge-pdf"
             className="hover:text-blue-600"
             onClick={toggleMenu}
           >
-            Contact
+            Merge PDF
           </Link>
+          <Link
+            to="/split-pdf"
+            className="hover:text-blue-600"
+            onClick={toggleMenu}
+          >
+            Split PDF
+          </Link>
+          <Link
+            to="/compress-pdf"
+            className="hover:text-blue-600"
+            onClick={toggleMenu}
+          >
+            Compress PDF
+          </Link>
+          <Link
+            to="/convert-pdf"
+            className="hover:text-blue-600"
+            onClick={toggleMenu}
+          >
+            Convert PDF
+          </Link>
+
           <Link
             to="#login"
             className="w-full px-4 py-2 text-white transition duration-300 bg-blue-600 rounded-lg hover:bg-blue-700"
