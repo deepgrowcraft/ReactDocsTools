@@ -69,7 +69,7 @@ const Header = () => {
             )}
           </div> */}
 
-          <div
+          {/* <div
             className="relative hidden group lg:block"
             onMouseEnter={() => setShowDropdown(true)}
             onMouseLeave={() => setShowDropdown(false)}
@@ -82,7 +82,31 @@ const Header = () => {
                 <AllTools />
               </div>
             )}
+          </div> */}
+
+          <div
+            className="relative hidden group lg:block"
+            onMouseEnter={() => {
+              clearTimeout(window.dropdownTimer);
+              setShowDropdown(true);
+            }}
+            onMouseLeave={() => {
+              window.dropdownTimer = setTimeout(
+                () => setShowDropdown(false),
+                200
+              );
+            }}
+          >
+            <button className="transition duration-300 hover:text-blue-600">
+              All Tools
+            </button>
+            {showDropdown && (
+              <div className="absolute left-0 z-50 mt-2 bg-white border rounded-lg shadow-lg">
+                <AllTools />
+              </div>
+            )}
           </div>
+
           <Link
             to="/MergePdfScreen"
             className="transition duration-300 hover:text-blue-600"
