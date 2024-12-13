@@ -151,7 +151,7 @@ const Footer = () => {
       {/* Footer Bottom */}
       <div className="py-4 text-sm text-center bg-gray-100">
         <p className="text-gray-500">
-          © 2024 Smallpdftools All Rights Reserved.
+          © 2024 pdfSmallTools All Rights Reserved.
         </p>
         <div className="mt-2 space-x-4">
           <a href="#" className="hover:text-blue-500">

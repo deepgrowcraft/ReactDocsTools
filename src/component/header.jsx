@@ -9,7 +9,7 @@ const Header = () => {
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [showToolsPopup, setShowToolsPopup] = useState(false); // New state to control the popup visibility
-
+  const [showDropdown, setShowDropdown] = useState(false);
   // Toggle the mobile menu
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -54,7 +54,7 @@ const Header = () => {
 
         {/* Desktop Navigation */}
         <nav className="hidden space-x-8 text-lg md:flex">
-          <div
+          {/* <div
             className="relative group"
             onMouseEnter={() => setShowToolsPopup(true)} // Show popup on hover
             onMouseLeave={() => setShowToolsPopup(false)} // Hide popup when hover out
@@ -64,6 +64,21 @@ const Header = () => {
             </Link>
             {showToolsPopup && (
               <div className="w-screen ">
+                <AllTools />
+              </div>
+            )}
+          </div> */}
+
+          <div
+            className="relative hidden group lg:block"
+            onMouseEnter={() => setShowDropdown(true)}
+            onMouseLeave={() => setShowDropdown(false)}
+          >
+            <button className="transition duration-300 hover:text-blue-600">
+              All Tools
+            </button>
+            {showDropdown && (
+              <div className="absolute left-0 z-50 mt-2 bg-white border rounded-lg shadow-lg">
                 <AllTools />
               </div>
             )}
