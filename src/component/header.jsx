@@ -8,11 +8,15 @@ const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
-  const [showToolsPopup, setShowToolsPopup] = useState(false); // New state to control the popup visibility
-  const [showDropdown, setShowDropdown] = useState(false);
+  const [showMegaMenu, setShowMegaMenu] = useState(false);
+
   // Toggle the mobile menu
   const toggleMenu = () => {
     setIsOpen(!isOpen);
+  };
+
+  const toggleMegaMenu = () => {
+    setShowMegaMenu(!showMegaMenu);
   };
 
   // Handle scrolling to hide/show header
@@ -54,57 +58,23 @@ const Header = () => {
 
         {/* Desktop Navigation */}
         <nav className="hidden space-x-8 text-lg md:flex">
-          {/* <div
-            className="relative group"
-            onMouseEnter={() => setShowToolsPopup(true)} // Show popup on hover
-            onMouseLeave={() => setShowToolsPopup(false)} // Hide popup when hover out
-          >
-            <Link className="transition duration-300 hover:text-blue-600">
-              All Tools
-            </Link>
-            {showToolsPopup && (
-              <div className="w-screen ">
-                <AllTools />
-              </div>
-            )}
-          </div> */}
-
-          {/* <div
-            className="relative hidden group lg:block"
-            onMouseEnter={() => setShowDropdown(true)}
-            onMouseLeave={() => setShowDropdown(false)}
-          >
-            <button className="transition duration-300 hover:text-blue-600">
-              All Tools
-            </button>
-            {showDropdown && (
-              <div className="absolute left-0 z-50 mt-2 bg-white border rounded-lg shadow-lg">
-                <AllTools />
-              </div>
-            )}
-          </div> */}
-
           <div
-            className="relative hidden group lg:block"
+            className="relative group"
             onMouseEnter={() => {
               clearTimeout(window.dropdownTimer);
-              setShowDropdown(true);
+              setShowMegaMenu(true);
             }}
             onMouseLeave={() => {
               window.dropdownTimer = setTimeout(
-                () => setShowDropdown(false),
-                200
+                () => setShowMegaMenu(false),
+                30000
               );
             }}
           >
-            <button className="transition duration-300 hover:text-blue-600">
+            <button className="text-lg text-gray-700 hover:text-blue-600">
               All Tools
             </button>
-            {showDropdown && (
-              <div className="absolute left-0 z-50 mt-2 bg-white border rounded-lg shadow-lg">
-                <AllTools />
-              </div>
-            )}
+            {/* {showMegaMenu && <AllTools />} */}
           </div>
 
           <Link
@@ -158,19 +128,24 @@ const Header = () => {
         </button>
       </div>
 
+      {/* Mega Menu */}
+      {showMegaMenu && (
+        <div
+          className="absolute left-0 z-50 w-full bg-white shadow-lg"
+          onMouseEnter={() => setShowMegaMenu(true)}
+          onMouseLeave={() => setShowMegaMenu(false)}
+        >
+          <AllTools />
+        </div>
+      )}
+
+      {/* Mobile Menu */}
       <div
         className={`${
           isOpen ? "translate-x-0" : "-translate-x-full"
         } md:hidden fixed top-0 left-0 w-3/4 h-full bg-white shadow-md transition-transform duration-300 z-40`}
       >
         <nav className="flex flex-col items-start p-6 mt-10 space-y-6 bg-white">
-          {/* <Link
-            // to="/all-tools"
-            className="hover:text-blue-600"
-            onClick={toggleMenu}
-          >
-            All Tools
-          </Link> */}
           <Link
             to="/merge-pdf"
             className="hover:text-blue-600"
@@ -216,14 +191,6 @@ const Header = () => {
           </Link>
         </nav>
       </div>
-
-      {/* Overlay when mobile menu is open */}
-      {isOpen && (
-        <div
-          className="fixed inset-0 z-30 bg-black bg-opacity-50"
-          onClick={toggleMenu}
-        />
-      )}
     </header>
   );
 };

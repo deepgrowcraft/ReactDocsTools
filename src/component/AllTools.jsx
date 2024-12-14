@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom"; // Assuming you're using React Router for navigation
+import React from "react";
+import { Link } from "react-router-dom";
 
 const AllTools = () => {
   const tools = [
@@ -22,7 +22,7 @@ const AllTools = () => {
           icon: (
             <img
               src="../home/exelToPdf.svg"
-              alt="wordTopdf"
+              alt="exelToPdf"
               className="w-7 h-7"
             />
           ),
@@ -33,18 +33,18 @@ const AllTools = () => {
           icon: (
             <img
               src="../home/pptToPdf.svg"
-              alt="wordTopdf"
+              alt="pptToPdf"
               className="w-7 h-7"
             />
           ),
           path: "/PptToPdfScreen",
         },
         {
-          name: "IMAGE to PDF",
+          name: "Image to PDF",
           icon: (
             <img
               src="../home/imageToPdf.svg"
-              alt="wordTopdf"
+              alt="imageToPdf"
               className="w-7 h-7"
             />
           ),
@@ -60,7 +60,7 @@ const AllTools = () => {
           icon: (
             <img
               src="../home/pdfToWord.svg"
-              alt="wordTopdf"
+              alt="pdfToWord"
               className="w-7 h-7"
             />
           ),
@@ -71,7 +71,7 @@ const AllTools = () => {
           icon: (
             <img
               src="../home/pdfToExel.svg"
-              alt="wordTopdf"
+              alt="pdfToExcel"
               className="w-7 h-7"
             />
           ),
@@ -82,18 +82,18 @@ const AllTools = () => {
           icon: (
             <img
               src="../home/pdfToppt.svg"
-              alt="wordTopdf"
+              alt="pdfToPPT"
               className="w-7 h-7"
             />
           ),
           path: "/PdfToPPTScreen",
         },
         {
-          name: "PDF to IMAGE",
+          name: "PDF to Image",
           icon: (
             <img
               src="../home/pdfToImage.svg"
-              alt="wordTopdf"
+              alt="pdfToImage"
               className="w-7 h-7"
             />
           ),
@@ -109,7 +109,7 @@ const AllTools = () => {
           icon: (
             <img
               src="../home/mergePdf.svg"
-              alt="wordTopdf"
+              alt="mergePdf"
               className="w-7 h-7"
             />
           ),
@@ -120,7 +120,7 @@ const AllTools = () => {
           icon: (
             <img
               src="../home/splitPdf.svg"
-              alt="wordTopdf"
+              alt="splitPdf"
               className="w-7 h-7"
             />
           ),
@@ -134,11 +134,7 @@ const AllTools = () => {
         {
           name: "Protect PDF",
           icon: (
-            <img
-              src="../home/lockPdf.svg"
-              alt="wordTopdf"
-              className="w-7 h-7"
-            />
+            <img src="../home/lockPdf.svg" alt="lockPdf" className="w-7 h-7" />
           ),
           path: "/ProtectPdf",
         },
@@ -147,7 +143,7 @@ const AllTools = () => {
           icon: (
             <img
               src="../home/pdfUnlock.svg"
-              alt="wordTopdf"
+              alt="pdfUnlock"
               className="w-7 h-7"
             />
           ),
@@ -158,7 +154,7 @@ const AllTools = () => {
           icon: (
             <img
               src="../home/eSignPdf.svg"
-              alt="wordTopdf"
+              alt="eSignPdf"
               className="w-7 h-7"
             />
           ),
@@ -169,7 +165,7 @@ const AllTools = () => {
           icon: (
             <img
               src="../home/addWaterMark.svg"
-              alt="wordTopdf"
+              alt="addWaterMark"
               className="w-7 h-7"
             />
           ),
@@ -185,7 +181,7 @@ const AllTools = () => {
           icon: (
             <img
               src="../home/compressPdf.svg"
-              alt="wordTopdf"
+              alt="compressPdf"
               className="w-7 h-7"
             />
           ),
@@ -196,18 +192,18 @@ const AllTools = () => {
           icon: (
             <img
               src="../home/rotatePdf.svg"
-              alt="wordTopdf"
+              alt="rotatePdf"
               className="w-7 h-7"
             />
           ),
           path: "/RotatePdfPagesScreen",
         },
         {
-          name: "Re-Arrenge PDF",
+          name: "Re-Arrange PDF",
           icon: (
             <img
               src="../home/rearrangePdf.svg"
-              alt="wordTopdf"
+              alt="rearrangePdf"
               className="w-7 h-7"
             />
           ),
@@ -218,7 +214,7 @@ const AllTools = () => {
           icon: (
             <img
               src="../home/removePdf.svg"
-              alt="wordTopdf"
+              alt="removePdf"
               className="w-7 h-7"
             />
           ),
@@ -228,39 +224,27 @@ const AllTools = () => {
     },
   ];
 
-  const [openCategory, setOpenCategory] = useState(null);
-
-  const toggleCategory = (category) => {
-    setOpenCategory(openCategory === category ? null : category);
-  };
-
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50">
-      <div className="w-full p-4 mt-20 space-y-8 bg-white rounded-lg shadow-lg max-w-7xl md:p-8">
-        <div className="grid grid-cols-1 gap-8 p-5 mt-32 lg:grid-cols-3 xl:grid-cols-5 lg:mt-32 md:mt-32">
+    <div className="absolute left-0 z-50 w-full bg-white shadow-lg">
+      <div className="container px-4 py-6 mx-auto">
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
           {tools.map((toolCategory) => (
             <div
               key={toolCategory.category}
-              className="p-6 transition-shadow duration-300 bg-white rounded-lg shadow-lg hover:shadow-xl"
+              className="p-4 rounded-lg shadow-md bg-gray-50"
             >
-              <h3
-                className="mb-4 text-xl font-semibold text-blue-500 cursor-pointer"
-                onClick={() => toggleCategory(toolCategory.category)}
-              >
+              <h3 className="mb-4 text-lg font-semibold text-blue-600">
                 {toolCategory.category}
               </h3>
-              <ul className="space-y-2 text-gray-700">
+              <ul className="space-y-2">
                 {toolCategory.items.map((item) => (
-                  <li
-                    key={item.name}
-                    className="flex items-center space-x-2 transition-colors duration-200 cursor-pointer hover:text-blue-600"
-                  >
+                  <li key={item.name}>
                     <Link
                       to={item.path}
-                      className="flex items-center space-x-2"
+                      className="flex items-center space-x-2 text-gray-700 hover:text-blue-600"
                     >
-                      <span className="text-lg">{item.icon}</span>
-                      <span className="text-sm sm:text-base">{item.name}</span>
+                      <span>{item.icon}</span>
+                      <span>{item.name}</span>
                     </Link>
                   </li>
                 ))}
