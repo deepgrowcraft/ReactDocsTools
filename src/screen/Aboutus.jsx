@@ -1,8 +1,28 @@
 import React from "react";
+import { Helmet } from "react-helmet-async";
 
 const About = () => {
   return (
     <div className="container px-4 py-16 mx-auto mt-10 text-center">
+      <Helmet>
+        <title>About Us - PDF Tools</title>
+        <meta
+          name="description"
+          content="Learn more about PDF Tools, your go-to solution for fast, easy, and secure PDF processing. Discover our mission, vision, and why you should choose us."
+        />
+        <meta property="og:title" content="About Us - PDF Tools" />
+        <meta
+          property="og:description"
+          content="Learn more about PDF Tools, your go-to solution for fast, easy, and secure PDF processing. Discover our mission, vision, and why you should choose us."
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://pdfsmalltools.com/about" />
+        <meta
+          property="og:image"
+          content="https://pdfsmalltools.com/pdfIcon/editPdfs.svg"
+        />
+      </Helmet>
+
       <h1 className="mb-6 text-5xl font-extrabold text-blue-800">About Us</h1>
       <p className="max-w-3xl mx-auto mb-8 text-lg leading-relaxed text-gray-700">
         Welcome to our PDF Tools platform – your go-to solution for fast, easy,

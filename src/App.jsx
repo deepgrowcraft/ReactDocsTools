@@ -33,9 +33,9 @@ import AddWaterMarkScreen from "./screen/WatermarkScreen";
 import UnlockPdfScreen from "./screen/UnlockPdfScreen";
 import SecurePdfScreen from "./screen/ProtectPdfScreen";
 import ESignatureScreen from "./screen/ESignPdfScreen";
-// import PdfEditor from "./component/PdfEditor/PdfEditor";
-// import PdfEditorScreen from "./screen/PdfEditorScreen";
-// import PdfEditor from "./component/PdfEditor";
+import AllTools from "./component/AllTools";
+import PrivacyPolicy from "./screen/PrivacyPolicy";
+import TermsAndConditions from "./screen/TermsAndCondition";
 
 function App() {
   return (
@@ -86,6 +86,9 @@ function App() {
           <Route path="/UnlockPdf" element={<UnlockPdfScreen />} />
           <Route path="/ProtectPdf" element={<SecurePdfScreen />} />
           <Route path="/eSignPdf" element={<ESignatureScreen />} />
+          <Route path="/all-tools" element={<AllTools />} />
+          <Route path="/PrivacyPolicy" element={<PrivacyPolicy />} />
+          <Route path="/TermsAndConditions" element={<TermsAndConditions />} />
         </Routes>
 
         <Footer />
