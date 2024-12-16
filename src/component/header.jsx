@@ -1,20 +1,22 @@
-// import React, { useState, useEffect } from "react";
+// import React, { useState, useEffect, useRef } from "react";
 // import { Link } from "react-router-dom";
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
-// import AllTools from "./AllTools"; // Import the AllTools component
+// import AllTools from "./AllTools";
 
 // const Header = () => {
-//   const [isOpen, setIsOpen] = useState(false);
-//   const [isVisible, setIsVisible] = useState(true);
-//   const [lastScrollY, setLastScrollY] = useState(0);
-//   const [showMegaMenu, setShowMegaMenu] = useState(false);
+//   const [isOpen, setIsOpen] = useState(false); // For mobile menu
+//   const [isVisible, setIsVisible] = useState(true); // For sticky header
+//   const [lastScrollY, setLastScrollY] = useState(0); // Track scroll direction
+//   const [showMegaMenu, setShowMegaMenu] = useState(false); // Mega menu toggle
+//   const megaMenuRef = useRef(null); // Ref for the mega menu container
 
 //   // Toggle the mobile menu
 //   const toggleMenu = () => {
 //     setIsOpen(!isOpen);
 //   };
 
+//   // Toggle the mega menu
 //   const toggleMegaMenu = () => {
 //     setShowMegaMenu(!showMegaMenu);
 //   };
@@ -33,9 +35,26 @@
 //     setLastScrollY(currentScrollY);
 //   };
 
+//   // Close mega menu on clicking outside
+//   useEffect(() => {
+//     const handleOutsideClick = (event) => {
+//       if (
+//         megaMenuRef.current &&
+//         !megaMenuRef.current.contains(event.target) &&
+//         !event.target.closest("button") // Ensure clicks on the button don't close the menu
+//       ) {
+//         setShowMegaMenu(false);
+//       }
+//     };
+
+//     document.addEventListener("click", handleOutsideClick);
+//     return () => {
+//       document.removeEventListener("click", handleOutsideClick);
+//     };
+//   }, []);
+
 //   useEffect(() => {
 //     window.addEventListener("scroll", handleScroll);
-
 //     return () => {
 //       window.removeEventListener("scroll", handleScroll);
 //     };
@@ -74,7 +93,6 @@
 //             <button className="text-lg text-gray-700 hover:text-blue-600">
 //               All Tools
 //             </button>
-//             {/* {showMegaMenu && <AllTools />} */}
 //           </div>
 
 //           <Link
@@ -131,6 +149,7 @@
 //       {/* Mega Menu */}
 //       {showMegaMenu && (
 //         <div
+//           ref={megaMenuRef}
 //           className="absolute left-0 z-50 w-full bg-white shadow-lg"
 //           onMouseEnter={() => setShowMegaMenu(true)}
 //           onMouseLeave={() => setShowMegaMenu(false)}
@@ -145,12 +164,6 @@
 //           isOpen ? "translate-x-0" : "-translate-x-full"
 //         } md:hidden fixed top-0 left-0 w-3/4 h-full bg-white shadow-md transition-transform duration-300 z-40`}
 //       >
-//         <Link
-//           to="/"
-//           className="flex items-center text-2xl font-bold text-blue-600"
-//         >
-//           <img src="/logo.svg" alt="Logo" className="h-10 mb-1 w-18" />
-//         </Link>
 //         <nav className="flex flex-col items-start p-6 mt-10 space-y-6 bg-white">
 //           <Link
 //             to="/MergePdfScreen"
@@ -221,11 +234,6 @@ const Header = () => {
     setIsOpen(!isOpen);
   };
 
-  // Toggle the mega menu
-  const toggleMegaMenu = () => {
-    setShowMegaMenu(!showMegaMenu);
-  };
-
   // Handle scrolling to hide/show header
   const handleScroll = () => {
     const currentScrollY = window.scrollY;
@@ -246,7 +254,7 @@ const Header = () => {
       if (
         megaMenuRef.current &&
         !megaMenuRef.current.contains(event.target) &&
-        !event.target.closest("button") // Ensure clicks on the button don't close the menu
+        !event.target.closest("button")
       ) {
         setShowMegaMenu(false);
       }
@@ -277,7 +285,7 @@ const Header = () => {
           to="/"
           className="flex items-center text-2xl font-bold text-blue-600"
         >
-          <img src="/logo.svg" alt="Logo" className="h-10 mb-1 w-18" />
+          <img src="/logo.svg" alt="Logo" className="h-10 w-18" />
         </Link>
 
         {/* Desktop Navigation */}
@@ -299,7 +307,6 @@ const Header = () => {
               All Tools
             </button>
           </div>
-
           <Link
             to="/MergePdfScreen"
             className="transition duration-300 hover:text-blue-600"
@@ -363,13 +370,29 @@ const Header = () => {
         </div>
       )}
 
+      {/* Overlay */}
+      {isOpen && (
+        <div
+          className="fixed inset-0 z-30 bg-black bg-opacity-50"
+          onClick={toggleMenu}
+        ></div>
+      )}
+
       {/* Mobile Menu */}
       <div
-        className={`${
-          isOpen ? "translate-x-0" : "-translate-x-full"
-        } md:hidden fixed top-0 left-0 w-3/4 h-full bg-white shadow-md transition-transform duration-300 z-40`}
+        className={`fixed top-0 left-0 w-3/4 h-full bg-white shadow-xl transform transition-transform duration-300 z-40 ${
+          isOpen ? "translate-x-0 opacity-100" : "-translate-x-full opacity-0"
+        }`}
       >
-        <nav className="flex flex-col items-start p-6 mt-10 space-y-6 bg-white">
+        {/* Close Button */}
+        <button
+          className="absolute text-2xl text-gray-600 top-4 right-4 focus:outline-none"
+          onClick={toggleMenu}
+        >
+          <FontAwesomeIcon icon={faTimes} />
+        </button>
+
+        <nav className="flex flex-col items-start p-6 mt-12 space-y-6 bg-white">
           <Link
             to="/MergePdfScreen"
             className="hover:text-blue-600"
