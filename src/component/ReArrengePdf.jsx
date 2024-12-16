@@ -126,7 +126,7 @@
 //               <img
 //                 src="/pdfIcon/editPdfs.svg"
 //                 alt="Upload Icon"
-//                 className="h-20 w-22"
+//                 className="h-20 transition-all transform w-22 hover:scale-105"
 //               />
 //             </div>
 //           </div>
@@ -159,11 +159,11 @@
 //               <h2 className="text-xl font-semibold text-gray-800">
 //                 Rearrange Pages
 //               </h2>
-//               <div className="grid grid-cols-6 gap-4 mt-4">
+//               <div className="grid grid-cols-6 gap-4 mx-auto mt-4 max-w-7xl">
 //                 {pdfPages.map((page, index) => (
 //                   <div
 //                     key={page.id}
-//                     className="p-2 bg-gray-100 rounded-lg shadow-md cursor-pointer"
+//                     className="p-2 transition-all transform bg-gray-100 rounded-lg shadow-md cursor-pointer hover:scale-105 hover:shadow-xl"
 //                     draggable
 //                     onDragStart={(e) => handleDragStart(e, index)}
 //                     onDragOver={handleDragOver}
@@ -172,9 +172,11 @@
 //                     <img
 //                       src={page.thumbnail}
 //                       alt={`Page ${page.id}`}
-//                       className="object-cover w-full h-32 rounded-md"
+//                       className="object-cover w-full h-32 transition-all transform rounded-md hover:scale-110"
 //                     />
-//                     <p className="mt-2 text-center">Page {page.id}</p>
+//                     <p className="mt-2 text-center text-gray-600">
+//                       Page {page.id}
+//                     </p>
 //                   </div>
 //                 ))}
 //               </div>
@@ -376,82 +378,89 @@ const RearrangePdf = () => {
         <p className="max-w-3xl mx-auto mb-10 text-lg text-gray-700 md:text-xl">
           Rearrange pages in your PDF document for better organization.
         </p>
-
-        <div className="max-w-xl p-8 mx-auto transition-all duration-300 ease-in-out transform bg-white shadow-xl rounded-3xl hover:scale-105 hover:shadow-2xl">
-          <div className="relative mb-6 overflow-hidden bg-center bg-cover rounded-xl">
-            <div className="flex items-center justify-center h-full">
-              <img
-                src="/pdfIcon/editPdfs.svg"
-                alt="Upload Icon"
-                className="h-20 transition-all transform w-22 hover:scale-105"
-              />
-            </div>
-          </div>
-
-          <div className="relative mb-4 group">
-            <input
-              type="file"
-              accept="application/pdf"
-              className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
-              onChange={handlePdfUpload}
-              ref={fileInputRef}
-              aria-label="File Upload"
-            />
-            <button className="flex items-center justify-center w-full px-6 py-3 space-x-2 font-semibold text-white transition duration-300 ease-in-out bg-blue-500 rounded-lg shadow-lg hover:bg-blue-600 hover:scale-105">
-              <img
-                src="/home/addFile.svg"
-                alt="Add File Icon"
-                className="w-5 h-5"
-              />
-              <span>
-                {selectedPdf
-                  ? `File selected: ${selectedPdf.name}`
-                  : "Choose PDF File"}
-              </span>
-            </button>
-          </div>
-
-          {pdfPages.length > 0 && (
-            <div className="mb-6">
-              <h2 className="text-xl font-semibold text-gray-800">
-                Rearrange Pages
-              </h2>
-              <div className="grid grid-cols-6 gap-4 mx-auto mt-4 max-w-7xl">
-                {pdfPages.map((page, index) => (
-                  <div
-                    key={page.id}
-                    className="p-2 transition-all transform bg-gray-100 rounded-lg shadow-md cursor-pointer hover:scale-105 hover:shadow-xl"
-                    draggable
-                    onDragStart={(e) => handleDragStart(e, index)}
-                    onDragOver={handleDragOver}
-                    onDrop={(e) => handleDrop(e, index)}
-                  >
-                    <img
-                      src={page.thumbnail}
-                      alt={`Page ${page.id}`}
-                      className="object-cover w-full h-32 transition-all transform rounded-md hover:scale-110"
-                    />
-                    <p className="mt-2 text-center text-gray-600">
-                      Page {page.id}
-                    </p>
-                  </div>
-                ))}
+        {!selectedPdf && (
+          <div className="max-w-xl p-8 mx-auto transition-all duration-300 ease-in-out transform bg-white shadow-xl rounded-3xl hover:scale-105 hover:shadow-2xl">
+            <div
+              className="relative mb-6 overflow-hidden bg-center bg-cover rounded-xl"
+              style={{
+                backgroundImage: "url('/pdfIcon/PdfBg.svg')", // Background image for visual effect
+                backgroundSize: "contain",
+                backgroundRepeat: "no-repeat",
+                backgroundPosition: "center",
+                height: "200px",
+              }}
+            >
+              <div className="flex items-center justify-center h-full">
+                <img
+                  src="/pdfIcon/rearrenge.svg" // Icon for PDF to Word
+                  alt="Upload Icon"
+                  className="h-20 w-22"
+                />
               </div>
             </div>
-          )}
 
-          {selectedPdf && (
-            <button
-              onClick={rearrangePdf}
-              disabled={isRearranging}
-              className={`mt-4 w-full bg-green-600 text-white font-semibold py-3 px-8 rounded-lg hover:bg-green-700 transition-all duration-300 transform hover:scale-105 shadow-lg ${
-                isRearranging ? "opacity-50 cursor-not-allowed" : ""
-              }`}
-            >
-              {isRearranging ? "Rearranging..." : "Rearrange PDF"}
-            </button>
-          )}
-        </div>
+            <div className="relative group">
+              <input
+                type="file"
+                accept="application/pdf"
+                className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                onChange={handlePdfUpload}
+                aria-label="File Upload"
+              />
+              <button className="flex items-center justify-center w-full px-6 py-3 space-x-2 font-semibold text-white transition duration-300 ease-in-out bg-blue-500 rounded-lg shadow-lg hover:bg-red-600 hover:scale-105">
+                <img
+                  src="/home/addFile.svg" // Icon for add file button
+                  alt="Add File Icon"
+                  className="w-5 h-5"
+                />
+                <span>
+                  {selectedPdf
+                    ? `File selected: ${selectedPdf.name}`
+                    : "Choose PDF File"}
+                </span>
+              </button>
+            </div>
+          </div>
+        )}
+
+        {pdfPages.length > 0 && (
+          <div className="mb-6">
+            <div className="grid grid-cols-3 gap-4 mx-auto mt-4 md:grid-cols-6 lg:grid-cols-8 max-w-7xl">
+              {pdfPages.map((page, index) => (
+                <div
+                  key={page.id}
+                  className="p-2 transition-all transform bg-gray-100 rounded-lg shadow-md cursor-pointer hover:scale-105 hover:shadow-xl"
+                  draggable
+                  onDragStart={(e) => handleDragStart(e, index)}
+                  onDragOver={handleDragOver}
+                  onDrop={(e) => handleDrop(e, index)}
+                >
+                  <img
+                    src={page.thumbnail}
+                    alt={`Page ${page.id}`}
+                    className="object-cover w-full h-32 transition-all transform rounded-md hover:scale-110"
+                  />
+                  <p className="mt-2 text-center text-gray-600">
+                    Page {page.id}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {selectedPdf && (
+          <button
+            onClick={rearrangePdf}
+            disabled={isRearranging}
+            className={`mt-4  bg-green-600 text-white font-semibold py-3 px-8 rounded-lg hover:bg-green-700 transition-all duration-300 transform hover:scale-105 shadow-lg ${
+              isRearranging ? "opacity-50 cursor-not-allowed" : ""
+            }`}
+          >
+            {isRearranging ? "Rearranging..." : "Rearrange PDF"}
+          </button>
+        )}
+        {/* </div> */}
 
         {isRearranging && (
           <div className="w-20 mx-auto my-8">
