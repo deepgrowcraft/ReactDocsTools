@@ -36,9 +36,6 @@ import ESignatureScreen from "./screen/ESignPdfScreen";
 import AllTools from "./component/AllTools";
 import PrivacyPolicy from "./screen/PrivacyPolicy";
 import TermsAndConditions from "./screen/TermsAndCondition";
-// import PdfEditor from "./component/PdfEditor/PdfEditor";
-// import PdfEditorScreen from "./screen/PdfEditorScreen";
-// import PdfEditor from "./component/PdfEditor";
 
 function App() {
   return (

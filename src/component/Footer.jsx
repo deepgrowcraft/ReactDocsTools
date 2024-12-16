@@ -37,7 +37,9 @@ const Footer = () => {
       <div className="container grid grid-cols-2 gap-6 px-4 py-8 mx-auto text-sm md:grid-cols-5">
         {/* Logo Section */}
         <div className="flex flex-col items-center col-span-2 md:col-span-1 md:items-start">
-          <img src="/logo.svg" alt="Logo" className="mb-2 w-18" />
+          <a href="/" className="hover:text-blue-500">
+            <img src="/logo.svg" alt="Logo" className="mb-2 w-18" />
+          </a>
         </div>
 
         {/* Solutions */}
