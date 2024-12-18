@@ -116,7 +116,7 @@ const PdfCreator = () => {
     <div className="min-h-screen p-8 mt-20 bg-gray-100">
       <div className="p-6 bg-white rounded-lg shadow-lg">
         <h1 className="mb-4 text-3xl font-bold text-center text-gray-800">
-          Interactive PDF Creator
+          PDF Creator
         </h1>
 
         {/* Toolbar */}
@@ -184,28 +184,32 @@ const PdfCreator = () => {
         </div>
 
         {/* Page Text Area */}
-        {pages.map((page, index) => (
-          <textarea
-            key={index}
-            value={page}
-            onChange={(e) => handlePageTextChange(index, e.target.value)}
-            rows="4"
-            className="w-full p-4 mb-4 border rounded-lg focus:ring focus:ring-blue-300"
-            placeholder={`Enter text for Page ${index + 1}`}
-            style={{ fontSize: `${fontSize}px` }} // Dynamically set textarea font size
-          ></textarea>
-        ))}
+        <div className="flex flex-wrap items-center justify-center">
+          {pages.map((page, index) => (
+            <textarea
+              key={index}
+              value={page}
+              onChange={(e) => handlePageTextChange(index, e.target.value)}
+              rows="4"
+              className="flex flex-wrap items-center justify-center w-3/4 p-4 mb-4 border rounded-lg focus:ring focus:ring-blue-300"
+              placeholder={`Enter text for Page ${index + 1}`}
+              style={{ fontSize: `${fontSize}px` }} // Dynamically set textarea font size
+            ></textarea>
+          ))}
 
-        {/* Create PDF Button */}
-        <button
-          onClick={createPdf}
-          disabled={isCreating || pages.every((p) => p === "")}
-          className={`w-full py-3 text-white font-bold bg-blue-600 rounded-lg shadow-md transition-all duration-300 transform hover:scale-105 ${
-            isCreating ? "bg-gray-400 cursor-not-allowed" : "hover:bg-green-600"
-          }`}
-        >
-          {isCreating ? "Creating PDF..." : "Create PDF"}
-        </button>
+          {/* Create PDF Button */}
+          <button
+            onClick={createPdf}
+            disabled={isCreating || pages.every((p) => p === "")}
+            className={`w-3/4 py-3 text-white font-bold bg-blue-600 rounded-lg shadow-md transition-all duration-300 transform hover:scale-105 ${
+              isCreating
+                ? "bg-gray-400 cursor-not-allowed"
+                : "hover:bg-green-600"
+            }`}
+          >
+            {isCreating ? "Creating PDF..." : "Create PDF"}
+          </button>
+        </div>
       </div>
     </div>
   );
