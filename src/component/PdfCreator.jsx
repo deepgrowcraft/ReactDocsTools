@@ -161,6 +161,7 @@ const PdfCreator = () => {
             onChange={(e) => setFontSize(Number(e.target.value))}
             className="px-4 py-2 border rounded-lg shadow-sm focus:ring focus:ring-blue-200"
           >
+            <option value="12">10</option>
             <option value="12">12</option>
             <option value="14">14</option>
             <option value="16">16</option>
@@ -190,7 +191,7 @@ const PdfCreator = () => {
               key={index}
               value={page}
               onChange={(e) => handlePageTextChange(index, e.target.value)}
-              rows="4"
+              rows="14"
               className="flex flex-wrap items-center justify-center w-3/4 p-4 mb-4 border rounded-lg focus:ring focus:ring-blue-300"
               placeholder={`Enter text for Page ${index + 1}`}
               style={{ fontSize: `${fontSize}px` }} // Dynamically set textarea font size
