@@ -40,6 +40,7 @@ import Signup from "./screen/SignUpScreen";
 import Login from "./screen/LoginScreen";
 import ForgotPassword from "./screen/ForgetPassScreen";
 import ResetPassword from "./screen/ResetPassword";
+import Profile from "./screen/ProfileScreen";
 
 function App() {
   return (
@@ -100,6 +101,7 @@ function App() {
             path="/reset-password/:uidb64/:token"
             element={<ResetPassword />}
           />
+          <Route path="/profile" element={<Profile />} />
         </Routes>
 
         <Footer />
