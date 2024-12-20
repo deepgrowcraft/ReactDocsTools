@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../component/AuthContext";
+const API_URL = import.meta.env.VITE_API_URL;
 
 const Profile = () => {
   const navigate = useNavigate();
@@ -41,7 +42,7 @@ const Profile = () => {
     setLoading(true);
     setError("");
     try {
-      const response = await fetch("http://192.168.1.44:8000/delete-account/", {
+      const response = await fetch(`${API_URL}/delete-account/`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",

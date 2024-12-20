@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+const API_URL = import.meta.env.VITE_API_URL;
 
 const Signup = () => {
   const [formData, setFormData] = useState({
@@ -66,7 +67,7 @@ const Signup = () => {
     if (Object.keys(validationErrors).length === 0) {
       setLoading(true);
       try {
-        const response = await fetch("http://192.168.1.44:8000/signup/", {
+        const response = await fetch(`${API_URL}/signup/`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

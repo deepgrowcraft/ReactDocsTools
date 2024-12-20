@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+const API_URL = import.meta.env.VITE_API_URL;
 
 const ResetPassword = () => {
   const { uidb64, token } = useParams(); // Extract URL parameters
@@ -41,7 +42,7 @@ const ResetPassword = () => {
     setLoading(true); // Show loader
     try {
       const response = await fetch(
-        `http://192.168.1.44:8000/reset-password/${uidb64}/${token}/`,
+        `${API_URL}/reset-password/${uidb64}/${token}/`,
         {
           method: "POST",
           headers: {
