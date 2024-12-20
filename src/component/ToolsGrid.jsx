@@ -192,13 +192,13 @@ const ToolsGrid = () => {
   const navigate = useNavigate(); // Use the navigate hook
 
   return (
-    <section className="py-16 bg-gray-100">
+    <section className="py-12 bg-gray-100 sm:py-16 lg:py-20">
       {/* Header Section */}
-      <div className="container mx-auto mb-12 text-center">
-        <h2 className="mb-4 text-4xl font-bold text-gray-800">
+      <div className="container px-4 mx-auto mb-12 text-center md:px-8">
+        <h2 className="mb-4 text-3xl font-bold text-gray-800 sm:text-4xl lg:text-5xl">
           Free Online Document Conversion Made Easy
         </h2>
-        <p className="max-w-2xl mx-auto text-lg text-gray-600">
+        <p className="max-w-3xl mx-auto text-base text-gray-600 sm:text-lg lg:text-xl">
           Effortlessly convert your documents with our free online tools.
           Whether you need to change formats or compress files, our service
           makes it quick and easy—all without any cost.
@@ -207,17 +207,14 @@ const ToolsGrid = () => {
 
       {/* Tools Grid */}
       <div className="container px-4 mx-auto">
-        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+        <div className="grid grid-cols-1 gap-y-10 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6">
           {tools.map((tool, index) => (
             <div
               key={index}
-              onClick={() => navigate(tool.path)} // Add onClick to navigate to the tool's path
-              className="relative p-6 text-center transition-all duration-300 transform bg-white shadow-lg cursor-pointer rounded-xl hover:scale-105 hover:shadow-2xl group hover:-translate-y-2 hover:rotate-1" // Add cursor-pointer for indication
-              style={{
-                perspective: "1000px", // Adds a 3D perspective for tilt effect
-              }}
+              onClick={() => navigate(tool.path)}
+              className="relative p-6 text-center transition-transform duration-300 transform bg-white shadow-lg cursor-pointer rounded-xl hover:scale-105 hover:shadow-2xl group hover:-translate-y-2"
             >
-              {/* Top-right curved stroke */}
+              {/* Top-right Stroke */}
               <div
                 className="absolute top-0 right-0 w-12 h-12 pointer-events-none"
                 style={{
@@ -231,7 +228,7 @@ const ToolsGrid = () => {
                 }}
               ></div>
 
-              {/* Bottom-left curved stroke */}
+              {/* Bottom-left Stroke */}
               <div
                 className="absolute bottom-0 left-0 w-12 h-12 pointer-events-none"
                 style={{
@@ -247,17 +244,17 @@ const ToolsGrid = () => {
 
               {/* Icon and Content */}
               <div className="relative z-10">
-                <div className="flex items-center justify-center w-16 h-16 p-2 mx-auto mb-4 transition-all duration-300 bg-blue-100 rounded-full group-hover:bg-blue-500 group-hover:shadow-lg group-hover:scale-110 group-hover:translate-y-1">
+                <div className="flex items-center justify-center w-16 h-16 p-2 mx-auto mb-4 transition-all duration-300 bg-blue-100 rounded-full group-hover:bg-blue-500 group-hover:shadow-lg group-hover:scale-110">
                   {tool.icon}
                 </div>
 
                 {/* Tool Name */}
-                <h3 className="mb-2 text-xl font-semibold text-gray-800 transition-colors duration-300 group-hover:text-white">
+                <h3 className="mb-2 text-lg font-semibold text-gray-800 transition-colors duration-300 sm:text-xl group-hover:text-white">
                   {tool.name}
                 </h3>
 
                 {/* Tool Description */}
-                <p className="text-gray-600 transition-colors duration-300 group-hover:text-gray-200">
+                <p className="text-sm text-gray-600 transition-colors duration-300 sm:text-base group-hover:text-gray-200">
                   {tool.description}
                 </p>
               </div>

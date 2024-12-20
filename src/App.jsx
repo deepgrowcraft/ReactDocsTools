@@ -36,6 +36,11 @@ import ESignatureScreen from "./screen/ESignPdfScreen";
 import AllTools from "./component/AllTools";
 import PrivacyPolicy from "./screen/PrivacyPolicy";
 import TermsAndConditions from "./screen/TermsAndCondition";
+import Signup from "./screen/SignUpScreen";
+import Login from "./screen/LoginScreen";
+import ForgotPassword from "./screen/ForgetPassScreen";
+import ResetPassword from "./screen/ResetPassword";
+import Profile from "./screen/ProfileScreen";
 
 function App() {
   return (
@@ -89,6 +94,14 @@ function App() {
           <Route path="/all-tools" element={<AllTools />} />
           <Route path="/PrivacyPolicy" element={<PrivacyPolicy />} />
           <Route path="/TermsAndConditions" element={<TermsAndConditions />} />
+          <Route path="/Signup" element={<Signup />} />
+          <Route path="/Login" element={<Login />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route
+            path="/reset-password/:uidb64/:token"
+            element={<ResetPassword />}
+          />
+          <Route path="/profile" element={<Profile />} />
         </Routes>
 
         <Footer />
