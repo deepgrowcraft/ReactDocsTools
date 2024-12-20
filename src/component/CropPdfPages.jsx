@@ -153,9 +153,11 @@ const CropPdfPages = () => {
     if (isDrawing) {
       const handleGlobalMouseMove = (e) => handleMouseMove(e);
       document.addEventListener("mousemove", handleGlobalMouseMove);
+      document.addEventListener("touchmove", handleGlobalMouseMove);
 
       return () => {
         document.removeEventListener("mousemove", handleGlobalMouseMove);
+        document.removeEventListener("touchmove", handleGlobalMouseMove);
       };
     }
   }, [isDrawing]);
