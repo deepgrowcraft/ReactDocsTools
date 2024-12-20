@@ -1,15 +1,20 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../component/AuthContext";
 
 const Profile = () => {
   const navigate = useNavigate();
 
-  const fullname = localStorage.getItem("user_fullname");
-  const email = localStorage.getItem("user_email");
+  const fullname =
+    localStorage.getItem("user_fullname") ||
+    sessionStorage.getItem("user_fullname");
+  const email =
+    localStorage.getItem("user_email") || sessionStorage.getItem("user_email");
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
+  const { setIsLoggedIn } = useAuth();
 
   const handleLogout = () => {
     localStorage.removeItem("accessToken");
@@ -17,11 +22,17 @@ const Profile = () => {
     localStorage.removeItem("user_fullname");
     localStorage.removeItem("user_email");
 
+    localStorage.clear();
+    sessionStorage.clear();
+    setIsLoggedIn(false);
+
     navigate("/login");
   };
 
   const handleDeleteAccount = async () => {
-    const refreshToken = localStorage.getItem("refreshToken");
+    const refreshToken =
+      localStorage.getItem("refreshToken") ||
+      sessionStorage.getItem("refreshToken");
     if (!refreshToken) {
       setError("No refresh token found. Please log in again.");
       return;
@@ -34,9 +45,14 @@ const Profile = () => {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
-          //   Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          Authorization: `Bearer ${
+            localStorage.getItem("accessToken") ||
+            sessionStorage.getItem("accessToken")
+          }`,
         },
-        body: JSON.stringify({ email: localStorage.getItem("user_email") }),
+        body: JSON.stringify({
+          refreshToken: refreshToken,
+        }),
       });
 
       if (response.ok) {

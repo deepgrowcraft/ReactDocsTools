@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../component/AuthContext";
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -12,6 +13,7 @@ const Login = () => {
   const [apiError, setApiError] = useState("");
   const [loading, setLoading] = useState(false);
   const [successPopup, setSuccessPopup] = useState(false);
+  const { setIsLoggedIn } = useAuth();
 
   const navigate = useNavigate();
 
@@ -53,10 +55,19 @@ const Login = () => {
 
         if (response.ok) {
           const data = await response.json();
-          localStorage.setItem("accessToken", data.access);
-          localStorage.setItem("refreshToken", data.refresh);
-          localStorage.setItem("user_fullname", data.user_fullname);
-          localStorage.setItem("user_email", data.user_email);
+          // Store tokens based on the "Remember Me" option
+          if (formData.remember) {
+            localStorage.setItem("accessToken", data.access);
+            localStorage.setItem("refreshToken", data.refresh);
+            localStorage.setItem("user_fullname", data.user_fullname);
+            localStorage.setItem("user_email", data.user_email);
+          } else {
+            sessionStorage.setItem("accessToken", data.access);
+            sessionStorage.setItem("refreshToken", data.refresh);
+            sessionStorage.setItem("user_fullname", data.user_fullname);
+            sessionStorage.setItem("user_email", data.user_email);
+          }
+          setIsLoggedIn(true);
 
           setSuccessPopup(true);
           setTimeout(() => {
