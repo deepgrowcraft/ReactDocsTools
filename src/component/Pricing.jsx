@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+const API_URL = import.meta.env.VITE_API_URL;
 
 const plans = [
   {
@@ -42,28 +44,45 @@ const plans = [
 
 const Pricing = () => {
   const [selectedPlan, setSelectedPlan] = useState("Starter Plan");
-  const [billingCycle, setBillingCycle] = useState("monthly"); // Default billing cycle
+  const [billingCycle, setBillingCycle] = useState("monthly");
+  const [isProcessing, setIsProcessing] = useState(false); // Track if the payment is processing
+  const navigate = useNavigate();
+
+  const isAuthenticated =
+    localStorage.getItem("accessToken") ||
+    sessionStorage.getItem("accessToken") !== null;
 
   const handleSelectPlan = (planTitle) => {
-    setSelectedPlan(planTitle);
+    if (!isProcessing) {
+      setSelectedPlan(planTitle);
+    }
   };
 
   const handlePayment = async (plan) => {
+    if (!isAuthenticated) {
+      alert("You need to log in or sign up to purchase a plan.");
+      navigate("/login");
+      return;
+    }
+
+    if (isProcessing) {
+      return; // Prevent multiple clicks
+    }
+
+    setIsProcessing(true); // Disable further clicks
+
     try {
-      const response = await axios.post(
-        "http://192.168.1.44:8000/create-order/",
-        {
-          amount: plan.price[billingCycle],
-          currency: "INR",
-          billing_name: plan.title,
-          receipt: `receipt_${plan.title.replace(" ", "_")}`,
-        }
-      );
+      const response = await axios.post(`${API_URL}/create-order/`, {
+        amount: plan.price[billingCycle],
+        currency: "INR",
+        billing_name: plan.title,
+        receipt: `receipt_${plan.title.replace(" ", "_")}`,
+      });
 
       const { order_id, amount, currency } = response.data;
 
       const options = {
-        key: "rzp_test_UDwqfBdYptKoRk", // Replace with your Razorpay Test Key ID
+        key: "rzp_test_UDwqfBdYptKoRk",
         amount: amount,
         currency: currency,
         name: "Test Merchant",
@@ -72,18 +91,26 @@ const Pricing = () => {
         handler: function (response) {
           alert("Payment Successful");
           console.log("Payment response:", response);
+          setIsProcessing(false); // Re-enable the button after success
         },
         prefill: {
           name: "Test User",
-          email: "test.user@example.com",
+          email: "test.user@example.com", // Replace with authenticated user email
           contact: "9999999999",
         },
         notes: {
-          "Cancellation Policy":
-            "Refunds will be processed within 7 business days if eligible.",
+          user_email: "test.user@example.com", // Replace with authenticated user email
+          plan_name: plan.title,
         },
         theme: {
           color: "#3399cc",
+        },
+        modal: {
+          // Razorpay modal close callback
+          ondismiss: function () {
+            alert("Payment process interrupted. Try again.");
+            setIsProcessing(false); // Re-enable the button after modal is closed
+          },
         },
       };
 
@@ -93,9 +120,11 @@ const Pricing = () => {
       razorpay.on("payment.failed", function (response) {
         alert("Payment Failed");
         console.error(response.error);
+        setIsProcessing(false); // Re-enable on payment failure
       });
     } catch (error) {
       console.error("Payment Error:", error);
+      setIsProcessing(false); // Re-enable on error
     }
   };
 
@@ -166,7 +195,7 @@ const Pricing = () => {
                     >
                       <path
                         fillRule="evenodd"
-                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 111.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a 1 1 0 111.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
                         clipRule="evenodd"
                       />
                     </svg>
@@ -181,32 +210,12 @@ const Pricing = () => {
                     ? "bg-blue-600 hover:bg-blue-700"
                     : "bg-gray-800 hover:bg-gray-900"
                 }`}
+                disabled={isProcessing} // Disable button during processing
               >
-                {plan.buttonText}
+                {isProcessing ? "Processing..." : plan.buttonText}
               </button>
             </div>
           ))}
-        </div>
-
-        {/* Refund Policy */}
-        <div className="mt-12 text-left sm:text-center">
-          <h3 className="text-xl font-semibold text-gray-800">Refund Policy</h3>
-          <p className="mt-4 text-sm text-gray-600 sm:text-base">
-            All payments made for our services are non-refundable. Once a
-            payment is successfully processed, it is considered final, and no
-            refunds will be issued under any circumstances.
-          </p>
-          <p className="mt-2 text-sm text-gray-600 sm:text-base">
-            If you have any questions regarding this policy, please contact our
-            support team at{" "}
-            <a
-              href="mailto:support@pdfsmalltools.com"
-              className="text-blue-600"
-            >
-              support@pdfsmalltools.com
-            </a>
-            .
-          </p>
         </div>
       </div>
     </section>
