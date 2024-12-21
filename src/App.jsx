@@ -41,6 +41,8 @@ import Login from "./screen/LoginScreen";
 import ForgotPassword from "./screen/ForgetPassScreen";
 import ResetPassword from "./screen/ResetPassword";
 import Profile from "./screen/ProfileScreen";
+import RefundPolicy from "./screen/RefundPolicy";
+import PricingScreen from "./component/PricingScreen";
 
 function App() {
   return (
@@ -102,6 +104,8 @@ function App() {
             element={<ResetPassword />}
           />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/refund-policy" element={<RefundPolicy />} />
+          <Route path="/PricingScreen" element={<PricingScreen />} />
         </Routes>
 
         <Footer />
