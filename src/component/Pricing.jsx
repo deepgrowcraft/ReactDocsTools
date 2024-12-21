@@ -1,11 +1,11 @@
 import React, { useState } from "react";
+import axios from "axios";
 
 const plans = [
   {
     title: "Starter Plan",
-    price: "$0",
-    period: "/ Per Month",
-    description: "This package is suitable for teams 1-15 people",
+    price: { monthly: 0, yearly: 0 },
+    description: "This package is suitable for individuals or small teams.",
     features: [
       "Basic conversion tools",
       "Standard file processing speed",
@@ -16,9 +16,8 @@ const plans = [
   },
   {
     title: "Basic Plan",
-    price: "$5",
-    period: "/ Per Month",
-    description: "This package is suitable for teams 1-50 people",
+    price: { monthly: 500, yearly: 5000 },
+    description: "This package is suitable for teams up to 50 people.",
     features: [
       "Unlimited conversions",
       "Faster processing speed",
@@ -29,9 +28,8 @@ const plans = [
   },
   {
     title: "Pro Plan",
-    price: "$10",
-    period: "/ Per Month",
-    description: "This package is suitable for teams 1-100 people",
+    price: { monthly: 1000, yearly: 10000 },
+    description: "This package is suitable for medium-sized teams.",
     features: [
       "All Basic Plan features",
       "Advanced editing tools",
@@ -40,44 +38,104 @@ const plans = [
     ],
     buttonText: "Select Pro Plan",
   },
-  {
-    title: "Business Plan",
-    price: "$25",
-    period: "/ Per Month",
-    description: "This package is suitable for big teams or companies",
-    features: [
-      "All Pro Plan features",
-      "Team collaboration tools",
-      "Batch processing for multiple files",
-      "Customizable watermarks and branding",
-      "60-day file storage",
-    ],
-    buttonText: "Select Business Plan",
-  },
 ];
 
 const Pricing = () => {
-  const [selectedPlan, setSelectedPlan] = useState("Pro Plan");
+  const [selectedPlan, setSelectedPlan] = useState("Starter Plan");
+  const [billingCycle, setBillingCycle] = useState("monthly"); // Default billing cycle
 
   const handleSelectPlan = (planTitle) => {
     setSelectedPlan(planTitle);
   };
 
+  const handlePayment = async (plan) => {
+    try {
+      const response = await axios.post(
+        "http://192.168.1.44:8000/create-order/",
+        {
+          amount: plan.price[billingCycle],
+          currency: "INR",
+          billing_name: plan.title,
+          receipt: `receipt_${plan.title.replace(" ", "_")}`,
+        }
+      );
+
+      const { order_id, amount, currency } = response.data;
+
+      const options = {
+        key: "rzp_test_UDwqfBdYptKoRk", // Replace with your Razorpay Test Key ID
+        amount: amount,
+        currency: currency,
+        name: "Test Merchant",
+        description: `Payment for ${plan.title}`,
+        order_id: order_id,
+        handler: function (response) {
+          alert("Payment Successful");
+          console.log("Payment response:", response);
+        },
+        prefill: {
+          name: "Test User",
+          email: "test.user@example.com",
+          contact: "9999999999",
+        },
+        notes: {
+          "Cancellation Policy":
+            "Refunds will be processed within 7 business days if eligible.",
+        },
+        theme: {
+          color: "#3399cc",
+        },
+      };
+
+      const razorpay = new window.Razorpay(options);
+      razorpay.open();
+
+      razorpay.on("payment.failed", function (response) {
+        alert("Payment Failed");
+        console.error(response.error);
+      });
+    } catch (error) {
+      console.error("Payment Error:", error);
+    }
+  };
+
   return (
     <section className="relative py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-gray-50 to-gray-100">
       <div className="container px-4 mx-auto text-center sm:px-6 lg:px-8">
-        {/* Section Title */}
         <h2 className="mb-6 text-3xl font-extrabold text-gray-800 sm:text-4xl lg:text-5xl">
-          We offer great price plans for the application
+          Flexible Pricing Plans for Everyone
         </h2>
         <p className="max-w-3xl mx-auto mb-12 text-base text-gray-600 sm:text-lg lg:text-xl">
-          Explore our flexible pricing options to find the perfect plan for your
-          needs. Enjoy basic features for free or upgrade to a premium plan for
-          enhanced tools, faster processing, and additional storage.
+          Choose between monthly and yearly billing options. Our plans are
+          designed to cater to individuals, teams, and businesses.
         </p>
 
+        {/* Billing Cycle Toggle */}
+        <div className="flex justify-center mb-8">
+          <button
+            onClick={() => setBillingCycle("monthly")}
+            className={`px-4 py-2 text-sm font-medium border rounded-l-lg transition-colors duration-300 ${
+              billingCycle === "monthly"
+                ? "bg-blue-600 text-white border-blue-600"
+                : "bg-white text-gray-800 border-gray-300 hover:bg-gray-100"
+            }`}
+          >
+            Monthly
+          </button>
+          <button
+            onClick={() => setBillingCycle("yearly")}
+            className={`px-4 py-2 text-sm font-medium border rounded-r-lg transition-colors duration-300 ${
+              billingCycle === "yearly"
+                ? "bg-blue-600 text-white border-blue-600"
+                : "bg-white text-gray-800 border-gray-300 hover:bg-gray-100"
+            }`}
+          >
+            Yearly (Save 20%)
+          </button>
+        </div>
+
         {/* Pricing Plans */}
-        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {plans.map((plan, index) => (
             <div
               key={index}
@@ -88,21 +146,15 @@ const Pricing = () => {
                   : "bg-white"
               }`}
             >
-              {/* Plan Title */}
               <h3 className="mb-4 text-xl font-semibold sm:text-2xl">
                 {plan.title}
               </h3>
-              {/* Plan Price */}
               <div className="mb-2 text-3xl font-bold sm:text-4xl">
-                {plan.price}
-                <span className="text-lg font-medium">{plan.period}</span>
+                ₹{plan.price[billingCycle]}
               </div>
-              {/* Plan Description */}
               <p className="mb-6 text-sm text-gray-600 sm:text-base">
                 {plan.description}
               </p>
-
-              {/* Plan Features */}
               <ul className="mb-6 space-y-2 text-sm text-gray-700 sm:text-base">
                 {plan.features.map((feature, i) => (
                   <li key={i} className="flex items-center">
@@ -122,9 +174,8 @@ const Pricing = () => {
                   </li>
                 ))}
               </ul>
-
-              {/* Plan Button */}
               <button
+                onClick={() => handlePayment(plan)}
                 className={`w-full py-2 sm:py-3 rounded-lg font-semibold text-white transition-all duration-300 ${
                   selectedPlan === plan.title
                     ? "bg-blue-600 hover:bg-blue-700"
@@ -135,6 +186,27 @@ const Pricing = () => {
               </button>
             </div>
           ))}
+        </div>
+
+        {/* Refund Policy */}
+        <div className="mt-12 text-left sm:text-center">
+          <h3 className="text-xl font-semibold text-gray-800">Refund Policy</h3>
+          <p className="mt-4 text-sm text-gray-600 sm:text-base">
+            All payments made for our services are non-refundable. Once a
+            payment is successfully processed, it is considered final, and no
+            refunds will be issued under any circumstances.
+          </p>
+          <p className="mt-2 text-sm text-gray-600 sm:text-base">
+            If you have any questions regarding this policy, please contact our
+            support team at{" "}
+            <a
+              href="mailto:support@pdfsmalltools.com"
+              className="text-blue-600"
+            >
+              support@pdfsmalltools.com
+            </a>
+            .
+          </p>
         </div>
       </div>
     </section>

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 const API_URL = import.meta.env.VITE_API_URL;
+import { GoogleLogin } from "react-google-login";
 
 const Signup = () => {
   const [formData, setFormData] = useState({
@@ -59,6 +60,36 @@ const Signup = () => {
     }
 
     return errors;
+  };
+
+  const handleGoogleLoginSuccess = async (response) => {
+    const tokenId = response.tokenId;
+
+    try {
+      const res = await fetch(`${API_URL}/google-login/`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ token: tokenId }),
+      });
+
+      if (res.ok) {
+        const data = await res.json();
+        localStorage.setItem("accessToken", data.access);
+        localStorage.setItem("refreshToken", data.refresh);
+        localStorage.setItem("user_fullname", data.user_fullname);
+        localStorage.setItem("user_email", data.user_email);
+        alert("Google login successful!");
+        navigate("/");
+      } else {
+        console.error("Google login failed");
+      }
+    } catch (error) {
+      console.error("Error during Google login", error);
+    }
+  };
+
+  const handleGoogleLoginFailure = (error) => {
+    console.error("Google login failed", error);
   };
 
   const handleSubmit = async (e) => {
@@ -264,6 +295,14 @@ const Signup = () => {
             {loading ? "Signing Up..." : "Sign Up"}
           </button>
         </form>
+        <div className="text-center">or</div>
+        <GoogleLogin
+          clientId="330493043257-5i27lsqrjla67hgjk7kr4u1l65alobqi.apps.googleusercontent.com"
+          buttonText="Sign Up with Google"
+          onSuccess={handleGoogleLoginSuccess}
+          onFailure={handleGoogleLoginFailure}
+          cookiePolicy="single_host_origin"
+        />
       </div>
 
       {/* Right Side: Image */}
