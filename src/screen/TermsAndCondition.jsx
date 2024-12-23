@@ -99,10 +99,10 @@ const TermsAndConditions = () => {
           6. Refund Policy
         </h2>
         <p className="mb-4 text-sm leading-relaxed md:text-base">
-          You may request a refund within 1 day of your purchase if the service
-          does not meet your expectations or if there is an issue with your
-          subscription. Refund requests should be made by contacting our support
-          team. All refund requests are subject to approval.
+          You may request a refund within 5-7 working days of your purchase if
+          the service does not meet your expectations or if there is an issue
+          with your subscription. Refund requests should be made by contacting
+          our support team. All refund requests are subject to approval.
         </p>
 
         <h2 className="mt-6 mb-3 text-lg font-semibold text-gray-900 md:text-2xl">

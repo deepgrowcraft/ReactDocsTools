@@ -19,9 +19,9 @@ const RefundPolicy = () => {
           Eligibility for Refund
         </h2>
         <p className="mb-4 text-sm leading-relaxed md:text-base">
-          You may request a refund within <strong>1 days</strong> of your
-          initial subscription purchase. After this period, we will not be able
-          to offer a refund.
+          You may request a refund within <strong>5 - 7 Working days</strong> of
+          your initial subscription purchase. After this period, we will not be
+          able to offer a refund.
         </p>
         <p className="mb-4 text-sm leading-relaxed md:text-base">
           Refund requests must be made by contacting our support team at{" "}
