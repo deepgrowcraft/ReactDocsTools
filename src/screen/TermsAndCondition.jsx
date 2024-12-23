@@ -9,88 +9,177 @@ const TermsAndConditions = () => {
         </h1>
 
         <p className="mb-4 text-sm leading-relaxed md:text-base">
-          These Terms and Conditions govern your use of our PDF Small tools
-          website. By accessing or using our website, you agree to comply with
-          these terms. If you disagree with any part of the terms, please do not
-          use our website.
+          Welcome to PDFSmallTools. By using our website and services, you agree
+          to the following Terms and Conditions. Please read these terms
+          carefully before using our services.
         </p>
 
         <h2 className="mt-6 mb-3 text-lg font-semibold text-gray-900 md:text-2xl">
-          Use of the Website
+          1. Acceptance of Terms
         </h2>
         <p className="mb-4 text-sm leading-relaxed md:text-base">
-          You may use this website for lawful purposes only. You must not use
-          the website in any way that breaches applicable laws or regulations or
-          infringes the rights of others.
+          By accessing or using the services provided by PDFSmallTools, you
+          agree to comply with and be bound by these Terms and Conditions. If
+          you do not agree to these terms, do not use our services.
         </p>
 
         <h2 className="mt-6 mb-3 text-lg font-semibold text-gray-900 md:text-2xl">
-          Account Responsibility
+          2. Services Provided
         </h2>
         <p className="mb-4 text-sm leading-relaxed md:text-base">
-          If you create an account, you are responsible for maintaining the
-          confidentiality of your login information. You agree to accept
-          responsibility for all activities that occur under your account.
+          PDFSmallTools offers online services for file conversion and
+          PDF-related tasks. These services include but are not limited to:
+        </p>
+        <ul className="pl-6 mb-4 list-disc">
+          <li className="mb-2">Word to PDF</li>
+          <li className="mb-2">Image to PDF</li>
+          <li className="mb-2">PDF to Word</li>
+          <li className="mb-2">PDF to Excel</li>
+          <li className="mb-2">PDF to PPT</li>
+          <li className="mb-2">PDF to Text</li>
+          <li className="mb-2">PDF to Image</li>
+          <li className="mb-2">Split PDF</li>
+          <li className="mb-2">Compress PDF</li>
+          <li className="mb-2">Rotate PDF</li>
+          <li className="mb-2">Remove PDF</li>
+        </ul>
+        <p className="mb-4 text-sm leading-relaxed md:text-base">
+          We may update, change, or discontinue certain services at our
+          discretion.
         </p>
 
         <h2 className="mt-6 mb-3 text-lg font-semibold text-gray-900 md:text-2xl">
-          Prohibited Activities
+          3. Account Creation and Management
         </h2>
         <p className="mb-4 text-sm leading-relaxed md:text-base">
-          The following activities are strictly prohibited:
+          To access certain features, you may need to create an account with
+          PDFSmallTools. You agree to provide accurate, complete, and updated
+          information when creating your account. You are responsible for
+          maintaining the confidentiality of your login credentials and for all
+          activities that occur under your account.
+        </p>
+        <p className="mb-4 text-sm leading-relaxed md:text-base">
+          You may delete your account at any time through the account settings.
+          Once your account is deleted, all your personal data will be
+          permanently removed from our systems.
+        </p>
+
+        <h2 className="mt-6 mb-3 text-lg font-semibold text-gray-900 md:text-2xl">
+          4. Data and File Uploads
+        </h2>
+        <p className="mb-4 text-sm leading-relaxed md:text-base">
+          <strong>Uploaded Data:</strong> You agree that any data you upload to
+          our website will only be used for the purpose of processing (e.g.,
+          file conversion). Once processing is complete, all uploaded files are
+          automatically deleted.
+        </p>
+        <p className="mb-4 text-sm leading-relaxed md:text-base">
+          <strong>No Retention:</strong> We do not store or retain any of your
+          uploaded files. We are not responsible for any loss or corruption of
+          data uploaded to the platform.
+        </p>
+        <p className="mb-4 text-sm leading-relaxed md:text-base">
+          <strong>Data Security:</strong> While we use reasonable security
+          measures, we cannot guarantee the absolute security of the files
+          uploaded to the platform.
+        </p>
+
+        <h2 className="mt-6 mb-3 text-lg font-semibold text-gray-900 md:text-2xl">
+          5. Subscription and Payment
+        </h2>
+        <p className="mb-4 text-sm leading-relaxed md:text-base">
+          If you choose to subscribe to any paid features, you agree to pay the
+          associated subscription fees. Subscriptions are billed on a recurring
+          basis unless canceled. You can cancel your subscription at any time
+          from your account settings. Refunds will be issued based on our Refund
+          Policy.
+        </p>
+
+        <h2 className="mt-6 mb-3 text-lg font-semibold text-gray-900 md:text-2xl">
+          6. Refund Policy
+        </h2>
+        <p className="mb-4 text-sm leading-relaxed md:text-base">
+          You may request a refund within 5-7 working days of your purchase if
+          the service does not meet your expectations or if there is an issue
+          with your subscription. Refund requests should be made by contacting
+          our support team. All refund requests are subject to approval.
+        </p>
+
+        <h2 className="mt-6 mb-3 text-lg font-semibold text-gray-900 md:text-2xl">
+          7. Prohibited Uses
+        </h2>
+        <p className="mb-4 text-sm leading-relaxed md:text-base">
+          You agree not to:
         </p>
         <ul className="pl-6 mb-4 list-disc">
           <li className="mb-2">
-            Uploading files that contain viruses or malicious software.
+            Upload or share any content that violates any applicable laws or
+            regulations.
           </li>
           <li className="mb-2">
-            Using the website to distribute spam or unsolicited messages.
+            Use the service to engage in illegal, fraudulent, or harmful
+            activities.
           </li>
           <li className="mb-2">
-            Attempting to gain unauthorized access to the website’s servers or
-            data.
+            Attempt to interfere with or disrupt the operation of the platform.
           </li>
         </ul>
-
-        <h2 className="mt-6 mb-3 text-lg font-semibold text-gray-900 md:text-2xl">
-          Intellectual Property
-        </h2>
         <p className="mb-4 text-sm leading-relaxed md:text-base">
-          All content on this website, including text, graphics, logos, and
-          software, is the property of the website owner and is protected by
-          intellectual property laws.
+          We reserve the right to suspend or terminate your access to our
+          services if we believe you are in violation of these terms.
         </p>
 
         <h2 className="mt-6 mb-3 text-lg font-semibold text-gray-900 md:text-2xl">
-          Limitation of Liability
+          8. Limitation of Liability
         </h2>
         <p className="mb-4 text-sm leading-relaxed md:text-base">
-          We are not responsible for any damages or losses resulting from the
-          use of our website or services. Use the website at your own risk.
+          We are not liable for any damages arising out of your use or inability
+          to use the services provided by PDFSmallTools. This includes any loss
+          of data, financial loss, or damages resulting from uploading or
+          downloading files.
         </p>
 
         <h2 className="mt-6 mb-3 text-lg font-semibold text-gray-900 md:text-2xl">
-          Termination
+          9. Modifications to Terms
         </h2>
         <p className="mb-4 text-sm leading-relaxed md:text-base">
-          We reserve the right to suspend or terminate your access to the
-          website if you violate these terms and conditions.
+          We reserve the right to update, modify, or change these Terms and
+          Conditions at any time. When changes are made, the updated terms will
+          be posted on this page, and the effective date will be updated
+          accordingly. We encourage you to review these terms periodically.
         </p>
 
         <h2 className="mt-6 mb-3 text-lg font-semibold text-gray-900 md:text-2xl">
-          Changes to Terms
+          10. Termination of Service
         </h2>
         <p className="mb-4 text-sm leading-relaxed md:text-base">
-          We may update these terms from time to time. You are advised to review
-          this page periodically for any changes.
+          We reserve the right to suspend or terminate your access to our
+          services at any time, without notice, for any reason, including but
+          not limited to violation of these Terms and Conditions.
         </p>
 
         <h2 className="mt-6 mb-3 text-lg font-semibold text-gray-900 md:text-2xl">
-          Contact Us
+          11. Governing Law
+        </h2>
+        <p className="mb-4 text-sm leading-relaxed md:text-base">
+          These Terms and Conditions are governed by the laws of India. Any
+          disputes arising under or in connection with these terms shall be
+          resolved in the courts of India.
+        </p>
+
+        <h2 className="mt-6 mb-3 text-lg font-semibold text-gray-900 md:text-2xl">
+          12. Contact Information
         </h2>
         <p className="mb-4 text-sm leading-relaxed md:text-base">
           If you have any questions about these Terms and Conditions, please
-          contact us at support@pdfsmalltools.com.
+          contact us at{" "}
+          <a
+            href="mailto:contact@pdfsmalltools.com"
+            className="text-blue-600 underline"
+          >
+            contact@pdfsmalltools.com
+          </a>
+          .
         </p>
       </div>
     </div>
