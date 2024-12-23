@@ -105,7 +105,7 @@ function App() {
           />
           <Route path="/profile" element={<Profile />} />
           <Route path="/refund-policy" element={<RefundPolicy />} />
-          <Route path="/PricingScreen" element={<PricingScreen />} />
+          <Route path="/pricing" element={<PricingScreen />} />
         </Routes>
 
         <Footer />

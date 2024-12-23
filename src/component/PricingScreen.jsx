@@ -91,7 +91,7 @@ const PricingScreen = () => {
         key: "rzp_test_UDwqfBdYptKoRk",
         amount: amount,
         currency: currency,
-        name: "Test Merchant",
+        name: "Sports AtooZ",
         description: `Payment for ${plan.title}`,
         order_id: order_id,
         handler: function (response) {
