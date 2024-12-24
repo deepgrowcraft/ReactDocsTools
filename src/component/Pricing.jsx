@@ -77,10 +77,14 @@ const Pricing = () => {
     setIsProcessing(true); // Disable further clicks
 
     try {
+      const billingName = `${plan.title} - ${
+        billingCycle.charAt(0).toUpperCase() + billingCycle.slice(1)
+      } Billing`;
+
       const response = await axios.post(`${API_URL}/create-order/`, {
-        amount: plan.price[billingCycle],
+        amount: plan.price[billingCycle], // Amount based on billing cycle
         currency: "INR",
-        billing_name: plan.title,
+        billing_name: billingName, // Updated billing name
         receipt: `receipt_${plan.title.replace(" ", "_")}`,
       });
 
@@ -164,7 +168,7 @@ const Pricing = () => {
                 : "bg-white text-gray-800 border-gray-300 hover:bg-gray-100"
             }`}
           >
-            Yearly (Save 20%)
+            Yearly (Save 50%)
           </button>
         </div>
 
