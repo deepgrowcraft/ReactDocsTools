@@ -103,7 +103,7 @@ const ImageToPdf = () => {
           <div className="relative group">
             <input
               type="file"
-              accept="image/*"
+              accept="image/png, image/jpeg"
               multiple
               className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
               onChange={handleFileUpload}
