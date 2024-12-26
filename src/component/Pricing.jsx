@@ -90,7 +90,7 @@ const Pricing = () => {
       const { order_id, amount, currency } = response.data;
 
       const options = {
-        key: "rzp_test_UDwqfBdYptKoRk",
+        key: "rzp_live_wUBIeMzGdaBOfr",
         amount: amount,
         currency: currency,
         name: "Sports AtooZ",
