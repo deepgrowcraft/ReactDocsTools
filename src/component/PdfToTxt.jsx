@@ -70,7 +70,7 @@ const PdfToTxtConverter = () => {
           Extract text from your PDF files and convert them to TXT format.
         </p>
 
-        <div className="max-w-xl p-8 mx-auto transition-all duration-300 ease-in-out transform bg-white shadow-xl rounded-3xl hover:scale-105 hover:shadow-2xl">
+        <div className="max-w-xl p-8 mx-auto transition-all duration-300 ease-in-out transform bg-white shadow-sm rounded-3xl">
           <div
             className="relative mb-6 overflow-hidden bg-center bg-cover rounded-xl"
             style={{
