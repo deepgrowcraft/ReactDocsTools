@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../component/AuthContext";
+
 const API_URL = import.meta.env.VITE_API_URL;
 
 const Profile = () => {
   const navigate = useNavigate();
+  const { logout, hasSubscription, fetchUserProfile } = useAuth(); // Fetch logout and subscription details
 
   const fullname =
     localStorage.getItem("user_fullname") ||
@@ -12,21 +14,19 @@ const Profile = () => {
   const email =
     localStorage.getItem("user_email") || sessionStorage.getItem("user_email");
 
+  useEffect(() => {
+    const fetchProfile = async () => {
+      await fetchUserProfile();
+    };
+    fetchProfile();
+  }, [fetchUserProfile]);
+
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
-  const { setIsLoggedIn } = useAuth();
 
   const handleLogout = () => {
-    localStorage.removeItem("accessToken");
-    localStorage.removeItem("refreshToken");
-    localStorage.removeItem("user_fullname");
-    localStorage.removeItem("user_email");
-
-    localStorage.clear();
-    sessionStorage.clear();
-    setIsLoggedIn(false);
-
+    logout();
     navigate("/login");
   };
 
@@ -57,7 +57,7 @@ const Profile = () => {
       });
 
       if (response.ok) {
-        setSuccessMessage("Account deleted successfully.");
+        setSuccessMessage("Account deleted successfully. Redirecting...");
         setTimeout(() => {
           handleLogout(); // Log out the user after successful deletion
         }, 2000);
@@ -66,7 +66,7 @@ const Profile = () => {
         setError(errorData.error || "An error occurred. Please try again.");
       }
     } catch (err) {
-      setError("Unable to connect to the server.");
+      setError("Unable to connect to the server. Please try again later.");
     } finally {
       setLoading(false);
     }
@@ -84,14 +84,33 @@ const Profile = () => {
           <p className="text-gray-600">{fullname || "Not Available"}</p>
         </div>
 
-        <div className="mb-6">
+        <div className="mb-4">
           <p className="text-lg font-semibold text-gray-700">Email</p>
           <p className="text-gray-600">{email || "Not Available"}</p>
         </div>
 
-        {error && <p className="mb-4 text-sm text-red-500">{error}</p>}
+        <div className="mb-6">
+          <p className="text-lg font-semibold text-gray-700">
+            Subscription Status
+          </p>
+          <p
+            className={`text-gray-600 font-bold ${
+              hasSubscription ? "text-green-500" : "text-red-500"
+            }`}
+          >
+            {hasSubscription ? "Active" : "Not Subscribed"}
+          </p>
+        </div>
+
+        {error && (
+          <p className="mb-4 text-sm font-semibold text-center text-red-500">
+            {error}
+          </p>
+        )}
         {successMessage && (
-          <p className="mb-4 text-sm text-green-500">{successMessage}</p>
+          <p className="mb-4 text-sm font-semibold text-center text-green-500">
+            {successMessage}
+          </p>
         )}
 
         <button

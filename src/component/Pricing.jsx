@@ -12,7 +12,6 @@ const plans = [
       "Basic conversion tools",
       "Standard file processing speed",
       "Limited to 5 conversions per day",
-      "24-hour file storage",
     ],
     buttonText: "Select Starter Plan",
   },
@@ -24,7 +23,7 @@ const plans = [
       "Unlimited conversions",
       "Faster processing speed",
       "Priority customer support",
-      "7-day file storage",
+      "Ad-free experience and faster performance without interruptions",
     ],
     buttonText: "Select Basic Plan",
   },
@@ -36,7 +35,7 @@ const plans = [
       "All Basic Plan features",
       "Advanced editing tools",
       "OCR text recognition",
-      "30-day file storage",
+      "Ad-free experience and faster performance without interruptions",
     ],
     buttonText: "Select Pro Plan",
   },
@@ -77,20 +76,24 @@ const Pricing = () => {
     setIsProcessing(true); // Disable further clicks
 
     try {
+      const billingName = `${plan.title} - ${
+        billingCycle.charAt(0).toUpperCase() + billingCycle.slice(1)
+      } Billing`;
+
       const response = await axios.post(`${API_URL}/create-order/`, {
-        amount: plan.price[billingCycle],
+        amount: plan.price[billingCycle], // Amount based on billing cycle
         currency: "INR",
-        billing_name: plan.title,
+        billing_name: billingName, // Updated billing name
         receipt: `receipt_${plan.title.replace(" ", "_")}`,
       });
 
       const { order_id, amount, currency } = response.data;
 
       const options = {
-        key: "rzp_test_UDwqfBdYptKoRk",
+        key: "rzp_live_wUBIeMzGdaBOfr",
         amount: amount,
         currency: currency,
-        name: "Test Merchant",
+        name: "Sports AtooZ",
         description: `Payment for ${plan.title}`,
         order_id: order_id,
         handler: function (response) {
@@ -164,7 +167,7 @@ const Pricing = () => {
                 : "bg-white text-gray-800 border-gray-300 hover:bg-gray-100"
             }`}
           >
-            Yearly (Save 20%)
+            Yearly (Save 50%)
           </button>
         </div>
 

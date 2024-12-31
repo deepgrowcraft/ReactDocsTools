@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import PlanCard from "./Pancard";
+import { useAuth } from "./AuthContext";
 const API_URL = import.meta.env.VITE_API_URL;
 
 const plans = [
@@ -13,7 +14,6 @@ const plans = [
       "Basic conversion tools",
       "Standard file processing speed",
       "Limited to 5 conversions per day",
-      "24-hour file storage",
     ],
     buttonText: "Select Starter Plan",
   },
@@ -25,7 +25,7 @@ const plans = [
       "Unlimited conversions",
       "Faster processing speed",
       "Priority customer support",
-      "7-day file storage",
+      "Ad-free experience and faster performance without interruptions",
     ],
     buttonText: "Select Basic Plan",
   },
@@ -37,7 +37,7 @@ const plans = [
       "All Basic Plan features",
       "Advanced editing tools",
       "OCR text recognition",
-      "30-day file storage",
+      "Ad-free experience and faster performance without interruptions",
     ],
     buttonText: "Select Pro Plan",
   },
@@ -48,6 +48,7 @@ const PricingScreen = () => {
   const [billingCycle, setBillingCycle] = useState("monthly");
   const [isProcessing, setIsProcessing] = useState(false);
   const navigate = useNavigate();
+  const { fetchUserProfile } = useAuth();
 
   const isAuthenticated =
     localStorage.getItem("accessToken") ||
@@ -78,25 +79,34 @@ const PricingScreen = () => {
     setIsProcessing(true);
 
     try {
+      const billingName = `${plan.title} - ${
+        billingCycle.charAt(0).toUpperCase() + billingCycle.slice(1)
+      } Billing`;
+
       const response = await axios.post(`${API_URL}/create-order/`, {
-        amount: plan.price[billingCycle],
+        amount: plan.price[billingCycle], // Amount based on billing cycle
         currency: "INR",
-        billing_name: plan.title,
+        billing_name: billingName, // Updated billing name
         receipt: `receipt_${plan.title.replace(" ", "_")}`,
       });
-
       const { order_id, amount, currency } = response.data;
 
       const options = {
-        key: "rzp_test_UDwqfBdYptKoRk",
+        key: "rzp_live_wUBIeMzGdaBOfr",
         amount: amount,
         currency: currency,
-        name: "Test Merchant",
+        name: "Sports AtooZ",
         description: `Payment for ${plan.title}`,
         order_id: order_id,
-        handler: function (response) {
+        handler: async function (response) {
           alert("Payment Successful");
           console.log("Payment response:", response);
+          await fetchUserProfile();
+
+          // Navigate or provide feedback
+          alert(`You are now subscribed to ${plan.title}!`);
+          navigate("/profile");
+
           setIsProcessing(false);
         },
         prefill: {
@@ -164,7 +174,7 @@ const PricingScreen = () => {
                 : "bg-white text-gray-800 border-gray-300 hover:bg-gray-100"
             }`}
           >
-            Yearly (Save 20%)
+            Yearly (Save 50%)
           </button>
         </div>
 

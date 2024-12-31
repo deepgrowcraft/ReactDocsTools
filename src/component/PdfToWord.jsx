@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "./AuthContext";
 const API_URL = import.meta.env.VITE_API_URL;
 
 const PdfToWordConverter = () => {
@@ -9,6 +11,9 @@ const PdfToWordConverter = () => {
   const [isConverting, setIsConverting] = useState(false);
   const [progress, setProgress] = useState(0);
   const [wordUrl, setWordUrl] = useState(null); // For PDF-to-Word
+  const [error, setError] = useState(null); // To store error messages
+  const { hasSubscription } = useAuth(); // Get subscription status from AuthContext
+  const navigate = useNavigate();
 
   useEffect(() => {
     return () => {
@@ -21,14 +26,22 @@ const PdfToWordConverter = () => {
     setSelectedPdf(file);
     setWordUrl(null);
     setProgress(0);
+    setError(null); // Clear any previous errors
     console.log("PDF selected:", file);
   };
 
   const convertPdfToWord = async () => {
+    if (!hasSubscription) {
+      // If user is not a premium user, redirect to the premium/pricing page
+      navigate("/pricing");
+      return;
+    }
+
     if (!selectedPdf) return;
 
-    setIsConverting(true);
+    setIsConverting(true); // Show loader
     setProgress(0);
+    setError(null); // Clear any previous errors
 
     const formData = new FormData();
     formData.append("pdf", selectedPdf);
@@ -44,20 +57,25 @@ const PdfToWordConverter = () => {
             const percentCompleted = Math.round(
               (progressEvent.loaded * 100) / progressEvent.total
             );
-            setProgress(percentCompleted);
+            setProgress(percentCompleted); // Update progress
           },
         }
       );
 
+      // Process API response
       const blob = new Blob([response.data], {
         type: "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
       });
       const url = URL.createObjectURL(blob);
-      setWordUrl(url);
+      setWordUrl(url); // Set the Word document URL
     } catch (error) {
       console.error("PDF-to-Word conversion failed:", error);
+      setError(
+        error.response?.data?.error ||
+          "An unexpected error occurred. Please try again."
+      );
     } finally {
-      setIsConverting(false);
+      setIsConverting(false); // Stop loader
     }
   };
 
@@ -126,17 +144,26 @@ const PdfToWordConverter = () => {
         )}
 
         {isConverting && (
-          <div className="w-20 mx-auto my-8">
-            <CircularProgressbar
-              value={progress}
-              text={`${progress}%`}
-              styles={buildStyles({
-                textSize: "16px",
-                pathColor: `rgba(62, 152, 199, ${progress / 100})`,
-                textColor: "#3e98c7",
-                trailColor: "#d6d6d6",
-              })}
-            />
+          <div className="mt-8">
+            <div className="w-20 mx-auto my-4">
+              <CircularProgressbar
+                value={progress}
+                text={`${progress}%`}
+                styles={buildStyles({
+                  textSize: "16px",
+                  pathColor: `rgba(62, 152, 199, ${progress / 100})`,
+                  textColor: "#3e98c7",
+                  trailColor: "#d6d6d6",
+                })}
+              />
+            </div>
+            <p className="text-sm text-gray-600">Processing... Please wait.</p>
+          </div>
+        )}
+
+        {error && (
+          <div className="mt-4 text-red-500">
+            <p>{error}</p>
           </div>
         )}
 
