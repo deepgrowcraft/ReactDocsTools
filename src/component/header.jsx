@@ -10,26 +10,17 @@ const Header = () => {
   const [isVisible, setIsVisible] = useState(true); // For sticky header
   const [lastScrollY, setLastScrollY] = useState(0); // Track scroll direction
   const [showMegaMenu, setShowMegaMenu] = useState(false); // Mega menu toggle
-  // const [isLoggedIn, setIsLoggedIn] = useState(false); // Check user login status
   const megaMenuRef = useRef(null); // Ref for the mega menu container
   const { isLoggedIn } = useAuth();
+  const menuRef = useRef(null);
 
-  // useEffect(() => {
-  //   // Check if user is logged in based on accessToken in localStorage
-  //   const accessToken = localStorage.getItem("accessToken");
-  //   setIsLoggedIn(!!accessToken); // Set true if accessToken exists
-  // }, []);
-
-  // Toggle the mobile menu
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
 
-  // Handle scrolling to hide/show header
   const handleScroll = () => {
     const currentScrollY = window.scrollY;
 
-    // Hide header on scroll down, show on scroll up
     if (currentScrollY > lastScrollY) {
       setIsVisible(false);
     } else {
@@ -39,7 +30,6 @@ const Header = () => {
     setLastScrollY(currentScrollY);
   };
 
-  // Close mega menu on clicking outside
   useEffect(() => {
     const handleOutsideClick = (event) => {
       if (
@@ -50,9 +40,11 @@ const Header = () => {
         setShowMegaMenu(false);
       }
     };
+    document.addEventListener("mousedown", handleOutsideClick);
 
     document.addEventListener("click", handleOutsideClick);
     return () => {
+      document.removeEventListener("mousedown", handleOutsideClick);
       document.removeEventListener("click", handleOutsideClick);
     };
   }, []);
@@ -180,21 +172,20 @@ const Header = () => {
         ></div>
       )}
 
-      {/* Mobile Menu */}
+      {/* mobile view */}
       <div
+        ref={menuRef}
         className={`fixed top-0 left-0 w-3/4 h-full bg-white shadow-xl transform transition-transform duration-300 z-40 ${
           isOpen ? "translate-x-0 opacity-100" : "-translate-x-full opacity-0"
         }`}
       >
-        {/* Close Button */}
-        <button
-          className="absolute text-2xl text-gray-600 top-4 right-4 focus:outline-none"
-          onClick={toggleMenu}
-        >
-          <FontAwesomeIcon icon={faTimes} />
-        </button>
+        <div className="container flex items-center justify-between px-4 py-4 mx-auto md:px-0">
+          <Link to="/" onClick={toggleMenu}>
+            <img src="/logo.svg" alt="Website Logo" className="h-10 w-18" />
+          </Link>
+        </div>
 
-        <nav className="flex flex-col items-start p-6 mt-12 space-y-6 bg-white">
+        <nav className="flex flex-col items-start p-6 space-y-6 bg-white">
           <Link
             to="/MergePdfScreen"
             className="hover:text-blue-600"
@@ -223,6 +214,13 @@ const Header = () => {
           >
             Convert PDF
           </Link>
+          <Link
+            to="/tools"
+            className="hover:text-blue-600"
+            onClick={toggleMenu}
+          >
+            Tools
+          </Link>
 
           {isLoggedIn ? (
             <Link
@@ -236,14 +234,14 @@ const Header = () => {
             <>
               <Link
                 to="/Login"
-                className="w-full px-4 py-2 text-white transition duration-300 bg-blue-600 rounded-lg hover:bg-blue-700"
+                className="w-auto px-4 py-2 text-white transition duration-300 bg-blue-600 rounded-lg hover:bg-blue-700"
                 onClick={toggleMenu}
               >
                 Log In
               </Link>
               <Link
                 to="/Signup"
-                className="w-full px-4 py-2 text-white transition duration-300 bg-blue-600 rounded-lg hover:bg-blue-700"
+                className="w-auto px-4 py-2 text-white transition duration-300 bg-blue-600 rounded-lg hover:bg-blue-700"
                 onClick={toggleMenu}
               >
                 Sign Up
