@@ -62,12 +62,21 @@ const Login = () => {
             localStorage.setItem("refreshToken", data.refresh);
             localStorage.setItem("user_fullname", data.user_fullname);
             localStorage.setItem("user_email", data.user_email);
+            localStorage.setItem(
+              "has_active_subscription",
+              data.has_active_subscription
+            );
           } else {
             sessionStorage.setItem("accessToken", data.access);
             sessionStorage.setItem("refreshToken", data.refresh);
             sessionStorage.setItem("user_fullname", data.user_fullname);
             sessionStorage.setItem("user_email", data.user_email);
+            sessionStorage.setItem(
+              "has_active_subscription",
+              data.has_active_subscription
+            );
           }
+
           setIsLoggedIn(true);
 
           setSuccessPopup(true);

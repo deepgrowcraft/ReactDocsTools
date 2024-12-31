@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import PlanCard from "./Pancard";
+import { useAuth } from "./AuthContext";
 const API_URL = import.meta.env.VITE_API_URL;
 
 const plans = [
@@ -47,6 +48,7 @@ const PricingScreen = () => {
   const [billingCycle, setBillingCycle] = useState("monthly");
   const [isProcessing, setIsProcessing] = useState(false);
   const navigate = useNavigate();
+  const { fetchUserProfile } = useAuth();
 
   const isAuthenticated =
     localStorage.getItem("accessToken") ||
@@ -96,9 +98,15 @@ const PricingScreen = () => {
         name: "Sports AtooZ",
         description: `Payment for ${plan.title}`,
         order_id: order_id,
-        handler: function (response) {
+        handler: async function (response) {
           alert("Payment Successful");
           console.log("Payment response:", response);
+          await fetchUserProfile();
+
+          // Navigate or provide feedback
+          alert(`You are now subscribed to ${plan.title}!`);
+          navigate("/profile");
+
           setIsProcessing(false);
         },
         prefill: {

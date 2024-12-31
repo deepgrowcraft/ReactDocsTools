@@ -9,6 +9,12 @@
       content="google3109e50d4d4209a1.html"
     />
     <title>Pdf tools</title>
+
+    <script
+      src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js"
+      defer
+    ></script>
+
     <!-- Add AdSense Script -->
     <!-- <script src="/static/js/main.js?v=1.0.1"></script> -->
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
@@ -34,6 +40,48 @@
   </head>
   <body>
     <div id="root"></div>
+    <script>
+      // Initialize OneSignal
+      window.OneSignalDeferred = window.OneSignalDeferred || [];
+      OneSignalDeferred.push(async function (OneSignal) {
+        await OneSignal.init({
+          appId: "be38e8fb-5ce3-4720-8a8f-f0c2e5d310aa", // Replace with your OneSignal App ID
+          // safari_web_id: "web.onesignal.auto.xxxxx-xxxxx-xxxxx", // Optional, only for Safari
+          notifyButton: {
+            enable: true, // Enable notification bell
+            size: "medium", // Bell size (small, medium, large)
+            theme: "default", // Bell theme
+            position: "bottom-right", // Bell position
+            text: {
+              "tip.state.unsubscribed": "Subscribe to notifications",
+              "tip.state.subscribed": "You are subscribed to notifications",
+              "tip.state.blocked": "You have blocked notifications",
+            },
+          },
+        });
+
+        // Show subscription prompt
+        OneSignal.showSlidedownPrompt();
+
+        // Listen for subscription changes
+        OneSignal.on("subscriptionChange", async function (isSubscribed) {
+          if (isSubscribed) {
+            const userId = await OneSignal.getUserId();
+            console.log("User subscribed with ID:", userId);
+
+            // Send a welcome notification after subscribing
+            OneSignal.sendSelfNotification(
+              "Welcome to PDF Tools!",
+              "Thank you for subscribing. Stay tuned for updates.",
+              null, // Optional URL to open when the notification is clicked
+              null, // Optional Icon URL
+              { customData: { type: "welcome" } } // Optional Custom Data
+            );
+          }
+        });
+      });
+    </script>
+
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
