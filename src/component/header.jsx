@@ -87,7 +87,12 @@ const Header = () => {
             }}
           >
             <button className="text-lg text-gray-700 hover:text-blue-600">
-              All Tools
+              <Link
+                to="/tools"
+                className="transition duration-300 hover:text-blue-600"
+              >
+                All Tools
+              </Link>
             </button>
           </div>
           <Link

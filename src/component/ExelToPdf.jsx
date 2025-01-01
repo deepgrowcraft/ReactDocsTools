@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
+import { useAuth } from "./AuthContext";
 const API_URL = import.meta.env.VITE_API_EC2;
 
 const ExcelToPdf = () => {
@@ -9,6 +10,7 @@ const ExcelToPdf = () => {
   const [isConverting, setIsConverting] = useState(false);
   const [progress, setProgress] = useState(0);
   const [pdfUrl, setPdfUrl] = useState(null);
+  const { hasSubscription } = useAuth();
 
   useEffect(() => {
     console.log("Current pdfUrl:", pdfUrl);
@@ -27,6 +29,11 @@ const ExcelToPdf = () => {
   };
 
   const convertExcelToPdf = async () => {
+    if (!hasSubscription) {
+      // If user is not a premium user, redirect to the premium/pricing page
+      navigate("/pricing");
+      return;
+    }
     if (!selectedFile) return;
 
     setIsConverting(true);

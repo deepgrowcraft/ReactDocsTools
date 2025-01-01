@@ -144,7 +144,7 @@ const PricingScreen = () => {
   };
 
   return (
-    <section className="relative py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-gray-50 to-gray-100">
+    <section className="relative py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-gray-50 to-gray-100 mt-14">
       <div className="container px-4 mx-auto text-center sm:px-6 lg:px-8">
         <h2 className="mb-6 text-3xl font-extrabold text-gray-800 sm:text-4xl lg:text-5xl">
           Flexible Pricing Plans for Everyone
