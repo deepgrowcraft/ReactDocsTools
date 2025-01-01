@@ -218,7 +218,7 @@ const ESignPdfScreen = () => {
       </div>
 
       <div className="mb-6">
-        <div className="flex justify-between mb-2">
+        <div className="flex flex-col mb-4 space-y-2 sm:space-y-0 sm:flex-row sm:justify-between">
           <button
             onClick={() => setActiveOption("draw")}
             className={`py-2 px-4 rounded-lg text-white ${

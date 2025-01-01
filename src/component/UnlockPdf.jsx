@@ -112,7 +112,7 @@ const UnlockPdf = () => {
           </button>
 
           {/* PDF Preview (Optional) */}
-          {pdfUrl && !error && !isLoading && (
+          {/* {pdfUrl && !error && !isLoading && (
             <div className="mt-6">
               <iframe
                 src={pdfUrl}
@@ -122,7 +122,7 @@ const UnlockPdf = () => {
                 frameBorder="0"
               ></iframe>
             </div>
-          )}
+          )} */}
         </div>
       </div>
     </section>
