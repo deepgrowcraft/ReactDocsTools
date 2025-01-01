@@ -43,6 +43,7 @@ import ResetPassword from "./screen/ResetPassword";
 import Profile from "./screen/ProfileScreen";
 import RefundPolicy from "./screen/RefundPolicy";
 import PricingScreen from "./component/PricingScreen";
+import ToolsGridScreen from "./component/ToolsScreen";
 
 function App() {
   return (
@@ -106,6 +107,7 @@ function App() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/refund-policy" element={<RefundPolicy />} />
           <Route path="/pricing" element={<PricingScreen />} />
+          <Route path="/tools" element={<ToolsGridScreen />} />
         </Routes>
 
         <Footer />

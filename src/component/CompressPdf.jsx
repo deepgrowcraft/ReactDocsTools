@@ -118,7 +118,7 @@ const CompressPdf = () => {
                 onChange={(e) => setCompressionLevel(e.target.value)}
                 className="mr-2"
               />
-              High Compression
+              High
             </label>
             <label className="flex items-center">
               <input
@@ -128,7 +128,7 @@ const CompressPdf = () => {
                 onChange={(e) => setCompressionLevel(e.target.value)}
                 className="mr-2"
               />
-              Medium Compression
+              Medium
             </label>
             <label className="flex items-center">
               <input
@@ -138,7 +138,7 @@ const CompressPdf = () => {
                 onChange={(e) => setCompressionLevel(e.target.value)}
                 className="mr-2"
               />
-              Low Compression
+              Low
             </label>
           </div>
 

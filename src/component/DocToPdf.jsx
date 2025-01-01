@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
+import { useAuth } from "./AuthContext";
 const API_URL = import.meta.env.VITE_API_EC2;
 
 const DocToPdf = () => {
@@ -9,6 +10,7 @@ const DocToPdf = () => {
   const [isConverting, setIsConverting] = useState(false);
   const [progress, setProgress] = useState(0);
   const [pdfUrl, setPdfUrl] = useState(null);
+  const { hasSubscription } = useAuth();
 
   useEffect(() => {
     // Log whenever pdfUrl changes
@@ -31,6 +33,11 @@ const DocToPdf = () => {
 
   // Convert DOC to PDF logic
   const convertDocToPdf = async () => {
+    if (!hasSubscription) {
+      // If user is not a premium user, redirect to the premium/pricing page
+      navigate("/pricing");
+      return;
+    }
     if (!selectedFile) return;
 
     setIsConverting(true);
