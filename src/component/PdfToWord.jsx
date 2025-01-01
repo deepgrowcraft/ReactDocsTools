@@ -90,7 +90,7 @@ const PdfToWordConverter = () => {
           click.
         </p>
 
-        <div className="max-w-xl p-8 mx-auto transition-all duration-300 ease-in-out transform bg-white shadow-xl rounded-3xl hover:scale-105 hover:shadow-2xl">
+        <div className="max-w-xl p-8 mx-auto transition-all duration-300 ease-in-out transform bg-white shadow-sm rounded-3xl ">
           <div
             className="relative mb-6 overflow-hidden bg-center bg-cover rounded-xl"
             style={{
@@ -118,7 +118,13 @@ const PdfToWordConverter = () => {
               onChange={handlePdfUpload}
               aria-label="File Upload"
             />
-            <button className="flex items-center justify-center w-full px-6 py-3 space-x-2 font-semibold text-white transition duration-300 ease-in-out bg-blue-500 rounded-lg shadow-lg hover:bg-red-600 hover:scale-105">
+            <button
+              className={`flex items-center justify-center w-full px-6 py-3 space-x-2 font-semibold text-white transition duration-300 rounded-lg shadow-lg ${
+                selectedPdf
+                  ? "bg-green-500 hover:bg-green-600"
+                  : "bg-blue-500 hover:bg-blue-600"
+              }`}
+            >
               <img
                 src="/home/addFile.svg" // Icon for add file button
                 alt="Add File Icon"

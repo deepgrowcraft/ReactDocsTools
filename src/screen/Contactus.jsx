@@ -1,6 +1,29 @@
-import React from "react";
+import React, { useState, useRef } from "react";
 
 const Contact = () => {
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false); // New state for loader
+  const [errorMessage, setErrorMessage] = useState("");
+  const form = useRef();
+
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    setIsSubmitting(true); // Show loader when submission starts
+    setErrorMessage(""); // Clear any existing error messages
+
+    if (form.current) {
+      form.current.submit();
+      setTimeout(() => {
+        setIsSubmitting(false); // Stop loader after form submission
+        setIsSubmitted(true);
+        form.current.reset(); // Clear form after submission
+      }, 3000); // Optional: Simulate network delay (adjust as needed)
+    } else {
+      setErrorMessage("Failed to submit the form. Please try again.");
+      setIsSubmitting(false); // Stop loader in case of error
+    }
+  };
+
   return (
     <div className="container px-4 py-16 mx-auto mt-10 text-center">
       <h1 className="mb-6 text-5xl font-extrabold text-blue-800">Contact Us</h1>
@@ -10,7 +33,20 @@ const Contact = () => {
       </p>
 
       <div className="max-w-lg p-8 mx-auto bg-white border border-gray-200 rounded-lg shadow-lg">
-        <form>
+        <form
+          ref={form}
+          action="https://formsubmit.co/contact@pdfsmalltools.com" // Replace with your email
+          method="POST"
+          onSubmit={handleFormSubmit}
+          className="w-full space-y-4"
+        >
+          <input type="hidden" name="_captcha" value="false" />
+          <input
+            type="hidden"
+            name="_next"
+            value="https://pdfsmalltools.com/" // Redirect after successful submission
+          />
+
           <div className="mb-6">
             <label
               htmlFor="name"
@@ -23,6 +59,7 @@ const Contact = () => {
               id="name"
               name="name"
               placeholder="Your Name"
+              required
               className="w-full p-3 transition duration-150 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
             />
           </div>
@@ -39,6 +76,7 @@ const Contact = () => {
               id="email"
               name="email"
               placeholder="Your Email"
+              required
               className="w-full p-3 transition duration-150 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
             />
           </div>
@@ -55,15 +93,52 @@ const Contact = () => {
               name="message"
               rows="5"
               placeholder="Type your message here..."
+              required
               className="w-full p-3 transition duration-150 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
             ></textarea>
           </div>
 
+          {isSubmitted && (
+            <p className="mb-4 text-green-500">Message sent successfully!</p>
+          )}
+          {errorMessage && <p className="mb-4 text-red-500">{errorMessage}</p>}
+
           <button
             type="submit"
-            className="w-full px-6 py-3 font-semibold text-white transition duration-200 bg-blue-600 rounded-lg shadow-md hover:bg-blue-700"
+            disabled={isSubmitting} // Disable button while submitting
+            className={`w-full px-6 py-3 font-semibold text-white transition duration-200 rounded-lg shadow-md ${
+              isSubmitting
+                ? "bg-gray-400 cursor-not-allowed"
+                : "bg-blue-600 hover:bg-blue-700"
+            }`}
           >
-            Send Message
+            {isSubmitting ? (
+              <div className="flex items-center justify-center">
+                <svg
+                  className="w-5 h-5 mr-2 text-white animate-spin"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <circle
+                    className="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="4"
+                  ></circle>
+                  <path
+                    className="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
+                  ></path>
+                </svg>
+                Sending...
+              </div>
+            ) : (
+              "Send Message"
+            )}
           </button>
         </form>
       </div>

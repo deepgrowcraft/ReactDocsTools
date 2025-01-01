@@ -121,7 +121,7 @@ const Hero = () => {
         {/* Free Trial Section */}
         <div className="mt-12">
           <a
-            href="#trial"
+            href="/pricing"
             className="inline-block px-8 py-3 text-sm font-bold text-white transition-all duration-300 bg-blue-600 rounded-full shadow-lg md:text-base lg:text-lg hover:bg-blue-700 hover:scale-105"
           >
             Get 14 Days Free Trial
