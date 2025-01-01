@@ -283,7 +283,7 @@ const ESignPdfScreen = () => {
             <input
               type="file"
               id="uploadedSignature"
-              accept="image/*"
+              accept="image/png, image/jpeg"
               onChange={handleUploadedSignatureChange}
               className="w-full text-sm file:border file:border-gray-300 file:rounded file:px-4 file:py-2 file:text-gray-700 file:bg-gray-50 hover:file:bg-gray-100"
             />

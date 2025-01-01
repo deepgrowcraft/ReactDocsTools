@@ -3,6 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import PlanCard from "./Pancard";
 import { useAuth } from "./AuthContext";
+import FeatureComparisonTable from "../screen/FeatureComparisonTable";
 const API_URL = import.meta.env.VITE_API_URL;
 
 const plans = [
@@ -144,56 +145,59 @@ const PricingScreen = () => {
   };
 
   return (
-    <section className="relative py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-gray-50 to-gray-100 mt-14">
-      <div className="container px-4 mx-auto text-center sm:px-6 lg:px-8">
-        <h2 className="mb-6 text-3xl font-extrabold text-gray-800 sm:text-4xl lg:text-5xl">
-          Flexible Pricing Plans for Everyone
-        </h2>
-        <p className="max-w-3xl mx-auto mb-12 text-base text-gray-600 sm:text-lg lg:text-xl">
-          Choose between monthly and yearly billing options. Our plans are
-          designed to cater to individuals, teams, and businesses.
-        </p>
+    <>
+      <section className="relative py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-gray-50 to-gray-100 mt-14">
+        <div className="container px-4 mx-auto text-center sm:px-6 lg:px-8">
+          <h2 className="mb-6 text-3xl font-extrabold text-gray-800 sm:text-4xl lg:text-5xl">
+            Flexible Pricing Plans for Everyone
+          </h2>
+          <p className="max-w-3xl mx-auto mb-12 text-base text-gray-600 sm:text-lg lg:text-xl">
+            Choose between monthly and yearly billing options. Our plans are
+            designed to cater to individuals, teams, and businesses.
+          </p>
 
-        {/* Billing Cycle Toggle */}
-        <div className="flex justify-center mb-8">
-          <button
-            onClick={() => setBillingCycle("monthly")}
-            className={`px-4 py-2 text-sm font-medium border rounded-l-lg transition-colors duration-300 ${
-              billingCycle === "monthly"
-                ? "bg-blue-600 text-white border-blue-600"
-                : "bg-white text-gray-800 border-gray-300 hover:bg-gray-100"
-            }`}
-          >
-            Monthly
-          </button>
-          <button
-            onClick={() => setBillingCycle("yearly")}
-            className={`px-4 py-2 text-sm font-medium border rounded-r-lg transition-colors duration-300 ${
-              billingCycle === "yearly"
-                ? "bg-blue-600 text-white border-blue-600"
-                : "bg-white text-gray-800 border-gray-300 hover:bg-gray-100"
-            }`}
-          >
-            Yearly (Save 50%)
-          </button>
-        </div>
+          {/* Billing Cycle Toggle */}
+          <div className="flex justify-center mb-8">
+            <button
+              onClick={() => setBillingCycle("monthly")}
+              className={`px-4 py-2 text-sm font-medium border rounded-l-lg transition-colors duration-300 ${
+                billingCycle === "monthly"
+                  ? "bg-blue-600 text-white border-blue-600"
+                  : "bg-white text-gray-800 border-gray-300 hover:bg-gray-100"
+              }`}
+            >
+              Monthly
+            </button>
+            <button
+              onClick={() => setBillingCycle("yearly")}
+              className={`px-4 py-2 text-sm font-medium border rounded-r-lg transition-colors duration-300 ${
+                billingCycle === "yearly"
+                  ? "bg-blue-600 text-white border-blue-600"
+                  : "bg-white text-gray-800 border-gray-300 hover:bg-gray-100"
+              }`}
+            >
+              Yearly (Save 50%)
+            </button>
+          </div>
 
-        {/* Pricing Plans */}
-        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {plans.map((plan, index) => (
-            <PlanCard
-              key={index}
-              plan={plan}
-              billingCycle={billingCycle}
-              selectedPlan={selectedPlan}
-              handleSelectPlan={handleSelectPlan}
-              handlePayment={handlePayment}
-              isProcessing={isProcessing}
-            />
-          ))}
+          {/* Pricing Plans */}
+          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            {plans.map((plan, index) => (
+              <PlanCard
+                key={index}
+                plan={plan}
+                billingCycle={billingCycle}
+                selectedPlan={selectedPlan}
+                handleSelectPlan={handleSelectPlan}
+                handlePayment={handlePayment}
+                isProcessing={isProcessing}
+              />
+            ))}
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+      <FeatureComparisonTable />
+    </>
   );
 };
 
