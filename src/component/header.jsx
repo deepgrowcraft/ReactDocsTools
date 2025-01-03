@@ -96,25 +96,25 @@ const Header = () => {
             </button>
           </div>
           <Link
-            to="/MergePdfScreen"
+            to="/merge-pdf"
             className="transition duration-300 hover:text-blue-600"
           >
             Merge PDF
           </Link>
           <Link
-            to="/SplitPdfScreen"
+            to="/split-pdf"
             className="transition duration-300 hover:text-blue-600"
           >
             Split PDF
           </Link>
           <Link
-            to="/CompressPdfScreen"
+            to="/compress-pdf"
             className="transition duration-300 hover:text-blue-600"
           >
             Compress PDF
           </Link>
           <Link
-            to="/PdfToWordScreen"
+            to="/pdf-to-word"
             className="transition duration-300 hover:text-blue-600"
           >
             Convert PDF
@@ -192,28 +192,28 @@ const Header = () => {
 
         <nav className="flex flex-col items-start p-6 space-y-6 bg-white">
           <Link
-            to="/MergePdfScreen"
+            to="/merge-pdf"
             className="hover:text-blue-600"
             onClick={toggleMenu}
           >
             Merge PDF
           </Link>
           <Link
-            to="/SplitPdfScreen"
+            to="/split-pdf"
             className="hover:text-blue-600"
             onClick={toggleMenu}
           >
             Split PDF
           </Link>
           <Link
-            to="/CompressPdfScreen"
+            to="/compress-pdf"
             className="hover:text-blue-600"
             onClick={toggleMenu}
           >
             Compress PDF
           </Link>
           <Link
-            to="/PdfToWordScreen"
+            to="/pdf-to-word"
             className="hover:text-blue-600"
             onClick={toggleMenu}
           >

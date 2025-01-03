@@ -55,39 +55,39 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/docToPdf" element={<DocToPdfScreen />} />
-          <Route path="/ExelToPdfScreen" element={<ExelToPdfScreen />} />
-          <Route path="/PptToPdfScreen" element={<PptToPdfScreen />} />
-          <Route path="/ImageToPdfScreen" element={<ImageToPdfScreen />} />
-          <Route path="/HtmlToPdfScreen" element={<HtmlToPdfScreen />} />
-          <Route path="/PdfOCRScreen" element={<PdfOCRScreen />} />
-          <Route path="/PdfToWordScreen" element={<PdfToWordScreen />} />
-          <Route path="/PdfToExelScreen" element={<PdfToExelScreen />} />
-          <Route path="/PdfToPPTScreen" element={<PdfToPPTScreen />} />
-          <Route path="/PdfToTxtScreen" element={<PdfToTxtScreen />} />
-          <Route path="/PdfToImageScreen" element={<PdfToImageScreen />} />
-          <Route path="/MergePdfScreen" element={<MergePdfScreen />} />
-          <Route path="/SplitPdfScreen" element={<SplitPdfScreen />} />
-          <Route path="/CompressPdfScreen" element={<CompressPdfScreen />} />
-          <Route path="/FlipPdfScreen" element={<FlipPdfScreen />} />
+          <Route path="/doc-to-pdf" element={<DocToPdfScreen />} />
+          <Route path="/exel-to-pdf" element={<ExelToPdfScreen />} />
+          <Route path="/ppt-to-pdf" element={<PptToPdfScreen />} />
+          <Route path="/image-to-pdf" element={<ImageToPdfScreen />} />
+          <Route path="/html-to-pdf" element={<HtmlToPdfScreen />} />
+          <Route path="/pdf-ocr" element={<PdfOCRScreen />} />
+          <Route path="/pdf-to-word" element={<PdfToWordScreen />} />
+          <Route path="/pdf-to-exel" element={<PdfToExelScreen />} />
+          <Route path="/pdf-to-ppt" element={<PdfToPPTScreen />} />
+          <Route path="/pdf-to-text" element={<PdfToTxtScreen />} />
+          <Route path="/pdf-to-image" element={<PdfToImageScreen />} />
+          <Route path="/merge-pdf" element={<MergePdfScreen />} />
+          <Route path="/split-pdf" element={<SplitPdfScreen />} />
+          <Route path="/compress-pdf" element={<CompressPdfScreen />} />
+          <Route path="/flip-pdf" element={<FlipPdfScreen />} />
           <Route
-            path="/RemovePdfPagesScreen"
+            path="/remove-page"
             element={<RemovePdfPagesScreen />}
           />
           <Route
-            path="/RotatePdfPagesScreen"
+            path="/rotate-page"
             element={<RotatePdfPagesScreen />}
           />
-          <Route path="/CropPdfScreen" element={<CropPdfScreen />} />
+          <Route path="/crop-pdf" element={<CropPdfScreen />} />
           <Route
-            path="/ExtractPdfContent"
+            path="/extract-content"
             element={<ExtractPdfContentScreen />}
           />
-          <Route path="/PdfReArrenge" element={<ReArrengeScreen />} />
-          <Route path="/PdfEditor" element={<PdfEditScreen />} />
-          <Route path="/PdfCreator" element={<PdfCreatorScreen />} />
+          <Route path="/rearrenge-pdf-page" element={<ReArrengeScreen />} />
+          <Route path="/pdf-editor" element={<PdfEditScreen />} />
+          <Route path="/pdf-create" element={<PdfCreatorScreen />} />
           <Route
-            path="/PdfWithPageNumber"
+            path="/add-page-number"
             element={<PdfWithPageNumberScreen />}
           />
           <Route path="/Watermark" element={<AddWaterMarkScreen />} />

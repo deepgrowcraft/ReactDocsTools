@@ -1,4 +1,5 @@
 import React, { useState, useRef } from "react";
+import { Helmet } from "react-helmet-async";
 
 const Contact = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -26,6 +27,42 @@ const Contact = () => {
 
   return (
     <div className="container px-4 py-16 mx-auto mt-10 text-center">
+      <Helmet>
+        <title>PDF Small Tools - Contact Us</title>
+        <meta
+          name="description"
+          content="Discover powerful PDF tools for all your document needs. Convert, merge, split, edit, compress PDFs and more – all in one easy-to-use platform."
+        />
+        <meta
+          property="og:title"
+          content="PDF Small Tools - Convert, Edit, Compress & More"
+        />
+        <meta
+          property="og:description"
+          content="Discover powerful PDF tools for all your document needs. Convert, merge, split, edit, compress PDFs and more – all in one easy-to-use platform."
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://pdfsmalltools.com/" />
+        <meta
+          property="og:image"
+          content="https://pdfsmalltools.com/pdfIcon/editPdfs.svg"
+        />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta
+          name="twitter:title"
+          content="PDF Small Tools - Convert, Edit, Compress & More"
+        />
+        <meta
+          name="twitter:description"
+          content="Discover powerful PDF tools for all your document needs. Convert, merge, split, edit, compress PDFs and more – all in one easy-to-use platform."
+        />
+        <meta
+          name="twitter:image"
+          content="https://pdfsmalltools.com/pdfIcon/editPdfs.svg"
+        />
+        <link rel="icon" href="https://pdfsmalltools.com/favicon.ico" />
+      </Helmet>
+
       <h1 className="mb-6 text-5xl font-extrabold text-blue-800">Contact Us</h1>
       <p className="max-w-2xl mx-auto mb-12 text-lg leading-relaxed text-gray-700">
         Have questions or need assistance? Reach out to us using the form below,

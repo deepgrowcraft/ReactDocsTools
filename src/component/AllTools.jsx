@@ -15,7 +15,7 @@ const AllTools = () => {
               className="w-7 h-7"
             />
           ),
-          path: "/docToPdf",
+          path: "/doc-to-pdf",
         },
         {
           name: "Excel to PDF",
@@ -26,7 +26,7 @@ const AllTools = () => {
               className="w-7 h-7"
             />
           ),
-          path: "/ExelToPdfScreen",
+          path: "/exel-to-pdf",
         },
         {
           name: "PPT to PDF",
@@ -37,7 +37,7 @@ const AllTools = () => {
               className="w-7 h-7"
             />
           ),
-          path: "/PptToPdfScreen",
+          path: "/ppt-to-pdf",
         },
         {
           name: "Image to PDF",
@@ -48,7 +48,7 @@ const AllTools = () => {
               className="w-7 h-7"
             />
           ),
-          path: "/ImageToPdfScreen",
+          path: "/image-to-pdf",
         },
       ],
     },
@@ -64,7 +64,7 @@ const AllTools = () => {
               className="w-7 h-7"
             />
           ),
-          path: "/PdfToWordScreen",
+          path: "/pdf-to-word",
         },
         {
           name: "PDF to Excel",
@@ -75,7 +75,7 @@ const AllTools = () => {
               className="w-7 h-7"
             />
           ),
-          path: "/PdfToExelScreen",
+          path: "/pdf-to-exel",
         },
         {
           name: "PDF to PPT",
@@ -86,7 +86,7 @@ const AllTools = () => {
               className="w-7 h-7"
             />
           ),
-          path: "/PdfToPPTScreen",
+          path: "/pdf-to-ppt",
         },
         {
           name: "PDF to Image",
@@ -97,7 +97,7 @@ const AllTools = () => {
               className="w-7 h-7"
             />
           ),
-          path: "/PdfToImageScreen",
+          path: "/pdf-to-image",
         },
       ],
     },
@@ -113,7 +113,7 @@ const AllTools = () => {
               className="w-7 h-7"
             />
           ),
-          path: "/MergePdfScreen",
+          path: "/merge-pdf",
         },
         {
           name: "Split PDF",
@@ -124,7 +124,7 @@ const AllTools = () => {
               className="w-7 h-7"
             />
           ),
-          path: "/SplitPdfScreen",
+          path: "/split-pdf",
         },
       ],
     },
@@ -185,7 +185,7 @@ const AllTools = () => {
               className="w-7 h-7"
             />
           ),
-          path: "/CompressPdfScreen",
+          path: "/compress-pdf",
         },
         {
           name: "Rotate PDF",
@@ -196,7 +196,7 @@ const AllTools = () => {
               className="w-7 h-7"
             />
           ),
-          path: "/RotatePdfPagesScreen",
+          path: "/rotate-page",
         },
         {
           name: "Re-Arrange PDF",
@@ -207,7 +207,7 @@ const AllTools = () => {
               className="w-7 h-7"
             />
           ),
-          path: "/PdfReArrenge",
+          path: "/rearrenge-pdf-page",
         },
         {
           name: "Delete PDF Pages",
@@ -218,7 +218,7 @@ const AllTools = () => {
               className="w-7 h-7"
             />
           ),
-          path: "/RemovePdfPagesScreen",
+          path: "/remove-page",
         },
       ],
     },

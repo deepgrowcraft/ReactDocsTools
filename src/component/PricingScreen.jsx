@@ -5,6 +5,8 @@ import PlanCard from "./Pancard";
 import { useAuth } from "./AuthContext";
 import FeatureComparisonTable from "../screen/FeatureComparisonTable";
 const API_URL = import.meta.env.VITE_API_URL;
+import { Helmet } from "react-helmet-async";
+
 
 const plans = [
   {
@@ -146,6 +148,41 @@ const PricingScreen = () => {
 
   return (
     <>
+      <Helmet>
+        <title>PDF Small Tools - pricing</title>
+        <meta
+          name="description"
+          content="Discover powerful PDF tools for all your document needs. Convert, merge, split, edit, compress PDFs and more – all in one easy-to-use platform."
+        />
+        <meta
+          property="og:title"
+          content="PDF Small Tools - terms and conditions"
+        />
+        <meta
+          property="og:description"
+          content="Discover powerful PDF tools for all your document needs. Convert, merge, split, edit, compress PDFs and more – all in one easy-to-use platform."
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://pdfsmalltools.com/" />
+        <meta
+          property="og:image"
+          content="https://pdfsmalltools.com/pdfIcon/editPdfs.svg"
+        />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta
+          name="twitter:title"
+          content="PDF Small Tools - Convert, Edit, Compress & More"
+        />
+        <meta
+          name="twitter:description"
+          content="Discover powerful PDF tools for all your document needs. Convert, merge, split, edit, compress PDFs and more – all in one easy-to-use platform."
+        />
+        <meta
+          name="twitter:image"
+          content="https://pdfsmalltools.com/pdfIcon/editPdfs.svg"
+        />
+        <link rel="icon" href="https://pdfsmalltools.com/favicon.ico" />
+      </Helmet>
       <section className="relative py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-gray-50 to-gray-100 mt-14">
         <div className="container px-4 mx-auto text-center sm:px-6 lg:px-8">
           <h2 className="mb-6 text-3xl font-extrabold text-gray-800 sm:text-4xl lg:text-5xl">

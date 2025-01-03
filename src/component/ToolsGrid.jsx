@@ -6,19 +6,19 @@ const tools = [
     name: "Word to PDF",
     description: "Transform DOC and DOCX files into PDFs.",
     icon: <img src="../home/wordTopdf.svg" alt="wordTopdf" className="h-15" />,
-    path: "/docToPdf",
+    path: "/doc-to-pdf",
   },
   {
     name: "Excel to PDF",
     description: "Convert Excel files into PDF format.",
     icon: <img src="../home/exelToPdf.svg" alt="exelToPdf" className="h-15" />,
-    path: "/ExelToPdfScreen",
+    path: "/exel-to-pdf",
   },
   {
     name: "PPT to PDF",
     description: "Convert PowerPoint files into PDF.",
     icon: <img src="../home/pptToPdf.svg" alt="pptToPdf" className="h-15" />,
-    path: "/PptToPdfScreen",
+    path: "/ppt-to-pdf",
   },
   {
     name: "IMAGE to PDF",
@@ -26,43 +26,43 @@ const tools = [
     icon: (
       <img src="../home/imageToPdf.svg" alt="imageToPdf" className="h-15" />
     ),
-    path: "/ImageToPdfScreen",
+    path: "/image-to-pdf",
   },
   {
     name: "HTML to PDF",
     description: "Convert HTML files into PDFs.",
-    path: "/HtmlToPdfScreen",
+    path: "/html-to-pdf",
     icon: <img src="../home/htmlToPdf.svg" alt="htmlToPdf" className="h-15" />,
   },
   {
     name: "PDF OCR",
     description: "Convert scanned PDFs to editable text.",
     icon: <img src="../home/pdfOCR.svg" alt="pdfOCR" className="h-15" />,
-    path: "/PdfOCRScreen",
+    path: "/pdf-ocr",
   },
   {
     name: "PDF to Word",
     description: "Convert PDF files into DOC or DOCX.",
     icon: <img src="../home/pdfToWord.svg" alt="pdfToWord" className="h-15" />,
-    path: "/PdfToWordScreen",
+    path: "/pdf-to-word",
   },
   {
     name: "PDF to Excel",
     description: "Convert PDF files into Excel sheets.",
     icon: <img src="../home/pdfToExel.svg" alt="pdfToExel" className="h-15" />,
-    path: "/PdfToExelScreen",
+    path: "/pdf-to-exel",
   },
   {
     name: "PDF to PPT",
     description: "Convert PDF files into PowerPoint slides.",
     icon: <img src="../home/pdfToppt.svg" alt="pdfToppt" className="h-15" />,
-    path: "/PdfToPPTScreen",
+    path: "/pdf-to-ppt",
   },
   {
     name: "PDF to TEXT",
     description: "Extract text from PDF files.",
     icon: <img src="../home/PdfToTxt.svg" alt="pdfToTxt" className="h-15" />,
-    path: "/PdfToTxtScreen",
+    path: "/pdf-to-text",
   },
   {
     name: "PDF to IMAGE",
@@ -70,36 +70,36 @@ const tools = [
     icon: (
       <img src="../home/pdfToImage.svg" alt="pdfToImage" className="h-15" />
     ),
-    path: "/PdfToImageScreen",
+    path: "/pdf-to-image",
   },
   {
     name: "Merge PDF",
     description: "Merge multiple PDFs into one file.",
     icon: <img src="../home/mergePdf.svg" alt="pdfToTxt" className="h-15" />,
-    path: "/MergePdfScreen",
+    path: "/merge-pdf",
   },
   {
     name: "Split PDF",
     description: "Split a PDF into multiple parts.",
     icon: <img src="../home/splitPdf.svg" alt="pdfToTxt" className="h-15" />,
-    path: "/SplitPdfScreen",
+    path: "/split-pdf",
   },
   {
     name: "Compress PDF",
     description: "Compress the size of your PDFs.",
     icon: <img src="../home/compressPdf.svg" alt="pdfToTxt" className="h-15" />,
-    path: "/CompressPdfScreen",
+    path: "/compress-pdf",
   },
   {
     name: "Flip PDF Pages",
     description: "Flip through PDF pages interactively.",
     icon: <img src="../home/flipPdf.svg" alt="pdfToTxt" className="h-15" />,
-    path: "/FlipPdfScreen",
+    path: "/flip-pdf",
   },
   {
     name: "Remove PDF Pages",
     description: "Delete specific pages from a PDF.",
-    path: "/RemovePdfPagesScreen",
+    path: "/remove-page",
     icon: <img src="../home/removePdf.svg" alt="pdfToTxt" className="h-15" />,
   },
   // {
@@ -117,25 +117,25 @@ const tools = [
         className="h-15"
       />
     ),
-    path: "/ExtractPdfContent",
+    path: "/extract-content",
   },
   {
     name: "Rotate PDF",
     description: "Rotate PDF pages.",
     icon: <img src="../home/rotatePdf.svg" alt="pdfToTxt" className="h-15" />,
-    path: "/RotatePdfPagesScreen",
+    path: "/rotate-page",
   },
   {
     name: "Crop PDF",
     description: "Crop the margins of PDF files.",
     icon: <img src="../home/cropPdf.svg" alt="pdfToTxt" className="h-15" />,
-    path: "/CropPdfScreen",
+    path: "/crop-pdf",
   },
   {
     name: "Edit PDF",
     description: "Edit text and images in PDFs.",
     icon: <img src="../home/editPdf.svg" alt="pdfToTxt" className="h-15" />,
-    path: "/PdfEditor",
+    path: "/pdf-editor",
   },
   {
     name: "Rearrange PDF",
@@ -143,13 +143,13 @@ const tools = [
     icon: (
       <img src="../home/rearrangePdf.svg" alt="pdfToTxt" className="h-15" />
     ),
-    path: "/PdfReArrenge",
+    path: "/rearrenge-pdf-page",
   },
   {
     name: "PDF Creator",
     description: "Create a new PDF from scratch.",
     icon: <img src="../home/pdfCreation.svg" alt="pdfToTxt" className="h-15" />,
-    path: "/PdfCreator",
+    path: "/pdf-create",
   },
   {
     name: "Add Page Number",
@@ -157,7 +157,7 @@ const tools = [
     icon: (
       <img src="../home/AddPageNumber.svg" alt="pdfToTxt" className="h-15" />
     ),
-    path: "/PdfWithPageNumber",
+    path: "/add-page-number",
   },
   {
     name: "Add Watermark",

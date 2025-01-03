@@ -7,21 +7,21 @@ const tools = [
     icon: (
       <img src="../home/wordTopdf.svg" alt="wordTopdf" className="w-10 h-10" />
     ),
-    path: "/docToPdf",
+    path: "/doc-to-pdf",
   },
   {
     name: "Excel to PDF",
     icon: (
       <img src="../home/exelToPdf.svg" alt="exelToPdf" className="w-10 h-10" />
     ),
-    path: "/ExelToPdfScreen",
+    path: "/exel-to-pdf",
   },
   {
     name: "PPT to PDF",
     icon: (
       <img src="../home/pptToPdf.svg" alt="pptToPdf" className="w-10 h-10" />
     ),
-    path: "/PptToPdfScreen",
+    path: "/ppt-to-pdf",
   },
   {
     name: "IMAGE to PDF",
@@ -32,47 +32,47 @@ const tools = [
         className="w-10 h-10"
       />
     ),
-    path: "/ImageToPdfScreen",
+    path: "/image-to-pdf",
   },
   {
     name: "HTML to PDF",
     icon: (
       <img src="../home/htmlToPdf.svg" alt="htmlToPdf" className="w-10 h-10" />
     ),
-    path: "/HtmlToPdfScreen",
+    path: "/html-to-pdf",
   },
   {
     name: "PDF OCR",
     icon: <img src="../home/pdfOCR.svg" alt="pdfOCR" className="w-10 h-10" />,
-    path: "/PdfOCRScreen",
+    path: "/pdf-ocr",
   },
   {
     name: "PDF to Word",
     icon: (
       <img src="../home/pdfToWord.svg" alt="pdfToWord" className="w-10 h-10" />
     ),
-    path: "/PdfToWordScreen",
+    path: "/pdf-to-word",
   },
   {
     name: "PDF to Excel",
     icon: (
       <img src="../home/pdfToExel.svg" alt="pdfToExel" className="w-10 h-10" />
     ),
-    path: "/PdfToExelScreen",
+    path: "/pdf-to-exel",
   },
   {
     name: "PDF to PPT",
     icon: (
       <img src="../home/pdfToppt.svg" alt="pdfToppt" className="w-10 h-10" />
     ),
-    path: "/PdfToPPTScreen",
+    path: "/pdf-to-ppt",
   },
   {
     name: "PDF to TEXT",
     icon: (
       <img src="../home/PdfToTxt.svg" alt="pdfToTxt" className="w-10 h-10" />
     ),
-    path: "/PdfToTxtScreen",
+    path: "/pdf-to-text",
   },
   {
     name: "PDF to IMAGE",
@@ -83,21 +83,21 @@ const tools = [
         className="w-10 h-10"
       />
     ),
-    path: "/PdfToImageScreen",
+    path: "/pdf-to-image",
   },
   {
     name: "Merge PDF",
     icon: (
       <img src="../home/mergePdf.svg" alt="mergePdf" className="w-10 h-10" />
     ),
-    path: "/MergePdfScreen",
+    path: "/merge-pdf",
   },
   {
     name: "Split PDF",
     icon: (
       <img src="../home/splitPdf.svg" alt="splitPdf" className="w-10 h-10" />
     ),
-    path: "/SplitPdfScreen",
+    path: "/split-pdf",
   },
   {
     name: "Compress PDF",
@@ -108,19 +108,19 @@ const tools = [
         className="w-10 h-10"
       />
     ),
-    path: "/CompressPdfScreen",
+    path: "/compress-pdf",
   },
   {
     name: "Flip PDF Pages",
     icon: <img src="../home/flipPdf.svg" alt="flipPdf" className="w-10 h-10" />,
-    path: "/FlipPdfScreen",
+    path: "/flip-pdf",
   },
   {
     name: "Remove PDF Pages",
     icon: (
       <img src="../home/removePdf.svg" alt="removePdf" className="w-10 h-10" />
     ),
-    path: "/RemovePdfPagesScreen",
+    path: "/remove-page",
   },
   // {
   //   name: "PDF Scanner",
@@ -141,24 +141,24 @@ const tools = [
         className="w-10 h-10"
       />
     ),
-    path: "/ExtractPdfContent",
+    path: "/extract-content",
   },
   {
     name: "Rotate PDF",
     icon: (
       <img src="../home/rotatePdf.svg" alt="rotatePdf" className="w-10 h-10" />
     ),
-    path: "/RotatePdfPagesScreen",
+    path: "/rotate-page",
   },
   {
     name: "Crop PDF",
     icon: <img src="../home/cropPdf.svg" alt="cropPdf" className="w-10 h-10" />,
-    path: "/CropPdfScreen",
+    path: "/crop-pdf",
   },
   {
     name: "Edit PDF",
     icon: <img src="../home/editPdf.svg" alt="editPdf" className="w-10 h-10" />,
-    path: "/PdfEditor",
+    path: "/pdf-editor",
   },
   {
     name: "Rearrange PDF",
@@ -169,7 +169,7 @@ const tools = [
         className="w-10 h-10"
       />
     ),
-    path: "/PdfReArrenge",
+    path: "/rearrenge-pdf-page",
   },
   {
     name: "PDF Creator",
@@ -180,7 +180,7 @@ const tools = [
         className="w-10 h-10"
       />
     ),
-    path: "/PdfCreator",
+    path: "/pdf-create",
   },
   {
     name: "Add Page Number",
@@ -191,7 +191,7 @@ const tools = [
         className="w-10 h-10"
       />
     ),
-    path: "/PdfWithPageNumber",
+    path: "/add-page-number",
   },
   {
     name: "Add Watermark",

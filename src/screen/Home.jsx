@@ -9,14 +9,14 @@ function Home() {
     <div>
       {/* Helmet for SEO and Social Media */}
       <Helmet>
-        <title>PDF Tools - Convert, Edit, Compress & More</title>
+        <title>PDF Small Tools - Convert, Edit, Compress & More</title>
         <meta
           name="description"
           content="Discover powerful PDF tools for all your document needs. Convert, merge, split, edit, compress PDFs and more – all in one easy-to-use platform."
         />
         <meta
           property="og:title"
-          content="PDF Tools - Convert, Edit, Compress & More"
+          content="PDF Small Tools - Convert, Edit, Compress & More"
         />
         <meta
           property="og:description"
@@ -31,7 +31,7 @@ function Home() {
         <meta name="twitter:card" content="summary_large_image" />
         <meta
           name="twitter:title"
-          content="PDF Tools - Convert, Edit, Compress & More"
+          content="PDF Small Tools - Convert, Edit, Compress & More"
         />
         <meta
           name="twitter:description"
